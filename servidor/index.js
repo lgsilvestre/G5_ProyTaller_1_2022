@@ -1,10 +1,18 @@
-const express = require('express')
+import express from 'express'
+import cors from 'cors'
 const app = express()
+import {routesConfig} from './routes/index.js'
+import dotenv from 'dotenv'
+dotenv.config()
+app.use(express.json())
+
+// disable cors for all routes
+
+app.use(cors())
 
 app.set('port',process.env.port || 3000)
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
+routesConfig(app)
 
 app.listen(app.get('port'), () => {
   console.log('server on port' + app.get('port'));
