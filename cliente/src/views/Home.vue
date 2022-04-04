@@ -2,7 +2,9 @@
   <div class="home">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
 
-    <p>{{}}</p>
+    <p class="text-center display-4 " v-for="animal in this.animals" :key="animal.nombre">
+      {{animal.name}}
+    </p>
   </div>
 </template>
 
@@ -26,19 +28,10 @@ export default {
   },
   
   methods: {
-    async getAnimals () {
-      const get = await axios.get(
-        'localhost:3000' +
-          '/getAnimals' 
-      ,{
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
+    getAnimals () {
+      axios.get("http://localhost:3000/getAnimals").then((result) => {
+        this.animals = result.data
       })
-      
-      this.animals = get.data
-      console.log(get)
     },
   },
 }

@@ -8,7 +8,7 @@ app.use(express.json())
 
 // disable cors for all routes
 
-app.use(cors())
+app.use(cors({origin: '*'}))
 
 app.set('port',process.env.port || 3000)
 
