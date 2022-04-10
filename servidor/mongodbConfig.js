@@ -20,4 +20,15 @@ const AnimalSchema = new mongoose.Schema({
 
 const Animal = mongoose.model('Animal', AnimalSchema);
 
-export {Test,Animal};
+const UsuarioSchema = new mongoose.Schema({
+     nombreCompleto: String,
+     nombreUsuario: String,
+     email: String,
+     clave: String,    
+});
+
+const Usuario = mongoose.model('Usuario', UsuarioSchema);
+
+
+
+export {Test,Animal,Usuario};
