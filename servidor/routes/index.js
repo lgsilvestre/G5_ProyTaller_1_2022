@@ -1,6 +1,6 @@
 import {getTest} from '../controllers/tests/test.js'
 import { getAnimals, postAnimal, getAnimalByQuery } from '../controllers/animal/animalController.js'
-import { getUsuarios, getUsuarioByQuery, postUsuario } from '../controllers/usuario/usuarioController.js';
+import { getUsuarios, getUsuarioByQuery, postUsuario, login } from '../controllers/usuario/usuarioController.js';
 
 export function routesConfig(app) {
 
@@ -8,7 +8,7 @@ export function routesConfig(app) {
         getTest
     );
 
-    
+
     app.get('/getAnimals',
         getAnimals
     );
@@ -32,6 +32,10 @@ export function routesConfig(app) {
 
     app.post('/postUsuario',
         postUsuario
+    );
+
+    app.post('/login',
+        login
     );
 
 }

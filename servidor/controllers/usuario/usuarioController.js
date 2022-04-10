@@ -1,4 +1,5 @@
 import { Usuario } from "../../mongodbConfig.js";
+import bcrypt from 'bcryptjs';
 
 async function getUsuarios(req, res) {
 
@@ -29,6 +30,8 @@ async function postUsuario(req, res) {
 
     console.log(req.body);
 
+    req.body.clave = await bcrypt.hash(req.body.clave,10);
+
     let usuario = new Usuario({
         nombreCompleto: req.body.nombreCompleto,
         nombreUsuario: req.body.nombreUsuario,
@@ -42,5 +45,31 @@ async function postUsuario(req, res) {
     res.send(usuario);
 }
 
-export { getUsuarios, getUsuarioByQuery, postUsuario }
+async function login(req,res) {
+    try{
+        let user = await Usuario.findOne({email:req.body.email});
+        if(user){
+            let match = await bcrypt.compare(req.body.clave,user.clave);
+            if(match){
+                res.json('Clave correcta');
+            }
+            else{
+                res.status(404).send({
+                    message: 'Clave incorrecta'
+                });
+            }
+        }   
+        else{
+            res.status(404).send({
+                message : 'No existe un usuario con este email'
+            });
+        }
+    } catch(e){
+        res.status(500).send({
+            message: 'Ocurrio un error'
+        });
+    }
+}
+
+export { getUsuarios, getUsuarioByQuery, postUsuario, login}
 
