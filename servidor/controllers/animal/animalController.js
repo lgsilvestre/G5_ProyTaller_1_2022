@@ -25,7 +25,7 @@ async function getAnimalByQuery(req, res) {
    
 }
 
-async function createAnimal(req, res) {
+async function postAnimal(req, res) {
 
     //const testStr = new Test({ text:"Hola mundo" });
     //await testStr.save();
@@ -43,4 +43,4 @@ async function createAnimal(req, res) {
     res.send(animal);
 }
 
-export { getAnimals, getAnimalByQuery, createAnimal }
+export { getAnimals, getAnimalByQuery, postAnimal }

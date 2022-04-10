@@ -1,5 +1,5 @@
 import {getTest} from '../controllers/tests/test.js'
-import { getAnimals, createAnimal, getAnimalByQuery } from '../controllers/animal/animalController.js'
+import { getAnimals, postAnimal, getAnimalByQuery } from '../controllers/animal/animalController.js'
 
 export function routesConfig(app) {
 
@@ -17,7 +17,7 @@ export function routesConfig(app) {
     );
 
     app.post('/postAnimal',
-        createAnimal
+        postAnimal
     );
 
 

@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-
+    <carrousel></carrousel>
+    <h1 >QUIÉNES SOMOS?</h1>
+    <p>Somos una fundación de rescate y esterilización de animales en situación 
+    de calle o maltrato en la provincia de Curico </p>
     <p class="text-center display-4 " v-for="animal in this.animals" :key="animal.nombre">
       {{animal.name}}
     </p>
@@ -10,13 +12,13 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import axios from "axios";
+import Carrousel from '../components/carrousel.vue';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    Carrousel
   },
   data: function () {
     return {
@@ -36,3 +38,14 @@ export default {
   },
 }
 </script>
+
+<style >
+
+  h1 {
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+
+</style>
