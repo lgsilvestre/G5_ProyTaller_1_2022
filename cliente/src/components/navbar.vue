@@ -1,49 +1,37 @@
 <template>
-    <div class="imagen">
-        <v-img 
-        class="imagen"
-        lazy-src="https://imgur.com/3UwmDiJ.png"
-        max-height="80"
-        max-width="80"
-        src="https://imgur.com/3UwmDiJ.png"
-        ></v-img>
-        <v-tabs
-            v-model="tab"
-            color="black"
-            centered
-            slider-color="black"
-            icons-and-text
-        >
-        <v-tab href="#tab-2">
-        Adopta
-        </v-tab>
-        <v-tab href="#tab-3">
-        Nosotros
-        </v-tab>
-        <v-tab href="#tab-4">
-        Aportes
-        </v-tab>
-        <v-tab href="#tab-5">
-        Casos Activos
-        </v-tab>
-        <v-tab href="#tab-6">
-        Eventos
-        </v-tab>
-        
-        </v-tabs>
-
-        <v-tabs-items v-model="tab">
-            <v-tab-item
-                v-for="i in 5"
-                :key="i"
-                :value="'tab-' + i"
-            >
-        </v-tab-item>
-    </v-tabs-items>
+    <div class="navbar">
+      <v-row>
+        <v-col cols=3>
+          <v-img 
+          class="imagen"         
+          lazy-src="https://imgur.com/3UwmDiJ.png"         
+          max-height="80"         
+          max-width="80"         
+          src="https://imgur.com/3UwmDiJ.png"         
+          ></v-img>
+        </v-col>
+        <v-col cols=12 md=6 align-self="center">
+          <v-row class="items" justify="space-between">
+            <router-link to="/home">Home</router-link>
+            <router-link to="/adoptame">Adoptame</router-link> 
+            <router-link to="/nostros">Nosotros</router-link> 
+            <router-link to="/aportes">Aportes</router-link> 
+            <router-link to="/casosActivos">Casos Activos</router-link> 
+            <router-link to="/eventos">Eventos</router-link> 
+            <router-link v-if="isLoggedIn" @click="logout" to="/login">Salir</router-link>
+            <router-link v-if="!isLoggedIn" to="/register">Registrarse</router-link>
+            <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
+            <v-img 
+            src="@/assets/whatsapplogo.png" 
+            max-height="35"         
+            max-width="35"
+            class="pointer"
+            ></v-img>
+          </v-row>
+          
+        </v-col>
+      </v-row>
     </div>
-    
-  
-  
 </template>
 
 <script>
@@ -53,13 +41,44 @@
         tab: null,
       }
     },
+    computed:{
+      isLoggedIn: function() {
+        return this.$store.getters.isAuthenticated;
+      },
+
+    },
+    methods:{
+      async logout() {
+        await this.$store.dispatch("LogOut");
+        this.$router.push("/login");
+      },
+    }
+
   }
 </script>
 
 <style>
-.imagen{
-    display: flex;
-    align-items: initial;
-    justify-content: initial;
+.pointer{
+  cursor: pointer;
+  opacity: 0.77;
+  transition: 0.3s;
+}
+.pointer:hover{
+  opacity: 1;
+}
+.items a{
+  color: black !important;
+  text-decoration: none;
+  vertical-align: middle;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+.items a:hover{
+  color: red !important;
+}
+
+.router-link-active{
+  text-decoration: underline !important;
+  text-underline-offset: 10px;
 }
 </style>

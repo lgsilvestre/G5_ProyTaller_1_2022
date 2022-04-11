@@ -28,7 +28,7 @@ export default {
   created: function () {
     this.getAnimals()
   },
-  
+
   methods: {
     getAnimals () {
       axios.get("http://localhost:3000/getAnimals").then((result) => {

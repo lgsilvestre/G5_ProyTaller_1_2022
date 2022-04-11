@@ -2,7 +2,6 @@ import axios from "axios";
 
 const state = {
   user: null,
-  posts: null,
 };
 
 const getters = {
