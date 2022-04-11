@@ -1,5 +1,3 @@
-/server/.env
-/server/.env.prod
 *.env
 
 # Compiled class file
