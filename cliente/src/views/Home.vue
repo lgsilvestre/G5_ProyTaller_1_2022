@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <carrousel></carrousel>
+    <v-card
+    max-width="80%"
+    class="mx-auto"
+    >
+      <carrousel></carrousel>
+    </v-card>
     <h1 >QUIÉNES SOMOS?</h1>
     <p>Somos una fundación de rescate y esterilización de animales en situación 
     de calle o maltrato en la provincia de Curico </p>
