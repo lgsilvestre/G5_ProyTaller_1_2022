@@ -18,7 +18,7 @@
             <router-link to="/aportes">Aportes</router-link> 
             <router-link to="/casosActivos">Casos Activos</router-link> 
             <router-link to="/eventos">Eventos</router-link> 
-            <router-link v-if="isLoggedIn" @click="logout" to="/login">Salir</router-link>
+            <router-link v-if="isLoggedIn" @click.native="logout" to="/login">Salir</router-link>
             <router-link v-if="!isLoggedIn" to="/register">Registrarse</router-link>
             <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
             <v-img 
