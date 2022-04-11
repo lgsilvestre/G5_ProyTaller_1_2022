@@ -14,7 +14,7 @@
           <v-row class="items" justify="space-between">
             <router-link to="/home">Home</router-link>
             <router-link to="/adoptame">Adoptame</router-link> 
-            <router-link to="/nostros">Nosotros</router-link> 
+            <router-link to="/about">Nosotros</router-link> 
             <router-link to="/aportes">Aportes</router-link> 
             <router-link to="/casosActivos">Casos Activos</router-link> 
             <router-link to="/eventos">Eventos</router-link> 
