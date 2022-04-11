@@ -4,15 +4,15 @@
     <h1 >QUIÉNES SOMOS?</h1>
     <p>Somos una fundación de rescate y esterilización de animales en situación 
     de calle o maltrato en la provincia de Curico </p>
-    <p class="text-center display-4 " v-for="animal in this.animals" :key="animal.nombre">
+    <!-- <p class="text-center display-4 " v-for="animal in this.animals" :key="animal.nombre">
       {{animal.name}}
-    </p>
+    </p> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import axios from "axios";
+// import axios from "axios";
 import Carrousel from '../components/carrousel.vue';
 
 export default {
@@ -26,15 +26,15 @@ export default {
     }
   },
   created: function () {
-    this.getAnimals()
+    // this.getAnimals()
   },
 
   methods: {
-    getAnimals () {
-      axios.get("http://localhost:3000/getAnimals").then((result) => {
-        this.animals = result.data
-      })
-    },
+    // getAnimals () {
+    //   axios.get("http://localhost:3000/getAnimals").then((result) => {
+    //     this.animals = result.data
+    //   })
+    // },
   },
 }
 </script>
