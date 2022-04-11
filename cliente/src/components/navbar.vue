@@ -58,6 +58,9 @@
 </script>
 
 <style>
+.navbar{
+  background: #F8F8FF;
+}
 .pointer{
   cursor: pointer;
   opacity: 0.77;
