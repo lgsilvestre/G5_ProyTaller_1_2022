@@ -55,7 +55,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2%;
 }
 
 * {
@@ -68,6 +67,7 @@ label {
 }
 
 .v-btn{
+  margin-top: 1rem;
   color: #45a049;
   border-radius: 30px;
 }

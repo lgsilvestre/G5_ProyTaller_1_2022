@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <navbar></navbar>
+    <navbar class="mb-r"></navbar>
     
     <v-main>
       <router-view/>
@@ -23,3 +23,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+  .mb-r{
+    margin-bottom: 2.5rem !important;
+  }
+</style>

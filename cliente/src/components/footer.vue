@@ -19,8 +19,8 @@
           class="mx-4"
           dark
           icon
-
           :href = icon.link
+          target="_blank"
         >
           <v-icon size="24px" >
             {{ icon.nombre }}

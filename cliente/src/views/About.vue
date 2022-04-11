@@ -11,14 +11,21 @@
       </v-img>
     </div>
     
-    <h1>Nosotros</h1>
+    <h1 class="m-1">Nosotros</h1>
     
-    <p>
-      Somos una fundacion al servicio de los animalitos que se encuentren en situacion de calle.
-      Desde el xx del xx de xxxx que contamos con un centro de adopcion el cual se encarga de brindarles 
-      cuidado y atencion, y junto con esto dar la opcion de adoptar y entregar mascotas a familias que quieran
-      entregarle todo el amor que se merecen.
-    </p>
+    <v-card
+      class="w-80 center"
+      outlined 
+    >
+      <v-card-text>
+        <p class="text-black">
+        Somos una fundacion al servicio de los animalitos que se encuentren en situacion de calle.
+        Desde el xx del xx de xxxx que contamos con un centro de adopcion el cual se encarga de brindarles 
+        cuidado y atencion, y junto con esto dar la opcion de adoptar y entregar mascotas a familias que quieran
+        entregarle todo el amor que se merecen.
+      </p>
+      </v-card-text>
+    </v-card>
     
   </div>
 </template>
@@ -29,5 +36,20 @@
     justify-content: center;
 
   }
+  .m-1{
+    margin:1rem;
+  }
+  .w-80{
+    width: 70%;
+  }
+  .center{
+    margin: 0 auto;
+  }
+  .text-black{
+    color: black;
+  }
+  
+  
+
 
 </style>
