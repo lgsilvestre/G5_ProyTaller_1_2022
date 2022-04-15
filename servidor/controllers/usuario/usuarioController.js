@@ -1,5 +1,6 @@
 import { Usuario } from "../../mongodbConfig.js";
 import bcrypt from 'bcryptjs';
+import token from '../../services/token.js';
 
 async function getUsuarios(req, res) {
 
@@ -48,10 +49,13 @@ async function postUsuario(req, res) {
 async function login(req,res) {
     try{
         let user = await Usuario.findOne({email:req.body.email});
+        
+        
         if(user){
             let match = await bcrypt.compare(req.body.clave,user.clave);
-            if(match){
-                res.json('Clave correcta');
+            if (match){
+                let tokenReturn = await token.encode(user._id);
+                res.status(200).json({user,tokenReturn});
             }
             else{
                 res.status(404).send({
