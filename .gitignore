@@ -1,9 +1,9 @@
-/server/.env
+.firebase
+
 *.env
 
 # Compiled class file
 *.class
-
 # Log file
 *.log
 
