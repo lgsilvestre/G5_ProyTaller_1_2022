@@ -1,47 +1,42 @@
-import axios from "axios";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import decode from 'jwt-decode'
+import router from '../../router/index.js'
 
-const state = {
-  user: null,
-};
+Vue.use(Vuex)
 
-const getters = {
-  isAuthenticated: (state) => !!state.user,
-  StateUser: (state) => state.user,
-};
-
-const actions = {
-//   async Register({dispatch}, form) {
-//     await axios.post('register', form)
-//     let UserForm = new FormData()
-//     UserForm.append('username', form.username)
-//     UserForm.append('password', form.password)
-//     await dispatch('LogIn', UserForm)
-//   },
-
-  async LogIn({commit}, user) {
-    await axios.post("login", user);
-    await commit("setUser", user.get("username"));
+export default new Vuex.Store({
+  state: {
+    token: null,
+    usuario: null
   },
-
-  async LogOut({ commit }) {
-    let user = null;
-    commit("logout", user);
+  mutations: {
+    setToken(state,token){
+      state.token=token;
+    },
+    setUsuario(state,usuario){
+      state.usuario=usuario;
+    }
   },
-};
-
-const mutations = {
-  setUser(state, username) {
-    state.user = username;
-  },
-
-  logout(state, user) {
-    state.user = user;
-  },
-};
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations,
-};
+  actions: {
+    guardarToken({commit}, token){
+      commit("setToken", token)
+      commit("setUsuario", decode(token))
+      localStorage.setItem("token", token)
+    },
+    autoLogin({commit}){
+      let token = localStorage.getItem("token");
+      if(token) {
+        commit("setToken", token);
+        commit("setUsuario", decode(token));
+      }
+      router.push({name: 'home'});
+    },
+    salir({commit}){
+      commit("setToken", null);
+      commit("setUsuario", null);
+      localStorage.removeItem("token");
+      router.push({name: 'login'});
+    }
+  }
+})
