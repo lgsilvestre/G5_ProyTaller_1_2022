@@ -9,7 +9,8 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { libre: true },
   },
   {
     path: '/about',
@@ -17,7 +18,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    meta: { libre: true },
   },
   {
     path: '/login',
@@ -31,6 +33,7 @@ const routes = [
   {
     path: '/',
     redirect: '/home',
+    meta: { libre: true },
   },
 
 
@@ -54,7 +57,7 @@ router.beforeEach((to, from, next) => {
       next();
     }
   }else{
-    next({name: 'login'});
+    next({name: 'Login'});
   }
 })
 
