@@ -1,7 +1,8 @@
 import {getTest} from '../controllers/tests/test.js'
-import { getAnimals, postAnimal, getAnimalByQuery } from '../controllers/animal/animalController.js'
-import { getUsuarios, getUsuarioByQuery, postUsuario, login } from '../controllers/usuario/usuarioController.js';
+import { getAnimals, postAnimal, queryAnimal, updateAnimal } from '../controllers/animal/animalController.js'
+import { getUsuarios, queryUsuario, postUsuario, login, updateUsuario } from '../controllers/usuario/usuarioController.js';
 import auth from '../middlewares/auth.js';
+//import { AppCheck } from 'firebase-admin/lib/app-check/app-check';
 
 export function routesConfig(app) {
 
@@ -10,13 +11,17 @@ export function routesConfig(app) {
 
     //Animales
     app.get('/getAnimals',getAnimals);
-    app.get('/getAnimalByQuery/:query',getAnimalByQuery);
-    app.post('/postAnimal',auth.verifyAdministrador,postAnimal);
+    app.get('/queryAnimal',queryAnimal);
+    app.post('/postAnimal',postAnimal);
+    //app.post('/postAnimal',auth.verifyAdministrador,postAnimal);
+    app.put('/updateAnimal', updateAnimal);
 
     //Usuarios
-    app.get('/getUsuarios',auth.verifyAdministrador,getUsuarios);
-    app.get('/getUsuarioByQuery/:query',auth.verifyAdministrador,getUsuarioByQuery);
+    app.get('/getUsuarios',getUsuarios);
+    //app.get('/getUsuarios',auth.verifyAdministrador,getUsuarios);
+    app.get('/queryUsuario',queryUsuario);
+    //app.get('/getUsuarioByQuery/:query',auth.verifyAdministrador,getUsuarioByQuery);
     app.post('/postUsuario',postUsuario);
     app.post('/login',login);
-
+    app.put('/updateUsuario', updateUsuario);
 }

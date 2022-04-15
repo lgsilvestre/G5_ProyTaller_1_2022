@@ -3,39 +3,39 @@ import { Animal } from '../../mongodbConfig.js'
 
 
 async function getAnimals(req, res) {
-
-    //const testStr = new Test({ text:"Hola mundo" });
-    //await testStr.save();
     
     let animales = await Animal.find({});
 
     res.send(animales);
 }
 
-async function getAnimalByQuery(req, res) {
-
-    //const testStr = new Test({ text:"Hola mundo" });
-    //await testStr.save();
-    console.log("getAnimalById");
-    
-    let queryObj = JSON.parse(req.params.query)
-
-    let resQuery = await Animal.find(queryObj);
-    res.status(200).send(resQuery);
-   
+async function queryAnimal(req,res) {
+    try {
+        const reg=await Animal.findOne({_id:req.query._id});
+        if (!reg){
+            res.status(404).send({
+                message: 'El registro no existe'
+            });
+        } else{
+            res.status(200).json(reg);
+        }
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
 }
 
 async function postAnimal(req, res) {
 
-    //const testStr = new Test({ text:"Hola mundo" });
-    //await testStr.save();
-
     console.log(req.body);
     
     let animal = new Animal({
-        name: req.body.name,
-        age: req.body.age,
-        breed: req.body.breed
+        nombre: req.body.nombre,
+        edad: req.body.edad,
+        raza: req.body.raza,
+        tipo: req.body.tipo
     });
 
     await animal.save();
@@ -43,4 +43,16 @@ async function postAnimal(req, res) {
     res.send(animal);
 }
 
-export { getAnimals, getAnimalByQuery, postAnimal }
+async function updateAnimal(req,res) {
+    try {
+        const reg = await Animal.findByIdAndUpdate({_id:req.body._id},{nombre:req.body.nombre,edad:req.body.edad,raza:req.body.raza,tipo:req.body.tipo});
+        res.status(200).json(reg);
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
+}
+
+export { getAnimals, queryAnimal, postAnimal, updateAnimal }
