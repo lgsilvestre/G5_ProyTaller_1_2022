@@ -8,9 +8,9 @@
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
-                    <v-text-field v-model="email" autofocus color="accent" label="Email" required>
+                    <v-text-field v-model="email" color="accent" label="Usuario" required>
                     </v-text-field>
-                    <v-text-field v-model="password" type="password" color="accent" label="Password" required>
+                    <v-text-field v-model="password" type="password" color="accent" label="Contraseña" required>
                     </v-text-field>
                     <v-flex class="red--text" v-if="errorM">
                         {{errorM}}
@@ -43,7 +43,7 @@ export default {
             })
             .then(data =>{
                 this.$store.dispatch("guardarToken",data.tokenReturn);
-                this.$router.push({name: 'home'});
+                this.$router.push('/Home').catch(() => {});
             })
             .catch(error =>{
                 //console.log(eror);

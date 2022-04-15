@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from "../store";
 
 Vue.use(VueRouter)
 
@@ -10,7 +9,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    meta: { libre: true },
+    
   },
   {
     path: '/about',
@@ -19,7 +18,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    meta: { libre: true },
+    
   },
   {
     path: '/login',
@@ -28,12 +27,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/login.vue'),
-    meta: { libre: true },
+    meta: { guest: true },
   },
   {
     path: '/',
     redirect: '/home',
-    meta: { libre: true },
   },
 
 
@@ -46,19 +44,18 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.libre)){
+  if (to.matched.some((record) => record.meta.guest)) {
+    var loggedIn = localStorage.getItem('token')
+    if (loggedIn) {
+      next("/");
+      return;
+    }
+    else{
+      next();
+    }
+  } else {
     next();
-  } else if ( store.state.usuario && store.state.usuario.rol == 'admin'){
-    if (to.matched.some(record => record.meta.administrador)){
-      next();
-    }
-  } else if ( store.state.usuario && store.state.usuario.rol == 'usuario'){
-    if (to.matched.some(record => record.meta.vendedor)){
-      next();
-    }
-  }else{
-    next({name: 'Login'});
   }
-})
+});
 
 export default router

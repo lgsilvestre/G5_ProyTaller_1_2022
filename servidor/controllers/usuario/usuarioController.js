@@ -28,9 +28,6 @@ async function postUsuario(req, res) {
 
     //const testStr = new Test({ text:"Hola mundo" });
     //await testStr.save();
-
-    console.log(req.body);
-
     req.body.clave = await bcrypt.hash(req.body.clave,10);
 
     let usuario = new Usuario({
@@ -49,10 +46,8 @@ async function postUsuario(req, res) {
 async function login(req,res) {
     try{
         let user = await Usuario.findOne({email:req.body.email});
-        
-        
         if(user){
-            let match = await bcrypt.compare(req.body.clave,user.clave);
+            let match = await bcrypt.compare(req.body.password,user.clave);
             if (match){
                 let tokenReturn = await token.encode(user._id);
                 res.status(200).json({user,tokenReturn});
