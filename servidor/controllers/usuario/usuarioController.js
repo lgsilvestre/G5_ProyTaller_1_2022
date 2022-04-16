@@ -12,16 +12,22 @@ async function getUsuarios(req, res) {
     res.send(usuarios);
 }
 
-async function getUsuarioByQuery(req, res) {
-
-    //const testStr = new Test({ text:"Hola mundo" });
-    //await testStr.save();
-    
-    let queryObj = JSON.parse(req.params.query)
-
-    let resQuery = await Usuario.find(queryObj);
-    res.status(200).send(resQuery);
-   
+async function queryUsuario(req,res) {
+    try {
+        const reg=await Usuario.findOne({_id:req.query._id});
+        if (!reg){
+            res.status(404).send({
+                message: 'El registro no existe'
+            });
+        } else{
+            res.status(200).json(reg);
+        }
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
 }
 
 async function postUsuario(req, res) {
@@ -41,6 +47,21 @@ async function postUsuario(req, res) {
     await usuario.save();
 
     res.send(usuario);
+}
+
+async function updateUsuario(req,res) {
+    try {
+        const reg = await Usuario.findByIdAndUpdate({_id:req.body._id},{nombreCompleto: req.body.nombreCompleto,
+            nombreUsuario: req.body.nombreUsuario,
+            email: req.body.email,
+            clave: req.body.clave});
+        res.status(200).json(reg);
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
 }
 
 async function login(req,res) {
@@ -70,5 +91,5 @@ async function login(req,res) {
     }
 }
 
-export { getUsuarios, getUsuarioByQuery, postUsuario, login}
+export { getUsuarios, queryUsuario, postUsuario, login, updateUsuario}
 

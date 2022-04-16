@@ -13,9 +13,10 @@ const TestSchema = new mongoose.Schema({
 const Test = mongoose.model('Test', TestSchema);
 
 const AnimalSchema = new mongoose.Schema({
-    name: String,
-    age: Number,
-    breed: String,
+    nombre: String,
+    edad: Number,
+    raza: String,
+    tipo: String
 });
 
 const Animal = mongoose.model('Animal', AnimalSchema);
