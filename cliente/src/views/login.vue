@@ -43,7 +43,7 @@ export default {
             })
             .then(data =>{
                 this.$store.dispatch("guardarToken",data.tokenReturn);
-                this.$router.push('/Home').catch(() => {});
+                this.$router.push('/home').catch(() => {});
             })
             .catch(error =>{
                 //console.log(eror);

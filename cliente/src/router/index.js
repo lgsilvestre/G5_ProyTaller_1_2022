@@ -33,6 +33,13 @@ const routes = [
     path: '/',
     redirect: '/home',
   },
+  {
+    path: '/registro',
+    name: 'Registro',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Registro.vue'),
+    meta: { guest: true },
+
+  }
 
 
 ]
