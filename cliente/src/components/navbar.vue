@@ -18,6 +18,7 @@
             <router-link to="/aportes">Aportes</router-link> 
             <router-link to="/casosActivos">Casos Activos</router-link> 
             <router-link to="/eventos">Eventos</router-link> 
+            <router-link to="/crudMascotas">Crud Mascotas</router-link> 
             <router-link v-if="existeUser"  @click.native="salir" to="/login">Salir</router-link>
             <router-link v-if="!existeUser" to="/registro">Registrarse</router-link>
             <router-link v-if="!existeUser" to="/login">Login</router-link>

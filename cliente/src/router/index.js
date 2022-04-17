@@ -39,6 +39,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Registro.vue'),
     meta: { guest: true },
 
+  },
+  {
+    path: '/crudMascotas',
+    name: 'CrudMascotas',
+    component: () => import(/* webpackChunkName: "about" */ '../views/CrudMascotas.vue'),
+    meta: { guest: true },
+
   }
 
 
