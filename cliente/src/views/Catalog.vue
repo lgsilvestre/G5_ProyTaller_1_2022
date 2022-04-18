@@ -37,7 +37,6 @@ export default {
         axios.get('/getAnimals')
             .then(result => {
                 this.items = result.data;
-                console.log(result.data)
             })
     },
 }

@@ -26,7 +26,7 @@
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat color="gray">Compartir</v-btn>
+          <v-btn color="gray">Compartir</v-btn>
           
         </v-card-actions>
       </v-card>
@@ -54,7 +54,7 @@
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat color="gray">Compartir</v-btn>
+          <v-btn color="gray">Compartir</v-btn>
           
         </v-card-actions>
       </v-card>
