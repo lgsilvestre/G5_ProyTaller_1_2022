@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-container
-            class="grey lighten-5 mb-6"
+            class="grey lighten-3 mb-6"
             >
             <v-row 
                 justify="start"
@@ -9,7 +9,7 @@
                 <v-col
                 v-for="(item,index) in items" 
                 :key="index"
-                md="3"
+                md="4"
                 sm="12"
                 >
                     <catalogItem :item="item"></catalogItem>
@@ -21,6 +21,7 @@
 
 <script>
 import CatalogItem from '../components/catalogItem.vue';
+import axios from 'axios'
 export default {
     name: 'Catalog',
     components: {
@@ -28,23 +29,16 @@ export default {
     },
     data: function () {
         return {
-            items: [
-                {
-                    Nombre: 'Coddy',
-                    Descripcion: 'Perro entretenido con mucha energia y ganas de jugar',
-                    Imagen: 'https://i.imgur.com/Fpx4gI8.png',
-                    Raza: 'Pitbull',
-                    Especie: 'Perro',
-                    Edad: '3 meses'
-                },
-
-
-            ]
+            items: []
         }
     },
     created: function () {
         console.log('Catalog created');
-        //axios.get("getAnimals");
+        axios.get('/getAnimals')
+            .then(result => {
+                this.items = result.data;
+                console.log(result.data)
+            })
     },
 }
 </script>

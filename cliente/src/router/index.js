@@ -52,7 +52,7 @@ const routes = [
     path: '/crudMascotas',
     name: 'CrudMascotas',
     component: () => import(/* webpackChunkName: "about" */ '../views/CrudMascotas.vue'),
-    meta: { guest: true },
+    meta: { logged: true },
 
   }
 
@@ -80,4 +80,18 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.logged)) {
+    var loggedIn = localStorage.getItem('token')
+    if (loggedIn) {
+      next();
+      return;
+    }
+    else{
+      next("/");
+    }
+  } else {
+    next();
+  }
+});
 export default router
