@@ -1,47 +1,48 @@
-import axios from "axios";
+import decode from 'jwt-decode'
+import router from '../../router'
 
 const state = {
-  user: null,
+    token: null,
+    usuario: null
 };
-
 const getters = {
-  isAuthenticated: (state) => !!state.user,
-  StateUser: (state) => state.user,
+    isAuthenticated: (state) => !!state.user,
+    StateUser: (state) => state.usuario,
 };
 
 const actions = {
-//   async Register({dispatch}, form) {
-//     await axios.post('register', form)
-//     let UserForm = new FormData()
-//     UserForm.append('username', form.username)
-//     UserForm.append('password', form.password)
-//     await dispatch('LogIn', UserForm)
-//   },
-
-  async LogIn({commit}, user) {
-    await axios.post("login", user);
-    await commit("setUser", user.get("username"));
-  },
-
-  async LogOut({ commit }) {
-    let user = null;
-    commit("logout", user);
-  },
+    guardarToken({commit}, token){
+        commit("setToken", token)
+        commit("setUsuario", decode(token))
+        localStorage.setItem("token", token)
+    },
+    autoLogin({commit}){
+        let token = localStorage.getItem("token");
+        if(token) {
+            commit("setToken", token);
+            commit("setUsuario", decode(token));
+        }
+    },
+    salir({commit}){
+        commit("setToken", null);
+        commit("setUsuario", null);
+        localStorage.removeItem("token");
+        router.push({name: '/'});
+    }
 };
 
 const mutations = {
-  setUser(state, username) {
-    state.user = username;
-  },
-
-  logout(state, user) {
-    state.user = user;
-  },
+    setToken(state,token){
+        state.token=token;
+    },
+    setUsuario(state,usuario){
+        state.usuario=usuario;
+    }
 };
 
 export default {
-  state,
-  getters,
-  actions,
-  mutations,
+    state,
+    getters,
+    actions,
+    mutations,
 };

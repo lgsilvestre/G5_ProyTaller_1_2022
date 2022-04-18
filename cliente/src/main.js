@@ -6,19 +6,7 @@ import vuetify from './plugins/vuetify'
 import axios from "axios";
 
 //axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://gabbyblog.herokuapp.com/";
-
-axios.interceptors.response.use(undefined, function(error) {
-  if (error) {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      store.dispatch("LogOut");
-      return router.push("/login");
-    }
-  }
-});
-
+axios.defaults.baseURL = "http://localhost:5001/adogtame-1fa85/us-central1/appNode/";
 
 Vue.config.productionTip = false
 
