@@ -55,4 +55,16 @@ async function updateAnimal(req,res) {
     }
 }
 
-export { getAnimals, queryAnimal, postAnimal, updateAnimal }
+async function removeAnimal(req,res,next) {
+    try {
+        const reg = await Animal.findByIdAndDelete({_id:req.body._id});
+        res.status(200).json(reg);
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
+}
+
+export { getAnimals, queryAnimal, postAnimal, updateAnimal, removeAnimal }
