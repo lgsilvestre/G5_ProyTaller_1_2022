@@ -65,16 +65,9 @@ const routes = [
 
   },
   {
-    path: '/crudMascotas',
-    name: 'CrudMascotas',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CrudMascotas.vue'),
-    meta: { logged: true },
-
-  },
-  {
-    path: '/crudAdmins',
-    name: 'CrudAdmins',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CrudAdmins.vue'),
+    path: '/crud',
+    name: 'Crud',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Crud.vue'),
     meta: { logged: true },
 
   }
