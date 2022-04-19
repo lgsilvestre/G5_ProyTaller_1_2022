@@ -37,8 +37,8 @@ async function postUsuario(req, res) {
     req.body.clave = await bcrypt.hash(req.body.clave,10);
 
     let usuario = new Usuario({
+        rol: req.body.rol,
         nombreCompleto: req.body.nombreCompleto,
-        nombreUsuario: req.body.nombreUsuario,
         email: req.body.email,
         clave: req.body.clave
     });
@@ -52,7 +52,7 @@ async function postUsuario(req, res) {
 async function updateUsuario(req,res) {
     try {
         const reg = await Usuario.findByIdAndUpdate({_id:req.body._id},{nombreCompleto: req.body.nombreCompleto,
-            nombreUsuario: req.body.nombreUsuario,
+            rol: req.body.rol,
             email: req.body.email,
             clave: req.body.clave});
         res.status(200).json(reg);
