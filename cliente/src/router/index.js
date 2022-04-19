@@ -21,6 +21,30 @@ const routes = [
     
   },
   {
+    path: '/adoptame',
+    name: 'Adoptame',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Catalog.vue')
+  },
+  {
+    path: '/eventos',
+    name: 'Eventos',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "eventos" */ '../views/Eventos.vue')
+  },
+  {
+    path: '/aportes',
+    name: 'Aportes',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "aportes" */ '../views/Aportes.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     // route level code-splitting
@@ -44,7 +68,7 @@ const routes = [
     path: '/crudMascotas',
     name: 'CrudMascotas',
     component: () => import(/* webpackChunkName: "about" */ '../views/CrudMascotas.vue'),
-    meta: { guest: true },
+    meta: { logged: true },
 
   }
 
@@ -72,4 +96,18 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.logged)) {
+    var loggedIn = localStorage.getItem('token')
+    if (loggedIn) {
+      next();
+      return;
+    }
+    else{
+      next("/");
+    }
+  } else {
+    next();
+  }
+});
 export default router
