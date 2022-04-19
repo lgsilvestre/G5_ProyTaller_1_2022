@@ -226,12 +226,12 @@
       },
 
       close () {
-        this.listarMascotas()
         this.dialog = false
         this.$nextTick(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
         })
+        this.listarMascotas()
       },
 
       closeDelete () {
