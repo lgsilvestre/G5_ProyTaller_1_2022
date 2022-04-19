@@ -1,86 +1,62 @@
 <template>
-  <div class="login">
-    <form @submit.prevent="submit">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" name="username" v-model="form.username" />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" v-model="form.password" />
-      </div>
-      <div class="login">
-        <v-btn @click="submit">Iniciar</v-btn>
-      </div>
-    </form>
-    <p v-if="showError" id="error">Username or Password is incorrect</p>
-  </div>
+    <v-layout align-center justify-center>
+        <v-flex xs12 sm8 md6 lg5 xl4>
+            <v-card>
+                <v-toolbar dark color="blue darken-3">
+                    <v-toolbar-title>
+                        Acceso al Sistema
+                    </v-toolbar-title>
+                </v-toolbar>
+                <v-card-text>
+                    <v-text-field v-model="email" color="accent" label="Usuario" required>
+                    </v-text-field>
+                    <v-text-field v-model="password" type="password" color="accent" label="Contraseña" required>
+                    </v-text-field>
+                    <v-flex class="red--text" v-if="errorM">
+                        {{errorM}}
+                    </v-flex>
+                </v-card-text>
+                <v-card-actions class="px-3 pb-3">
+                    <v-flex text-xs-right>
+                        <v-btn @click="ingresar()" color="primary">Ingresar</v-btn>
+                    </v-flex>
+                </v-card-actions>
+            </v-card>
+        </v-flex>
+    </v-layout>
 </template>
-
 <script>
-import { mapActions } from "vuex";
-
+import axios from 'axios';
 export default {
-  name: "Login",
-  components: {},
-  data() {
-    return {
-      form: {
-        username: "",
-        password: "",
-      },
-      showError: false
-    };
-  },
-  methods: {
-    ...mapActions(["LogIn"]),
-    async submit() {
-      const User = new FormData();
-      User.append("username", this.form.username);
-      User.append("password", this.form.password);
-      try {
-          await this.LogIn(User);
-          this.$router.push("/");
-          this.showError = false
-      } catch (error) {
-        this.showError = true
-      }
+    data (){
+        return{
+            email:'',
+            password:'',
+            errorM:null
+        }
     },
-  },
-};
+    methods:{
+        ingresar(){
+            axios.post('login',{email: this.email, password: this.password})
+            .then(respuesta =>{
+                return respuesta.data;
+            })
+            .then(data =>{
+                this.$store.dispatch("guardarToken",data.tokenReturn);
+                this.$router.push('/home').catch(() => {});
+            })
+            .catch(error =>{
+                //console.log(eror);
+                this.errorM=null;
+                if (error.response.status==404){
+                    this.errorM='No existe el usuario o las credenciales son incorrectas.';
+                } else{
+                    this.errorM='Ocurrió un error con el servidor.';
+                }
+            });
+        }
+    }
+}
 </script>
-
-<style scoped>
-.login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-.v-btn{
-  margin-top: 1rem;
-  color: #45a049;
-  border-radius: 30px;
-}
-
-input {
-  margin: 5px;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-  padding: 10px;
-  border-radius: 30px;
-}
-#error {
-  color: red;
-}
-</style>
 
  

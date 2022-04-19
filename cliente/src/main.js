@@ -4,21 +4,15 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import axios from "axios";
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 //axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://gabbyblog.herokuapp.com/";
 
-axios.interceptors.response.use(undefined, function(error) {
-  if (error) {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      store.dispatch("LogOut");
-      return router.push("/login");
-    }
-  }
-});
-
+if(process.env.NODE_ENV == "development"){
+  axios.defaults.baseURL = "http://localhost:5001/adogtame-1fa85/us-central1/appNode/";
+}else{
+  axios.defaults.baseURL = "https://us-central1-adogtame-1fa85.cloudfunctions.net/appNode/";
+}
 
 Vue.config.productionTip = false
 
