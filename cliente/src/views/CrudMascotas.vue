@@ -1,3 +1,5 @@
+
+
 <template>
   <v-data-table
     :headers="headers"
@@ -81,13 +83,23 @@
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
-                    <v-text-field
-                      v-model="editedItem.foto"
-                      label="Foto"
-                    ></v-text-field>
+                    <vue-cropper 
+                    :v-show="selectedFile" ref="cropper" :src="selectedFileSrc" 
+                    :aspectRatio="16/9" :initialAspectRatio="16/9" :autoCropArea="1"
+                    :zoomable="false" preview=".preview"
+                    >
+                    </vue-cropper>
+                    <v-file-input
+                      :v-model="selectedFile"
+                      accept="image/*"
+                      label="File input"
+                      @change="setImage"
+                      required
+                    ></v-file-input>
                   </v-col>
+                 
                 </v-row>
               </v-container>
             </v-card-text>
@@ -144,7 +156,10 @@
 
 <script>
     import axios from 'axios'
+    import VueCropper from 'vue-cropperjs';
+    import 'cropperjs/dist/cropper.css';
     export default {
+        components: { VueCropper},
         data: () => ({
         dialog: false,
         dialogDelete: false,
@@ -172,7 +187,9 @@
             tipo: '',
             foto: '',
         },
-        indexMascotas: 0
+        indexMascotas: 0,
+        selectedFile: null,
+        selectedFileSrc: null,
         }),
 
     computed: {
@@ -245,15 +262,22 @@
 
       save () {
         //this.listarMascotas()
-        if (this.editedIndex > -1) { //Editar mascota
-          Object.assign(this.mascotas[this.editedIndex], this.editedItem)
-          axios.put('/updateAnimal',{'_id': this.editedItem._id,'nombre':this.editedItem.nombre,'edad':this.editedItem.edad,'raza':this.editedItem.raza, 'tipo':this.editedItem.tipo})
-        } else { //Crear mascota
-          //this.mascotas.push(this.editedItem)
-          axios.post('/postAnimal',{'nombre':this.editedItem.nombre,'edad':this.editedItem.edad,'raza':this.editedItem.raza, 'tipo':this.editedItem.tipo})
-          
-        }
-        this.close()
+        this.$refs.cropper.getCroppedCanvas()
+          .toBlob(blob => {
+            // send blob as json to server
+            blobToBase64(blob)
+              .then(blob=>{
+                  if (this.editedIndex > -1) { //Editar mascota
+                    Object.assign(this.mascotas[this.editedIndex], this.editedItem)
+                    axios.put('/updateAnimal',{'_id': this.editedItem._id,'nombre':this.editedItem.nombre,'edad':this.editedItem.edad,'raza':this.editedItem.raza, 'tipo':this.editedItem.tipo, 'foto':blob})
+                  } else { //Crear mascota
+                    //this.mascotas.push(this.editedItem)
+                    axios.post('/postAnimal',{'nombre':this.editedItem.nombre,'edad':this.editedItem.edad,'raza':this.editedItem.raza, 'tipo':this.editedItem.tipo, 'foto':blob})
+                  }
+                  this.close()
+              })
+          })
+        
       },
       async listarMascotas(){
             
@@ -264,7 +288,41 @@
             }).catch(function(error){
                 console.log(error)
             });
-        }
+        },
+        setImage(e) {
+          const file = e
+          if (!file){
+            this.selectedFileSrc = null;
+            this.$refs.cropper.replace(null);
+            return;
+          } 
+          if (file.type.indexOf('image/') === -1) {
+            alert('Please select an image file');
+            return;
+          }
+          if (typeof FileReader === 'function') {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              this.selectedFileSrc = event.target.result;
+              // rebuild cropperjs with the updated source
+              this.$refs.cropper.replace(event.target.result);
+            };
+            reader.readAsDataURL(file);
+          } else {
+            alert('Sorry, FileReader API not supported');
+          }
+    },
     },
     }
+
+const blobToBase64 = blob => {
+  const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    return new Promise(resolve => {
+    reader.onloadend = () => {
+      resolve(reader.result);
+  };
+});
+};
 </script>
+

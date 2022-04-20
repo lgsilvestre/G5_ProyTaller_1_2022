@@ -1,6 +1,8 @@
 
 import { Animal } from '../../mongodbConfig.js'
-
+import { uploadString,ref } from "firebase/storage";
+import { storage } from '../../index.js';
+import { v4 as uuidv4 } from 'uuid';
 
 async function getAnimals(req, res) {
     
@@ -29,13 +31,18 @@ async function queryAnimal(req,res) {
 
 async function postAnimal(req, res) {
 
-    console.log(req.body);
-    
+    let id = uuidv4()
+    let storageRef = ref(storage, id);
+
+    await uploadString(storageRef,req.body.foto,'data_url')
+    let url = `https://firebasestorage.googleapis.com/v0/b/adogtame-1fa85.appspot.com/o/${id}?alt=media&token=e42595cb-79b1-4c5b-872c-5c76acc6eb5b`
+
     let animal = new Animal({
-        nombre: req.body.nombre,
+        nombre: req.body.nombre,    
         edad: req.body.edad,
         raza: req.body.raza,
-        tipo: req.body.tipo
+        tipo: req.body.tipo,
+        foto: url
     });
 
     await animal.save();

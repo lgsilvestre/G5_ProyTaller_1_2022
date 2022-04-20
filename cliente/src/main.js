@@ -10,6 +10,10 @@ axios.defaults.baseURL = "http://localhost:5001/adogtame-1fa85/us-central1/appNo
 
 Vue.config.productionTip = false
 
+import VueCropper from 'vue-cropperjs';
+import 'cropperjs/dist/cropper.css';
+Vue.component(VueCropper);
+
 new Vue({
   router,
   store,
