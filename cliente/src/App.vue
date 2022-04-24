@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <navbar class="mb-r"></navbar>
-    
+    <!-- <navbar class="mb-r"></navbar> -->
+    <navbar-2 class="mb-r"></navbar-2>
     <v-main>
       <router-view/>
     </v-main>
@@ -11,11 +11,12 @@
 
 <script>
 import Footer from './components/footer.vue';
-import navbar from './components/navbar.vue';
+// import navbar from './components/navbar.vue';
+import Navbar2 from './components/navbar2.vue';
 
 
 export default {
-  components: { navbar, Footer},
+  components: { Footer, Navbar2},
   name: 'App',
 
   data: () => ({
