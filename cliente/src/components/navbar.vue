@@ -13,10 +13,11 @@
         <v-col cols=12 md=6 align-self="center">
           <v-row class="items" justify="space-between">
             <router-link to="/home">Home</router-link>
-            <router-link to="/adoptame">Adoptame</router-link> 
+            <router-link to="/adoptame">Adoptar</router-link> 
+            <router-link to="/aportes">Donar</router-link> 
             <router-link to="/about">Nosotros</router-link> 
-            <router-link to="/aportes">Aportes</router-link> 
-            <router-link to="/casosActivos">Casos Activos</router-link> 
+            
+            <router-link to="/TenenciaResponsable">Tenencia Responsable</router-link> 
             <router-link to="/eventos">Eventos</router-link> 
             <router-link v-if="existeUser" to="/crudMascotas">Crud Mascotas</router-link> 
             <router-link v-if="existeUser"  @click.native="salir" to="/login">Salir</router-link>

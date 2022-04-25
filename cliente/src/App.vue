@@ -1,7 +1,8 @@
 <template>
   <v-app>
+
     <navbar class="mb-r"></navbar>
-    
+
     <v-main>
       <router-view/>
     </v-main>
