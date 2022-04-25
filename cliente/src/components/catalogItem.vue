@@ -5,7 +5,7 @@
     style="margin: 0 auto"
   >
     <v-img
-      src="https://i.natgeofe.com/n/46b07b5e-1264-42e1-ae4b-8a021226e2d0/domestic-cat_thumb_square.jpg"
+      :src="item.foto"
       height="200px"
     ></v-img>
 
