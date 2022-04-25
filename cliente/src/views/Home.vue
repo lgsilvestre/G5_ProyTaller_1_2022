@@ -8,9 +8,8 @@
     </v-card>
 
     <div class="m-4">
-      <h1 >¿QUIÉNES SOMOS?</h1>
-      <p>Somos una fundación de rescate y esterilización de animales en situación 
-      de calle o maltrato en la provincia de Curico </p>
+      <h1 >“Con tus acciones escribes mi destino, respetando mi vida o ignorando mi sufrimiento”</h1>
+      <br>
     </div>
     <carrouselcards></carrouselcards>
     <!-- <p class="text-center display-4 " v-for="animal in this.animals" :key="animal.nombre">

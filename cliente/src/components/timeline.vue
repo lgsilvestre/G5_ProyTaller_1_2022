@@ -1,7 +1,7 @@
 <template>
   <section id="timeline" class="py-16">
     <v-container>
-      <h2 class="text-h3 text-center font-weight-black mb-8">Our Journey</h2>
+      <h2 class="text-h3 text-center font-weight-black mb-8">Nuestro Viaje</h2>
       <template>
         <v-timeline>
           <v-timeline-item

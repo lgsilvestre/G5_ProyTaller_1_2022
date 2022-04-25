@@ -2,8 +2,8 @@
     <div >
       <v-flex>
         <v-carousel hide-delimiters style="box-shadow: 0px 0px">
-          <v-carousel-item v-for="i in 2" :key="i">
-            <v-layout row>
+          <v-carousel-item v-for="i in 3" :key="i">
+            <v-row>
               <v-flex  v-for="j in 3" :key="j">
                 <v-card>
                   <catalog-item :item="j"></catalog-item>
@@ -16,7 +16,7 @@
                   </v-card-title>
                 </v-card>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-carousel-item>
         </v-carousel>
       </v-flex>
