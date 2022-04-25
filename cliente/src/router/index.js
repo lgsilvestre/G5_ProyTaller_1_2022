@@ -69,8 +69,12 @@ const routes = [
     name: 'CrudMascotas',
     component: () => import(/* webpackChunkName: "about" */ '../views/CrudMascotas.vue'),
     meta: { logged: true },
-
-  }
+  },
+  // {
+  //   path: '/adoptame/:id',
+  //   name: 'Adoptame',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/Adoptame.vue'),
+  // }
 
 
 ]

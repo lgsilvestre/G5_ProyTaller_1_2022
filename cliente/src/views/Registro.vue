@@ -2,7 +2,7 @@
     <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 xl4>
             <v-card>
-                <v-toolbar dark color="blue darken-3">
+                <v-toolbar dark color="red darken-3">
                     <v-toolbar-title>
                         Registro
                     </v-toolbar-title>
@@ -75,7 +75,7 @@
                 </v-card-text>
                 <v-card-actions class="px-3 pb-3">
                     <v-flex text-xs-right>
-                        <v-btn @click="registrar()" color="primary">Registrarse</v-btn>
+                        <v-btn @click="registrar()" dark color="red darken-3">Registrarse</v-btn>
                     </v-flex>
                 </v-card-actions>
                 <v-snackbar v-model="snackbar" timeout="3000" top>
