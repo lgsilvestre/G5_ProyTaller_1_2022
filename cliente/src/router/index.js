@@ -73,9 +73,9 @@ const routes = [
 
   },
   {
-    path: '/crudMascotas',
-    name: 'CrudMascotas',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CrudMascotas.vue'),
+    path: '/crud',
+    name: 'Crud',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Crud.vue'),
     meta: { logged: true },
   },
   // {

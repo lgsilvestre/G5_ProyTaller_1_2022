@@ -1,11 +1,24 @@
 <template>
-  <v-data-table :headers="headers" :items="listaMascotas" class="elevation-1">
+  <v-data-table
+    :headers="headers"
+    :items="listaMascotas"
+    class="elevation-1"
+  >
     <template v-slot:top>
-      <v-toolbar flat>
+      <v-toolbar
+        flat
+      >
         <v-toolbar-title>Mis mascotas</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        ></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog
+          v-model="dialog"
+          max-width="500px"
+        >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="red darken-1"
@@ -25,25 +38,41 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
                     <v-text-field
                       v-model="editedItem.nombre"
                       label="Nombre"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
                     <v-text-field
                       v-model="editedItem.edad"
                       label="Edad"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
                     <v-text-field
                       v-model="editedItem.raza"
                       label="Raza"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
                     <v-text-field
                       v-model="editedItem.tipo"
                       label="Tipo"
@@ -77,15 +106,27 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="red darken-1" text @click="close"> Cancelar </v-btn>
-              <v-btn color="red darken-1" text @click="save"> Guardar </v-btn>
+              <v-btn
+                color="red darken-1"
+                text
+                @click="close"
+              >
+                Cancelar
+              </v-btn>
+              <v-btn
+                color="red darken-1"
+                text
+                @click="save"
+              >
+                Guardar
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5"
-              >Â¿EstÃ¡s seguro que deseas borrar esta mascota?</v-card-title
+              >¿Estás seguro que deseas borrar esta mascota?</v-card-title
             >
             <v-card-actions>
               <v-spacer></v-spacer>
