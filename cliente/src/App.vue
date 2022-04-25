@@ -5,7 +5,7 @@
     <v-main>
       <router-view/>
     </v-main>
-    <Footer></Footer>
+    <Footer class="footer"></Footer>
   </v-app>
 </template>
 
@@ -30,6 +30,9 @@ export default {
 
 <style>
   .mb-r{
-    margin-bottom: 2.5rem !important;
+    margin-bottom: 2.2rem !important;
+  }
+  .footer{
+    margin-top: 2.2rem !important;
   }
 </style>
