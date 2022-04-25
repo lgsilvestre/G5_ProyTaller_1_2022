@@ -1,24 +1,27 @@
 <template>
     <div >
       <v-flex>
-        <v-carousel hide-delimiters style="box-shadow: 0px 0px">
-          <v-carousel-item v-for="i in 3" :key="i">
-            <v-row>
-              <v-flex  v-for="j in 3" :key="j">
-                <v-card>
-                  <catalog-item :item="j"></catalog-item>
-                  <v-card-title primary-title>
-                    <div>
-                      
-                    
-                      
-                    </div>
-                  </v-card-title>
-                </v-card>
-              </v-flex>
-            </v-row>
-          </v-carousel-item>
-        </v-carousel>
+        <v-carousel> 
+        <template v-for="(item, index) in items"> 
+          <v-carousel-item v-if="(index + 1) % columns === 1 || columns === 1" :key="index"> 
+            <v-row class="flex-nowrap" style="height:100%"> 
+              <template v-for="(n,i) in columns"> 
+                <template v-if="(+index + i) < items.length"> 
+                  <v-col :key="i"> 
+                      <v-row class="fill-height"
+                             align="center"
+                             justify="center"
+                      >
+                        <!-- <div class="display-3">{{+index + i }}</div> -->
+                        <catalog-item :item="items[+index + i]"></catalog-item>
+                      </v-row>
+                  </v-col> 
+                </template> 
+              </template> 
+            </v-row> 
+          </v-carousel-item> 
+        </template> 
+      </v-carousel>  
       </v-flex>
     </div>
   
@@ -32,10 +35,28 @@ export default {
     components: {
         CatalogItem
     },
-    data: function () {
-        return {
-            items: []
+    
+    data () {
+      return {
+        items: [],
+      }
+    },
+    computed: {
+      columns() {
+        if (this.$vuetify.breakpoint.xl) {
+          return 4;
         }
+
+        if (this.$vuetify.breakpoint.lg) {
+          return 3;
+        }
+
+        if (this.$vuetify.breakpoint.md) {
+          return 2;
+        }
+
+        return 1;
+      }
     },
     created: function () {
         console.log('Catalog created');
@@ -44,6 +65,7 @@ export default {
                 this.items = result.data;
             })
     },
+    
 }
 </script>
 
