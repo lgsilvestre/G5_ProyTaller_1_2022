@@ -3,24 +3,21 @@
         <loading
         v-if="loading"
         ></loading>
-        <v-flex v-if="!loading" xs12 sm8 md6 lg5 xl4>
-            <v-card>
-                <v-toolbar dark color="red darken-3">
-                    <v-toolbar-title class="flex text-center">
+        <v-flex  v-if="!loading" xs12 sm8 md6 lg5 xl3 >
+            <v-card class="mx-auto pa-10 ma-10 backgroundImage">
+                <v-toolbar dark color="red lighten-2">
+                    <v-toolbar-title color="black" class="flex text-center">
                         Inicio de sesión
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
-                    <!-- <v-icon aria-label="My Account" role="img" aria-hidden="false">
-                    mdiAccount
-                    </v-icon> -->
-                    <v-text-field :prepend-inner-icon="icons.mdiDog" v-model="email" color="accent" label="Usuario" outlined>
+                    <v-text-field class="text-field-style" prepend-inner-icon="mdi-dog" v-model="email" color="red lighten-2" label="Usuario" outlined>
                     </v-text-field>
                     <v-text-field 
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" 
-                    :prepend-inner-icon="icons.mdiLock" 
+                    prepend-inner-icon="mdi-lock" 
                     v-model="password" 
-                    color="accent" 
+                    color="red lighten-2" 
                     label="Contraseña"
                     @click:append="show1 = !show1" 
                     outlined
@@ -31,7 +28,7 @@
                     </v-flex>
                 </v-card-text>
                 <v-card-actions class="px-3 pb-3 justify-center">
-                    <v-btn class="button" @click="ingresar()" dark color="red darken-3">Ingresar</v-btn>
+                    <v-btn class="button" @click="ingresar()" dark color="red lighten-2">Ingresar</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
@@ -40,7 +37,6 @@
 <script>
 import axios from 'axios';
 import loading from '../components/loading.vue';
-import { mdiAccount,mdiLock,mdiDog } from "@mdi/js";
 export default {
   components: { loading },
     data (){
@@ -50,12 +46,6 @@ export default {
             password:'',
             errorM:null,
             loading: false,
-            icons:{
-                mdiAccount,
-                mdiLock,
-                mdiDog
-            }
-           
         }
     },
     methods:{
@@ -86,6 +76,16 @@ export default {
 </script>
 
 <style>
+.backgroundImage{
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://i.imgur.com/1FFnAXe.png");
+    background-size: 100% 100%;
+    width: 100%;
+    height: 400px;
+}
+.text-field-style >>> .v-text-field__slot input {
+    color: red
+}
+
 .button{
     width: 100%;
 }

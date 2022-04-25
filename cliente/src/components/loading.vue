@@ -1,15 +1,15 @@
 <template>
     <div class="box">
         <v-img 
-            src="@/assets/dog-icon.png" 
-            max-height="60"         
-            max-width="60"
+            src="https://i.pinimg.com/originals/68/17/dc/6817dccec8fb261cc4adc3ab6fc52cfc.gif" 
+            max-height="800"         
+            max-width="800"
         ></v-img>
-        <v-progress-circular
+        <!-- <v-progress-circular
             indeterminate
-            color="purple"
+            color="red lighten-2"
             :size="50"
-        ></v-progress-circular>
+        ></v-progress-circular> -->
     </div>
 </template>
 

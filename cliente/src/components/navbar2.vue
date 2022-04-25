@@ -5,10 +5,10 @@
                 <v-list-item-group v-for="(item, i) in existeUser" :key="i" color="primary">
                     <v-list-item @click="filtroMethod(item)" :to="item.to">
                         <v-list-item-action>
-                        <v-icon>{{ item.icon }}</v-icon>
+                          <v-icon>{{ item.icon }}</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                        <v-list-item-title v-text="item.title.toUpperCase()" />
+                          <v-list-item-title v-text="item.title.toUpperCase()" />
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
@@ -28,7 +28,6 @@
         <template v-for="(name, menuitem) in existeUser">
             <v-btn
             :key="menuitem"
-            depressed
             tile
             plain
             class="py-8 hidden-sm-and-down"
@@ -39,7 +38,6 @@
             </v-btn>
             
         </template>
-        
         <v-spacer />
         <v-btn icon @click="changeThemeColor">
             <v-icon>{{
