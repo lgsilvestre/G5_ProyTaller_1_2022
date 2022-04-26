@@ -29,7 +29,5 @@ export default {
 </script>
 
 <style>
-  .mb-r{
-    margin-bottom: 2.2rem !important;
-  }
+  
 </style>
