@@ -3,15 +3,15 @@
         <loading
         v-if="loading"
         ></loading>
-        <v-flex  v-if="!loading" xs12 sm8 md6 lg5 xl3 >
+        <v-flex  v-if="!loading" xs12 sm8 md6 lg4 xl3 >
             <v-card class="mx-auto pa-10 ma-10 backgroundImage">
-                <v-toolbar dark color="red lighten-2">
+                <v-toolbar class="mb-8" dark color="red lighten-2">
                     <v-toolbar-title color="black" class="flex text-center">
                         Inicio de sesión
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
-                    <v-text-field class="text-field-style" prepend-inner-icon="mdi-dog" v-model="email" color="red lighten-2" label="Usuario" outlined>
+                    <v-text-field class="text-field-style" prepend-inner-icon="mdi-dog" v-model="email" color="red lighten-2" label="Email" outlined>
                     </v-text-field>
                     <v-text-field 
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" 
@@ -30,6 +30,7 @@
                 <v-card-actions class="px-3 pb-3 justify-center">
                     <v-btn class="button" @click="ingresar()" dark color="red lighten-2">Ingresar</v-btn>
                 </v-card-actions>
+                <p>¿No tienes cuenta?<br/><a href="/registro" >Regístrate aquí</a></p>
             </v-card>
         </v-flex>
     </v-layout>
@@ -77,10 +78,9 @@ export default {
 
 <style>
 .backgroundImage{
-    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://i.imgur.com/1FFnAXe.png");
     background-size: 100% 100%;
     width: 100%;
-    height: 400px;
+    height: 470px;
 }
 .text-field-style >>> .v-text-field__slot input {
     color: red
@@ -88,6 +88,30 @@ export default {
 
 .button{
     width: 100%;
+}
+
+a:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(255, 124, 124);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 </style>
