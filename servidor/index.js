@@ -5,8 +5,7 @@ import {routesConfig} from './routes/index.js'
 import dotenv from 'dotenv'
 import * as functions from 'firebase-functions';
 import { initializeApp } from "firebase/app";
-
-//admin.initializeApp();
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUrDNYdpt34y3WwMvOFupbNx4k9uCMOV4",
@@ -35,6 +34,7 @@ app.listen(app.get('port'), () => {
 */
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const appFirebase = initializeApp(firebaseConfig);
+export const storage = getStorage(appFirebase);
 
 export const appNode = functions.https.onRequest(app)
