@@ -32,6 +32,17 @@ const UsuarioSchema = new mongoose.Schema({
 
 const Usuario = mongoose.model('Usuario', UsuarioSchema);
 
+const PyRschema = new mongoose.Schema({
+    pregunta: String,
+    respuesta: String
+});
+
+const FormularioSchema = new mongoose.Schema({
+    nombre: String,
+    preguntas: { type: [PyRschema]}
+});
+
+const Formulario = mongoose.model("Formulario",FormularioSchema);
 
 
-export {Test,Animal,Usuario};
+export {Test,Animal,Usuario,Formulario};
