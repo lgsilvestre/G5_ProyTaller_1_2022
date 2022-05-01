@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <v-container
+    <v-layout align-center justify-center>
+        <loading
+            v-if="loading"
+        ></loading>
+        <v-container v-if="!loading"
             class="grey lighten-3 mb-6"
             >
             <v-row 
@@ -16,28 +19,31 @@
                 </v-col>
             </v-row>
         </v-container>
-    </div>
+    </v-layout>
 </template>
 
 <script>
 import CatalogItem from '../components/catalogItem.vue';
 import axios from 'axios'
+import Loading from '../components/loading.vue';
 export default {
     name: 'Catalog',
     components: {
-        CatalogItem
+        CatalogItem,
+        Loading
     },
     data: function () {
         return {
-            items: []
+            items: [],
+            loading: true,
         }
     },
     created: function () {
-        console.log('Catalog created');
         axios.get('/getAnimals')
-            .then(result => {
-                this.items = result.data;
-            })
+        .then(result => {
+            this.items = result.data;
+            this.loading = false
+        })
     },
 }
 </script>

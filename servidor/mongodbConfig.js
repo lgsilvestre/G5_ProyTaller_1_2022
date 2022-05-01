@@ -16,7 +16,8 @@ const AnimalSchema = new mongoose.Schema({
     nombre: String,
     edad: Number,
     raza: String,
-    tipo: String
+    tipo: String,
+    foto: String | null
 });
 
 const Animal = mongoose.model('Animal', AnimalSchema);
@@ -24,7 +25,6 @@ const Animal = mongoose.model('Animal', AnimalSchema);
 const UsuarioSchema = new mongoose.Schema({
      rol: { type:String,maxlength:30},
      nombreCompleto: String,
-     nombreUsuario: String,
      email: String,
      clave: String,    
      estado: { type:Number, default:1}
