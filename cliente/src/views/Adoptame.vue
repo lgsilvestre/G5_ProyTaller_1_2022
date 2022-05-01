@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import formulario from '../components/formulario.vue'
+import formulario from '../components/crudForm.vue'
 export default {
   components: { formulario },
     
