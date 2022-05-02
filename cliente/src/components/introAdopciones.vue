@@ -57,19 +57,19 @@ export default {
         {
           title: 'Iniciar sesión',
           subtitle: 'inicio',
-          text: 'All components and features are developed using the most up-to-date coding practices.',
+          text: 'Para poder adoptar debes registrarte e iniciar sesión, así nosotros podremos llevar un seguimiento de tu mascota.',
           callout: '01',
         },
         {
           title: 'Sección catalogo',
           subtitle: 'Elegir',
-          text: 'En esta sección encontraras todos nuestros mascotas que están esperando un hogar elije la que desees y presiona adoptar',
+          text: 'En esta sección encontraras todos nuestros mascotas que están esperando un hogar elije la que desees y presiona adoptar.',
           callout: '02',
         },
         {
           title: 'Formularios y contratos',
           subtitle: 'Información',
-          text: "Being developed with Vuetify means you have access to all of the framework's available features.",
+          text: "Rellena los formularios y lee detalladamente el contrato. Tu solicitud llegara a nosotros y nos pondremos en contacto contigo.",
           callout: '03',
         },
       ],

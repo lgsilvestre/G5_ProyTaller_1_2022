@@ -1,5 +1,5 @@
 <template>
-  <section class="primary darken-1 white--text py-16">
+  <section class="red darken-3 white--text py-16">
     <v-container>
       <v-row>
         <v-col class="text-center">

@@ -22,8 +22,8 @@
               {{ carousel.heading.toUpperCase() }}
             </div>
             <p class="mb-5 white--text">{{ carousel.subHeading }}</p>
-            <v-btn :x-large="$vuetify.breakpoint.smAndUp" class="my-3 primary"
-              >Nosotros</v-btn
+            <v-btn :x-large="$vuetify.breakpoint.smAndUp" class="my-3 red darken-3"
+              >Conócenos</v-btn
             >
             <span class="mx-2 my-4"></span>
 
@@ -41,27 +41,27 @@ export default {
       carouselsData: [
         {
           src: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
-          heading: ' PROMOTE YOUR BUSINESS WITH US ',
+          heading: 'Cuando un hombre se apiade de todas las criaturas vivientes, sólo entonces será noble.',
           subHeading:
-            'Infographic hypotheses influencer user experience Long madel ture gen-z paradigm shift client partner network product seilans solve management influencer analytics leverage virality. incubator seed round massmarket. buyer agile development growth hacking business-to-consumer ecosystem ',
+            '(Buda)',
         },
         {
           src: 'https://images.unsplash.com/photo-1604848698030-c434ba08ece1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-          heading: ' LOREM IPSUM DOLOR SIT AMET CONSEETU',
+          heading: 'Hasta que uno no ha amado a un animal, parte de su alma permanece dormida.',
           subHeading:
-            'Litora a interdum primis. Lectus facilisi sit cum arcu aliquam velit imperdiet sapien suspendisse at vel facilisis. Facilisis metus, curae; nibh mi orci et. Fringilla sociis magna rutrum bibendum arcu.',
+            '(France, Anatole)',
         },
         {
           src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
-          heading: ' Build your website with this Theme ',
+          heading: 'Todos los animales excepto el hombre saben que el máximo de la vida es disfrutarla.',
           subHeading:
-            'Tellus cum turpis natoque id justo interdum tincidunt faucibus aptent congue pellentesque. Proin luctus orci netus! Scelerisque parturient cursus donec parturient et, luctus aptent habitant aliquet felis. Sapien placerat ultricies.',
+            '(Butler, Samuel)',
         },
         {
           src: 'https://images.unsplash.com/photo-1525253013412-55c1a69a5738?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-          heading: ' URNA TINCIDUNT MATTIS TORTOR ',
+          heading: 'Los perros no son toda tu vida, pero hacen tu vida completa.',
           subHeading:
-            'Dapibus cras, ligula suspendisse potenti himenaeos mus volutpat pulvinar est facilisi. Vehicula malesuada parturient euismod litora mollis penatibus. Penatibus cum nullam facilisi enim nisi ac suspendisse. Ullamcorper ad amet netus.',
+            '(Roger Caras)',
         },
       ],
     }
