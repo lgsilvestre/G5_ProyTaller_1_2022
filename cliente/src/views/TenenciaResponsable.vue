@@ -16,8 +16,8 @@
                   <h2>¿Qué se entiende por mascotas o animales de compañía?</h2>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: center">
+                  <div >
+                        <h4 class="mt-4" style="text-align: center">
                             Son aquellos animales domésticos, cualquiera sea su especie 
                             (no sólo perros y gatos), que sean mantenidos por las personas para fines de 
                             compañía o seguridad. Se excluyen los animales cuya tenencia se encuentre 
@@ -40,7 +40,7 @@
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <h4 class="mt-4" style="text-align: justify">
                             Es el conjunto de obligaciones que contrae una persona cuando decide aceptar y mantener una mascota 
                             o animal de compañía. Debe registrarlo ante la autoridad competente cuando corresponda, proporcionarle
                             alimento, albergue y buen trato, brindarle los cuidados veterinarios indispensables para su bienestar
@@ -69,7 +69,7 @@
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <h4 class="mt-4" style="text-align: justify">
                             La identificación deberá hacerse a través de un sistema único, utilizando un dispositivo
                             permanente e indeleble, de modo que permita relacionarlos con el responsable de tales mascotas o animales de compañía. <br><br>
 

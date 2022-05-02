@@ -1,11 +1,13 @@
 <template>
   <div class="home">
     <v-card
-    max-width="80%"
+    max-width="100%"
     class="mx-auto"
     >
       <carrousel></carrousel>
     </v-card>
+    <intro-adopciones></intro-adopciones>
+    <intro-donar></intro-donar>
 
     <div class="m-4">
       <h1 >“Con tus acciones escribes mi destino, respetando mi vida o ignorando mi sufrimiento”</h1>
@@ -23,12 +25,16 @@
 // import axios from "axios";
 import Carrousel from '../components/carrousel.vue';
 import Carrouselcards from '../components/carrouselcards.vue';
+import IntroAdopciones from '../components/introAdopciones.vue';
+import IntroDonar from '../components/introDonar.vue';
 
 export default {
   name: 'Home',
   components: {
     Carrousel,
-    Carrouselcards
+    Carrouselcards,
+    IntroAdopciones,
+    IntroDonar
   },
   data: function () {
     return {
