@@ -36,14 +36,12 @@
                     <v-btn
                         color="red darken-1"
                         text
-                        @click="close"
                     >
                         Cancelar
                     </v-btn>
                     <v-btn
                         color="red darken-1"
                         text
-                        @click="save"
                     >
                         Guardar
                     </v-btn>
