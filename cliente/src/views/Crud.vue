@@ -4,7 +4,7 @@
             v-model="value"
             shift
         >
-            <v-btn  @click="opcionBoton(1)">Macotas</v-btn>
+            <v-btn  @click="opcionBoton(1)">Mascotas</v-btn>
             <v-btn  @click="opcionBoton(0)">Administradores</v-btn>
             <v-btn  @click="opcionBoton(2)">Formularios</v-btn>
         </v-bottom-navigation>
