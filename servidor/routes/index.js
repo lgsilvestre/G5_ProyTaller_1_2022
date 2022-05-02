@@ -22,6 +22,14 @@ import {
   removeSocio,
 } from "../controllers/socio/socioController.js";
 
+import {
+  getFormularios,
+  queryFormulario,
+  postFormulario,
+  updateFormulario,
+  removeFormulario,
+} from "../controllers/formulario/formularioController.js";
+
 //import auth from "../middlewares/auth.js";
 //import { AppCheck } from 'firebase-admin/lib/app-check/app-check';
 
@@ -47,12 +55,12 @@ export function routesConfig(app) {
   app.put("/updateUsuario", updateUsuario);
   app.post("/removeUsuario", removeUsuario);
 
-    //Formularios
-    app.get('/getFormularios', getFormularios);
-    app.get('/queryFormulario', queryFormulario);
-    app.post('/postFormulario', postFormulario);
-    app.put('/updateFormulario', updateFormulario);
-    app.post('/removeFormulario', removeFormulario);
+  //Formularios
+  app.get("/getFormularios", getFormularios);
+  app.get("/queryFormulario", queryFormulario);
+  app.post("/postFormulario", postFormulario);
+  app.put("/updateFormulario", updateFormulario);
+  app.post("/removeFormulario", removeFormulario);
 
   app.post("/postSocio", postSocio);
   app.put("/updateSocio", updateSocio);
