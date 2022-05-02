@@ -1,89 +1,153 @@
 <template id="aportes">
-  <v-layout row>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card style="margin-top: 20px" >
-        <v-img
-          src="https://2.bp.blogspot.com/-DqHwkD4_FQ8/T4ycFeIr0PI/AAAAAAAAIw8/NeoSIEdYcDs/s1600/PAISAJES+CON+PERROS+(2).jpg"
-          height="400px"
-        >
-        <div div class="text-xs-center"  >
-            
-            <h1 class="red white--text" >Donaciones
-      
-            </h1>    
-            
-            <p class="white--text">Cuenta Rut - Banco estado 
-            </p>
-            <p class="white--text">19.503.538-5
-            </p>
-            <p class="white--text">Maria Jose Castro
-            </p>
-            <p class="white--text">adogtame.curico2015@gmail.com
-            </p>
-            <p class="white--text">Asunto: Nombre + Apellido
-            </p>
+  <v-container grid-list-md>
+    <v-flex >
+      <div class="titulo" >
+        <h1 class="Blue" >
+          APORTES
+        </h1>
+        <p>
 
-          </div>
+        </p>
         
-        </v-img>
-
+      </div>
+      <div class= "parrafo"  >
+        <span>
+          <strong>¿Quieres contribuir a Fundación Adogtame y no sabes como hacerlo?
+          ¿No tienes tiempo para ser voluntario? ¿Tu casa o departamento no permiten recibir un animal? 
+          ¡DONA!</strong> Son donaciones como las tuyas las que nos permiten hacer nuestro trabajo voluntario, 
+          salvando vidas y educando a nuestra ciudadanía.
+        </span>
+        <p>
+          
+        </p>
+      </div>
+      <div>
+        <span>
+          <strong>¿Dónde donar?</strong> Comprométete a ser nuestro socio, apadrina una esterilización, 
+          compra vacunas y desparasitaciones,
+          o apadrina un caso de rescate, aquí, o en nuestra cuenta corriente.
+        </span>
+        <p>
+          
+        </p>
+      </div>
         
-      </v-card>
+      <div>
+        <span>
+          <strong>¿Quieres convertirte en un socio con donaciones mensuales? </strong>
+          ¡Sé parte de Fundación Adogtame con una colaboración mensual! 
+          Elige la opción de donación según el tipo de apoyo que quieres hacer y 
+          conviértete en parte de la Comunidad de Fundación Adogtame. <strong>¡Completa tu carrito de compras!</strong>
+        </span>
+        <p>
+          
+        </p>
+      </div>
+        
+      <div>
+        <span>
+          <strong>¡El mundo cambiará si todos ponemos nuestro granito de arena!</strong>
+        </span>
+        <p>
+          
+        </p>
+      </div>
+        
+        
+  
     </v-flex>
 
 
-    <v-card
-    class="mx-auto"
-    max-width="344"
-    style="margin-top: 100px; margin-bottom: 20px"
-    >
-    <v-card-text >
-      <div>Word of the Day</div>
-      <p class="text-h4 text--primary">
-        el·ee·mos·y·nar·y
-      </p>
-      <p>adjective</p>
-      <div class="text--primary">
-        relating to or dependent on charity; charitable.<br>
-        "an eleemosynary educational institution."
+    <v-layout>
+      <div class="">
+        <v-container grid-list-md>
+         <v-layout row wrap>
+             <v-flex xs12 sm6 offset-sm3>
+                 
+              <v-img src="../assets/afiche-aportes.png"></v-img>
+
+             </v-flex>
+               
+          </v-layout>
+
+        </v-container>
+
       </div>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        text
-        color="teal accent-4"
-        @click="reveal = true"
-      >
-        Learn More
-      </v-btn>
-    </v-card-actions>
+      
+    </v-layout>
+    
+    <v-layout row>
+      
+      <v-flex xs6 sm3>
+        <v-card>
+          <v-img src="https://www.zooplus.es/magazine/wp-content/uploads/2019/02/vacunas-para-perros-768x512.jpg">
+          </v-img>
+          <v-card-title>
+            Dona un set de vacunas
+          </v-card-title>
+          <v-card-title >
+            $10000
+          </v-card-title>
+          <v-card-actions>
+            <v-btn color="red" flat>Donar </v-btn>
+          </v-card-actions>
+         
+        </v-card>
+      </v-flex>
+      <v-flex xs6 sm3>
+        
+        <v-card>
+          <v-img src="https://www.eltiempo.com/files/image_640_428/uploads/2017/07/01/5957f2f0aa0e3.jpeg">
+          </v-img>
+          <v-card-title>
+            Dona una consulta 
+          </v-card-title>
+          <v-card-title >
+            $15000
+          </v-card-title>
+          <v-card-actions>
+            <v-btn color="red" flat>Donar </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+      <v-flex xs6 sm3>
+        
+        <v-card>
+          <v-img src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-adopcion-de-gatos-aspectos-a-tomar-en-cuenta.jpg?itok=ruMRSgJV">
+          </v-img>
+          <v-card-title>
+            Dona una esterilizacion
+          </v-card-title>
+          <v-card-title >
+            $20000
+          </v-card-title>
+          <v-card-actions>
+            <v-btn color="red" flat>Donar </v-btn>
+          </v-card-actions>
+          
+        </v-card>
+      </v-flex>
+      <v-flex xs6 sm3>
+        
+        <v-card>
+          <v-img src="https://estaticos.muyinteresante.es/uploads/images/article/5f4e647d5cafe8e117b75536/1-adoptar-perro-refugio.jpg">
+          </v-img>
+          <v-card-title>
+            Apoya un caso de maltrato animal
+          </v-card-title>
+          <v-card-title >
+            $25000
+          </v-card-title>
+          <v-card-actions>
+            <v-btn color="red" flat>Donar </v-btn>
+          </v-card-actions>
+          
+        </v-card>
+      </v-flex>
 
-    <v-expand-transition>
-      <v-card
-        v-if="reveal"
-        class="transition-fast-in-fast-out v-card--reveal"
-        style="height: 100%;"
-      >
-        <v-card-text class="pb-0">
-          <p class="text-h4 text--primary">
-            Origin
-          </p>
-          <p>late 16th century (as a noun denoting a place where alms were distributed): from medieval Latin eleemosynarius, from late Latin eleemosyna ‘alms’, from Greek eleēmosunē ‘compassion’ </p>
-        </v-card-text>
-        <v-card-actions class="pt-0">
-          <v-btn
-            text
-            color="teal accent-4"
-            @click="reveal = false"
-          >
-            Close
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-expand-transition>
-  </v-card>
-  </v-layout>  
-
+    </v-layout>
+  </v-container>
+  
 </template>
 
 <style>
@@ -94,12 +158,6 @@ height:100%;			/* El tamaño se establece en 100% */
 position:sticky;
 background-size:100% 100%;}
 
-.v-card--reveal {
-  bottom: 0;
-  opacity: 1 !important;
-  position: absolute;
-  width: 100%;
-}
 </style>
 
 <script>
