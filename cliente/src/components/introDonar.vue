@@ -23,7 +23,7 @@
         >
           <v-avatar
             size="80"
-            class="display-1 white font-weight-bold primary--text mb-5"
+            class="display-1 white font-weight-bold black--text mb-5"
             style="opacity: 1.15"
             >{{ card.callout }}</v-avatar
           >
@@ -36,7 +36,7 @@
         </v-col>
       </v-row>
       <v-row no-gutters>
-        <v-btn x-large rounded color="white primary--text mx-auto mt-10 px-16">
+        <v-btn x-large rounded color="white black--text mx-auto mt-10 px-16" to=/aportes>
           <v-icon dark left> mdi-check-bold </v-icon>Donar Ahora
         </v-btn>
       </v-row>

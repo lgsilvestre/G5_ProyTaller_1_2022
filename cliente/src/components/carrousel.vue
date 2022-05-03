@@ -23,7 +23,7 @@
             </div>
             <p class="mb-5 white--text">{{ carousel.subHeading }}</p>
             <v-btn :x-large="$vuetify.breakpoint.smAndUp" class="my-3 red darken-3"
-              >Conócenos</v-btn
+              to=/About>Conócenos</v-btn
             >
             <span class="mx-2 my-4"></span>
 
