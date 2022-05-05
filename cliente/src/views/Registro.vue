@@ -1,9 +1,9 @@
 <template>
     <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md6 lg5 xl4>
-            <v-card>
-                <v-toolbar dark color="red darken-3">
-                    <v-toolbar-title>
+        <v-flex xs12 sm8 md6 lg4 xl4>
+            <v-card class="mx-auto pa-10 ma-10 backgroundImage">
+                <v-toolbar dark color="red lighten-2">
+                    <v-toolbar-title class="flex text-center">
                         Registro
                     </v-toolbar-title>
                 </v-toolbar>
@@ -17,16 +17,6 @@
                         requiredcolor="accent" 
                         required
                         :rules="[rules.required]"
-                    ></v-text-field>
-
-                    <!-- Nombre Usuario -->
-                    <v-text-field 
-                        v-model="nombreUsuario" 
-                        color="accent" 
-                        label="Nombre usuario" 
-                        requiredcolor="accent" 
-                        required
-                        :rules="[rules.required, rules.usermin]"
                     ></v-text-field>
 
                     <!-- Email -->
@@ -73,10 +63,8 @@
                         {{errorM}}
                     </v-flex>
                 </v-card-text>
-                <v-card-actions class="px-3 pb-3">
-                    <v-flex text-xs-right>
-                        <v-btn @click="registrar()" dark color="red darken-3">Registrarse</v-btn>
-                    </v-flex>
+                <v-card-actions class="px-3 pb-3 justify-center">
+                    <v-btn @click="registrar()" dark color="red lighten-2">Registrarse</v-btn>
                 </v-card-actions>
                 <v-snackbar v-model="snackbar" timeout="3000" top>
                     <span>¡{{ snackbarText }}!</span>
@@ -93,12 +81,10 @@ import axios from 'axios'
 class Usuario {
   constructor(
     nombreCompleto,
-    nombreUsuario,
     email,
     clave,
   ) {
     this.nombreCompleto = nombreCompleto
-    this.nombreUsuario = nombreUsuario
     this.email = email
     this.clave = clave
   }
@@ -108,7 +94,6 @@ export default {
     data (){
         return{
             nombreCompleto: '',
-            nombreUsuario: '',
             email: '',
             reEmail: '',
             clave: '',
@@ -118,7 +103,6 @@ export default {
             snackbarText: '',
             rules: {
                 required: (value) => !!value || 'Campo obligatorio',
-                usermin: () => this.nombreUsuario.length >= 8 || 'Debe tener al menos 8 caracteres',
             },
             emailrules: {
                 required: (value) => !!value || 'Campo obligatorio',
@@ -162,24 +146,21 @@ export default {
             }
         },
         registrar() {
-            if (this.nombreCompleto === '' || this.nombreUsuario === '' || this.email === '' || this.clave === ''){
+            if (this.nombreCompleto === '' || this.email === '' || this.clave === ''){
                 this.snackbar = true
                 this.snackbarText = 'Existen campos incompletos'
             } else if (
                 this.email === this.reEmail &&
                 /.+@.+\..+/.test(this.email) &&
-                this.clave === this.reClave &&
-                this.nombreUsuario.length >= 8
+                this.clave === this.reClave
             ) {
                 this.user = new Usuario(
                 this.nombreCompleto,
-                this.nombreUsuario,
                 this.email,
                 this.clave,
                 )
                 axios.post('postUsuario',{
                     nombreCompleto: this.user.nombreCompleto,
-                    nombreUsuario: this.user.nombreUsuario,
                     email: this.user.email,
                     clave: this.user.clave,
                 })
@@ -194,7 +175,7 @@ export default {
                 })
                 .catch(() => {
                     this.snackbar = true
-                    this.snackbarText = 'Ha ingresado un usuario o un correo invalido'
+                    this.snackbarText = 'Ha ingresado un correo invalido'
                 })
             } else {
                 this.snackbar = true
@@ -204,3 +185,11 @@ export default {
     }
 }
 </script>
+
+<style>
+.backgroundImage{
+    width: 100%;
+    height: 560px;
+}
+
+</style>
