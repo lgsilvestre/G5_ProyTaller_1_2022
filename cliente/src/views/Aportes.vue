@@ -2,9 +2,7 @@
   <v-container grid-list-md>
     <v-flex>
       <div class="titulo">
-        <h1 >
-         APORTES
-        </h1>
+        <h1>APORTES</h1>
         <p></p>
       </div>
       <div class="parrafo">
@@ -63,57 +61,46 @@
         </v-container>
       </div>
     </v-layout>
-    <span>
-    </span>
-    <v-layout row >
-        <v-card 
-              max-width="300px"
-              style="margin: 0 auto">
-          <v-img 
+    <span> </span>
+    <v-layout row>
+      <v-card max-width="300px" style="margin: 0 auto">
+        <v-img
           height="200px"
-          src="https://www.zooplus.es/magazine/wp-content/uploads/2019/02/vacunas-para-perros-768x512.jpg">
-          </v-img>
-          <v-card-title> Dona un set de vacunas </v-card-title>
-          <v-card-title> $10000 </v-card-title>
-          <v-card-actions>
-            <v-btn color="red" >Donar </v-btn>
-          </v-card-actions>
-        </v-card>
-     
-        
-        <v-card 
-              max-width="300px"
-              style="margin: 0 auto">
-          <v-img 
+          src="https://www.zooplus.es/magazine/wp-content/uploads/2019/02/vacunas-para-perros-768x512.jpg"
+        >
+        </v-img>
+        <v-card-title> Dona un set de vacunas </v-card-title>
+        <v-card-title> $10000 </v-card-title>
+        <v-card-actions>
+          <v-btn color="red">Donar </v-btn>
+        </v-card-actions>
+      </v-card>
+
+      <v-card max-width="300px" style="margin: 0 auto">
+        <v-img
           height="200px"
           src="https://www.eltiempo.com/files/image_640_428/uploads/2017/07/01/5957f2f0aa0e3.jpeg"
-          >
-          </v-img>
-          <v-card-title> Dona una consulta </v-card-title>
-          <v-card-title> $15000 </v-card-title>
-          <v-card-actions>
-            <v-btn color="red" >Donar </v-btn>
-          </v-card-actions>
-        </v-card>
-    
-            src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-adopcion-de-gatos-aspectos-a-tomar-en-cuenta.jpg?itok=ruMRSgJV"
-          >
-      
-        <v-card 
-              max-width="300px"
-              style="margin: 0 auto">
-          <v-img 
+        >
+        </v-img>
+        <v-card-title> Dona una consulta </v-card-title>
+        <v-card-title> $15000 </v-card-title>
+        <v-card-actions>
+          <v-btn color="red">Donar </v-btn>
+        </v-card-actions>
+      </v-card>
+
+      <v-card max-width="300px" style="margin: 0 auto">
+        <v-img
           height="200px"
-          src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-adopcion-de-gatos-aspectos-a-tomar-en-cuenta.jpg?itok=ruMRSgJV">
-          </v-img>
-          <v-card-title> Apoya un caso de maltrato animal </v-card-title>
-            Dona una esterilizacion
-            $20000
-          <v-card-actions>
-            <v-btn color="red" >Donar </v-btn>
-          </v-card-actions>
-        </v-card>
-      
+          src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-adopcion-de-gatos-aspectos-a-tomar-en-cuenta.jpg?itok=ruMRSgJV"
+        >
+        </v-img>
+        <v-card-title> Dona una esterilizacion </v-card-title>
+        <v-card-title> $20000 </v-card-title>
+        <v-card-actions>
+          <v-btn color="red">Donar </v-btn>
+        </v-card-actions>
+      </v-card>
     </v-layout>
   </v-container>
 </template>
