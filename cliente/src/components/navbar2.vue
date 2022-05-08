@@ -89,7 +89,7 @@ export default {
         },
         {
           icon: "",
-          title: "Crud Mascotas",
+          title: "Administracion",
           to: "/crud",
           requieredAuth: true,
         },
