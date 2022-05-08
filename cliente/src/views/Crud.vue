@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-bottom-navigation v-model="value" shift>
-      <v-btn @click="opcionBoton(0)">Mascotas</v-btn>
-      <v-btn @click="opcionBoton(1)">Administradores</v-btn>
-      <v-btn @click="opcionBoton(2)">Formularios</v-btn>
-      <v-btn @click="opcionBoton(3)">Socios</v-btn>
+      <v-btn @click="rutaTest('mascotas')">Mascotas</v-btn>
+      <v-btn @click="rutaTest('administradores')">Administradores</v-btn>
+      <v-btn @click="rutaTest('formularios')">Formularios</v-btn>
+      <v-btn @click="rutaTest('socios')">Socios</v-btn>
     </v-bottom-navigation>
-    <crudMascotas v-if="opcion == 0"></crudMascotas>
-    <crudAdmin v-if="opcion == 1"></crudAdmin>
-    <crud-form v-if="opcion == 2"></crud-form>
-    <crudSocios v-if="opcion == 3"></crudSocios>
+    <crudMascotas v-if="comprobarRuta('mascotas')"></crudMascotas>
+    <crudAdmin v-if="comprobarRuta('administradores')"></crudAdmin>
+    <crud-form v-if="comprobarRuta('formularios')"></crud-form>
+    <crudSocios v-if="comprobarRuta('socios')"></crudSocios>
   </div>
 </template>
 
@@ -22,7 +22,6 @@ import crudSocios from "./Socios.vue";
 export default {
   data() {
     return {
-      opcion: 0,
       value: 0,
     };
   },
@@ -33,10 +32,34 @@ export default {
     CrudForm,
     crudSocios,
   },
+  created(){
+    if(this.$route.query.opcion === 'mascotas'){
+      this.value=0
+    }
+    else if(this.$route.query.opcion === 'administradores'){
+      this.value=1
+    }
+    else if(this.$route.query.opcion === 'formularios'){
+      this.value=2
+    }
+    else if(this.$route.query.opcion === 'socios'){
+      this.value=3
+    }
+  },
   methods: {
-    opcionBoton(opcion) {
-      this.opcion = opcion;
+    rutaTest(ruta){
+      if(this.$route.query.opcion !== ruta){
+        this.$router.push({ path: 'crud', query: { opcion: ruta }})
+      }
     },
+    comprobarRuta(ruta){
+      if(this.$route.query.opcion === ruta){
+        return true
+      }
+      else{
+        return false
+      }
+    }
   },
 };
 </script>

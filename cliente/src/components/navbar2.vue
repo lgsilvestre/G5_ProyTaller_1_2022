@@ -90,7 +90,7 @@ export default {
         {
           icon: "",
           title: "Administracion",
-          to: "/crud",
+          to: "/crud?opcion=mascotas",
           requieredAuth: true,
         },
         {
