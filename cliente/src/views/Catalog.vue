@@ -92,7 +92,6 @@ export default {
   created: function () {
     axios.get("/getAnimals").then((result) => {
       this.items = result.data;
-      console.log(this.items);
       this.loading = false;
     });
   },
