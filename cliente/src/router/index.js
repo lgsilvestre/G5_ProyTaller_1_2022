@@ -78,11 +78,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Crud.vue'),
     meta: { logged: true },
   },
-  // {
-  //   path: '/adoptame/:id',
-  //   name: 'Adoptame',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/Adoptame.vue'),
-  // }
+  {
+    path: '/editarFormulario/:id',
+    name: 'EditorFormulario',
+    component: () => import(/* webpackChunkName: "about" */ '../views/editorFormulario.vue'),
+    meta:{logged:true}
+  }
 
 
 ]

@@ -1,166 +1,137 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="listaMascotas"
-    class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar
-        flat
-      >
-        <v-toolbar-title>Mis mascotas</v-toolbar-title>
-        <v-divider
-          class="mx-4"
-          inset
-          vertical
-        ></v-divider>
-        <v-spacer></v-spacer>
-        <v-dialog
-          v-model="dialog"
-          max-width="500px"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              color="red darken-1"
-              dark
-              class="mb-2"
-              v-bind="attrs"
-              v-on="on"
-            >
-              Nueva mascota
-            </v-btn>
-          </template>
-          <v-card>
-            <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
-            </v-card-title>
-
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.nombre"
-                      label="Nombre"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.edad"
-                      label="Edad"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.raza"
-                      label="Raza"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.tipo"
-                      label="Tipo"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <cropper
-                      class="cropper"
-                      :image="image"
-                      :src="selectedFileSrc"
-                      @change="handleFileChange"
-                      :stencil-props="{
-                        aspectRatio: 16 / 9,
-                        movable: true,
-                        resizable: true,
-                      }"
-                    />
-                    <v-file-input
-                      :v-model="selectedFile"
-                      accept="image/*"
-                      label="Cargar imagen"
-                      :src="selectedFileSrc"
-                      required
-                      @change="setImage"
-                      ref="fileInput"
-                    ></v-file-input>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
+  <v-layout align-center justify-center>
+    <loading v-if="loading"></loading>
+    <v-data-table
+      v-if="!loading"
+      :headers="headers"
+      :items="listaMascotas"
+      class="elevation-1 w-100"
+    >
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>Mis mascotas</v-toolbar-title>
+          <v-divider class="mx-4" inset vertical></v-divider>
+          <v-spacer></v-spacer>
+          <v-dialog v-model="dialog" max-width="500px">
+            <template v-slot:activator="{ on, attrs }">
               <v-btn
                 color="red darken-1"
-                text
-                @click="close"
+                dark
+                class="mb-2"
+                v-bind="attrs"
+                v-on="on"
               >
-                Cancelar
+                Nueva mascota
               </v-btn>
-              <v-btn
-                color="red darken-1"
-                text
-                @click="save"
-              >
-                Guardar
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <v-dialog v-model="dialogDelete" max-width="500px">
-          <v-card>
-            <v-card-title class="text-h5"
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">{{ formTitle }}</span>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.nombre"
+                        label="Nombre"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.edad"
+                        label="Edad"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.raza"
+                        label="Raza"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="editedItem.tipo"
+                        label="Tipo"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                      <cropper
+                        class="cropper"
+                        :image="image"
+                        :src="selectedFileSrc"
+                        @change="handleFileChange"
+                        :stencil-props="{
+                          aspectRatio: 16 / 9,
+                          movable: true,
+                          resizable: true,
+                        }"
+                      />
+                      <v-file-input
+                        :v-model="selectedFile"
+                        accept="image/*"
+                        label="Cargar imagen"
+                        :src="selectedFileSrc"
+                        required
+                        @change="setImage"
+                        ref="fileInput"
+                      ></v-file-input>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="red darken-1" text @click="close">
+                  Cancelar
+                </v-btn>
+                <v-btn color="red darken-1" text @click="save"> Guardar </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-dialog v-model="dialogDelete" max-width="500px">
+            <v-card>
+              <v-card-title class="text-h5"
               >¿Estás seguro que deseas borrar esta mascota?</v-card-title
-            >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete"
-                >Cancel</v-btn
               >
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                >OK</v-btn
-              >
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-      <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-    </template>
-    <template v-slot:item.foto="{ item }">
-      <v-img :src="item.foto" max-width="200"></v-img>
-    </template>
-  </v-data-table>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="closeDelete"
+                  >Cancel</v-btn
+                >
+                <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+                  >OK</v-btn
+                >
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.actions="{ item }">
+        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+      </template>
+      <template v-slot:item.foto="{ item }">
+        <v-img :src="item.foto" max-width="200"></v-img>
+      </template>
+    </v-data-table>
+  </v-layout>
 </template>
 
 <script>
 import axios from "axios";
 import { Cropper } from "vue-advanced-cropper";
+import Loading from "./loading.vue";
 import "vue-advanced-cropper/dist/style.css";
 export default {
-  components: { Cropper },
+  components: { Cropper, Loading },
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    loading: false,
     headers: [
       { text: "Nombre", value: "nombre" },
       { text: "Edad", value: "edad" },
@@ -247,8 +218,10 @@ export default {
       this.dialog = false;
       this.selectedFileSrc = null;
       this.selectedFile = null;
-      this.$refs.fileInput.reset();
       this.$nextTick(() => {
+        if (this.$refs.fileInput) {
+          this.$refs.fileInput.reset();
+        }
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
@@ -264,6 +237,7 @@ export default {
     },
 
     async save() {
+      this.loading = true;
       if (this.editedIndex > -1) {
         Object.assign(this.mascotas[this.editedIndex], this.editedItem);
         await axios.put("/updateAnimal", {
@@ -285,16 +259,19 @@ export default {
           foto: this.image,
         });
       }
+      this.loading = false;
       this.close();
       this.listarMascotas();
     },
     async listarMascotas() {
       let me = this;
+      this.loading = true;
       axios
         .get("/getAnimals")
         .then(function (response) {
           me.mascotas = response.data;
           me.indexMascotas = me.mascotas.length;
+          me.loading = false;
         })
         .catch(function (error) {
           console.log(error);
@@ -302,7 +279,6 @@ export default {
     },
     setImage(e) {
       const file = e;
-      console.log(file);
       if (!file) {
         this.selectedFileSrc = null;
         return;
@@ -330,5 +306,8 @@ export default {
   height: 150px;
   width: 200px;
   background: #ddd;
+}
+.w-100 {
+  width: 100%;
 }
 </style>
