@@ -63,26 +63,22 @@
     </template>
     <template v-slot:item.actions="{ item }">
         <v-btn
-        class="mx-2"
-        fab
-        dark
-        small
-        color="cyan"
+        fab 
+        small 
+        plain
         :to="{name:'EditorFormulario', params:{id:item._id}}"
         >
-            <v-icon dark>
+            <v-icon>
                 mdi-pencil
             </v-icon>
         </v-btn>
         <v-btn
-            class="mx-2"
-            fab
-            dark
-            small
-            color="cyan"
-            @click="deleteItem(item)"
-            >
-            <v-icon dark>
+        fab 
+        small 
+        plain
+        @click="deleteItem(item)"
+        >
+            <v-icon>
                 mdi-delete
             </v-icon>
         </v-btn>
