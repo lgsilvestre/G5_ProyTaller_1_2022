@@ -59,7 +59,7 @@ export default {
       items: [
         {
           icon: "mdi-folder-home-outline",
-          title: "Home",
+          title: "Inicio",
           to: "/home",
         },
         {
@@ -79,8 +79,8 @@ export default {
         },
         {
           icon: "mdi-contacts",
-          title: "Casos Activos",
-          to: "/casosActivos",
+          title: "Tenencia Responsable",
+          to: "/tenenciaResponsable",
         },
         {
           icon: "mdi-blogger",
@@ -101,7 +101,7 @@ export default {
         },
         {
           icon: "",
-          title: "Login",
+          title: "acceso",
           to: "/login",
           requieredAuth: false,
         },

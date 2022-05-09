@@ -50,4 +50,12 @@ const FormularioSchema = new mongoose.Schema({
 });
 const Formulario = mongoose.model("Formulario",FormularioSchema);
 
-export { Test, Animal, Usuario, Socio,Formulario };
+const EventoSchema = new mongoose.Schema({
+  titulo: String,
+  descripcion: String,
+  fecha: Date,
+  foto: String | null
+});
+const Evento = mongoose.model("Evento", EventoSchema);
+
+export { Test, Animal, Usuario, Socio,Formulario, Evento };

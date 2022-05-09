@@ -29,6 +29,7 @@ import {
   updateFormulario,
   removeFormulario,
 } from "../controllers/formulario/formularioController.js";
+import { getEventos, postEvento, queryEvento, removeEvento, updateEvento } from "../controllers/evento/eventoController.js";
 
 //import auth from "../middlewares/auth.js";
 //import { AppCheck } from 'firebase-admin/lib/app-check/app-check';
@@ -62,8 +63,18 @@ export function routesConfig(app) {
   app.put("/updateFormulario", updateFormulario);
   app.post("/removeFormulario", removeFormulario);
 
+  //Socios
   app.post("/postSocio", postSocio);
   app.put("/updateSocio", updateSocio);
   app.get("/getSocios", getSocios);
   app.delete("/deleteSocio/:id", removeSocio);
+
+  //Eventos
+  app.get("/getEventos", getEventos);
+  app.post("/postEvento",postEvento);
+  app.get("/queryEvento", queryEvento);
+  app.put("/updateEvento", updateEvento);
+  app.post("/removeEvento", removeEvento);
+
+
 }

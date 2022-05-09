@@ -3,6 +3,7 @@
     class="pa-2"
     max-width="450px"
     style="margin: 0 auto"
+
   >
     <v-img
       :src="item.foto"
