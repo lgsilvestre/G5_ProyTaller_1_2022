@@ -27,6 +27,23 @@ async function queryFormulario(req,res) {
         next(e);
     }
 }
+async function queryFormularioNombre(req,res) {
+    try {
+        const reg=await Formulario.findOne({nombre:req.query.nombre});
+        if (!reg){
+            res.status(404).send({
+                message: 'El registro no existe'
+            });
+        } else{
+            res.status(200).json(reg._id);
+        }
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
+}
 
 async function postFormulario(req, res) {
 
@@ -65,5 +82,5 @@ async function removeFormulario(req,res,next) {
     }
 }
 
-export {getFormularios, queryFormulario, postFormulario, updateFormulario, removeFormulario}
+export {getFormularios, queryFormulario, postFormulario, updateFormulario, removeFormulario, queryFormularioNombre}
 

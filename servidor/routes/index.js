@@ -28,6 +28,7 @@ import {
   postFormulario,
   updateFormulario,
   removeFormulario,
+  queryFormularioNombre,
 } from "../controllers/formulario/formularioController.js";
 
 //import auth from "../middlewares/auth.js";
@@ -61,6 +62,7 @@ export function routesConfig(app) {
   app.post("/postFormulario", postFormulario);
   app.put("/updateFormulario", updateFormulario);
   app.post("/removeFormulario", removeFormulario);
+  app.get("/queryFormularioNombre",queryFormularioNombre);
 
   app.post("/postSocio", postSocio);
   app.put("/updateSocio", updateSocio);
