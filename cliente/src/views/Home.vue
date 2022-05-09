@@ -6,14 +6,15 @@
     >
       <carrousel></carrousel>
     </v-card>
-    <intro-adopciones></intro-adopciones>
-    <intro-donar></intro-donar>
-
     <div class="m-4">
       <h1 >“Con tus acciones escribes mi destino, respetando mi vida o ignorando mi sufrimiento”</h1>
       <br>
     </div>
     <carrouselcards></carrouselcards>
+    <intro-adopciones></intro-adopciones>
+    <intro-donar></intro-donar>
+
+    
     <!-- <p class="text-center display-4 " v-for="animal in this.animals" :key="animal.nombre">
       {{animal.name}}
     </p> -->

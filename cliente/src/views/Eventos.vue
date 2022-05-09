@@ -1,5 +1,7 @@
 <template>
+
   <section :class="this.$vuetify.theme.dark ? '' : 'grey lighten-4'">
+    <Title :datos="datos" />
     <v-row no-gutters>
       <v-col cols="12">
         <SectionsHeroAlt :hero-alt="heroAlt" />
@@ -7,7 +9,7 @@
     </v-row>
     <v-container>
       <v-row>
-        <v-col cols="12" xl="10" lg="9" md="8" sm="8" class="py-16">
+        <v-col>
           <v-row>
             <v-col
               v-for="post in 12"
@@ -87,9 +89,17 @@
 </template>
 
 <script>
+import Title from '../components/title.vue'
 export default {
+  components: { Title },
   data() {
     return {
+      datos: [
+        {
+          src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
+          titulo: ' Eventos ',
+        },
+      ],
       heroAlt: [
         {
           src: 'pexels-andrea-piacquadio-3884440.jpg',
@@ -110,6 +120,7 @@ export default {
           content: '',
         },
       ],
+
       page: 2,   
     }
   },
