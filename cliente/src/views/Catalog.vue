@@ -43,7 +43,7 @@
                 <h4>Edad seleccionada: {{ filterOptions.edad }}</h4>
                 <v-range-slider
                   v-model="filterOptions.edad"
-                  max="60"
+                  :max="getMaxAge()"
                   min="1"
                 ></v-range-slider>
               </div>
@@ -85,13 +85,14 @@ export default {
         nombre: "",
         especie: "",
         raza: "",
-        edad: [1, 15],
+        edad: [1, 1],
       },
     };
   },
   created: function () {
     axios.get("/getAnimals").then((result) => {
       this.items = result.data;
+      this.filterOptions.edad = [1, this.getMaxAge()];
       this.loading = false;
     });
   },
@@ -112,6 +113,9 @@ export default {
           item.edad <= this.filterOptions.edad[1]
         );
       });
+    },
+    getMaxAge: function () {
+      return Math.max(...this.items.map((item) => item.edad));
     },
   },
 };
