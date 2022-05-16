@@ -1,10 +1,13 @@
 <template id="aportes">
+<div>
+
+<Title :datos="datos" />
   <v-container grid-list-md>
+    
+     
     <v-flex >
-      <div class="titulo" >
-        <h1 >
-          APORTES
-        </h1>
+      <div >
+       
         <p>
 
         </p>
@@ -33,6 +36,11 @@
       </div>
         
       <div>
+         <h1 >
+          ¿Que beneficios trae para los animaliltos ser socio?
+        </h1>
+        <p>
+        </p>
         <span>
           <strong>¿Quieres convertirte en un socio con donaciones mensuales? </strong>
           ¡Sé parte de Fundación Adogtame con una colaboración mensual! 
@@ -141,7 +149,7 @@
       
     </v-layout>
   </v-container>
-  
+</div>
 </template>
 
 <style>
@@ -155,9 +163,18 @@ background-size:100% 100%;}
 </style>
 
 <script>
+  import Title from '../components/title.vue'
+
   export default {
+    components: {Title},
     data: () => ({
       reveal: false,
+      datos: [
+        {
+          src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
+          titulo: ' Aportes ',
+        },
+      ]
     }),
   }
 </script>
