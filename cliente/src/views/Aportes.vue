@@ -1,7 +1,7 @@
 <template id="aportes">
 <div>
-
 <Title :datos="datos" />
+
   <v-container grid-list-md>
     
      
@@ -164,6 +164,7 @@ background-size:100% 100%;}
 
 <script>
   import Title from '../components/title.vue'
+  
 
   export default {
     components: {Title},
@@ -174,7 +175,8 @@ background-size:100% 100%;}
           src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
           titulo: ' Aportes ',
         },
-      ]
+      ],
+      
     }),
   }
 </script>
