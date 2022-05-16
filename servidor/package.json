@@ -26,7 +26,7 @@
     "twilio": "^3.77.0",
     "uuid": "^8.3.2"
   },
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
