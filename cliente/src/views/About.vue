@@ -1,9 +1,10 @@
 <template>
   <div >
     <Title :datos="datos" />
-
     <team :our-team="ourTeam"></team>
 
+    
+    
         <v-row no-gutters>
           <v-col cols="12" md="6" align-self="center">
             <v-img
@@ -71,9 +72,11 @@
 </template>
 
 <script>
-import Team from '../components/team.vue'
+
 import timeline from '../components/timeline.vue'
 import Title from '../components/title.vue'
+import Team from '../components/team.vue'
+
 export default {
   components: { timeline, Team, Title},
   

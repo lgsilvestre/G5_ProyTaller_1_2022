@@ -6,7 +6,6 @@ async function postSocio(req, res) {
     let socio = new Socio(req.body);
     console.log(cron)
     cron.default.schedule('* * */30 * * *', ()=> { 
-      
       enviarCorreo("estimado socio "+socio.nombreCompleto+"le recordamos aportar a la fundacion","aportame adogtame"
       ,socio.correo)
     })
