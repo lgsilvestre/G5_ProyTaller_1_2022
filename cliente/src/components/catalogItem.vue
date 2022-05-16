@@ -1,6 +1,14 @@
 <template>
   <v-card class="pa-2 cardItem" shaped max-width="450px" style="margin: 0 auto">
-    <v-img :src="item.foto" height="200px"></v-img>
+    <v-carousel height="200px">
+      <v-carousel-item
+        v-for="(foto, i) in item.fotos"
+        :key="i"
+        :src="foto"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      ></v-carousel-item>
+    </v-carousel>
 
     <v-card-title>
       {{ item.nombre }}

@@ -35,17 +35,22 @@ async function queryAnimal(req, res) {
 }
 
 async function postAnimal(req, res) {
-  let id = uuidv4();
-  let storageRef = ref(storage, path + id);
-  await uploadString(storageRef, req.body.foto, "data_url");
-  let url = await getDownloadURL(storageRef);
+  let fotos = [];
+
+  for (let e of req.body.fotos) {
+    let id = uuidv4();
+    let storageRef = ref(storage, path + id);
+    await uploadString(storageRef, e, "data_url");
+    let url = await getDownloadURL(storageRef);
+    fotos.push(url);
+  }
 
   let animal = new Animal({
     nombre: req.body.nombre,
     edad: req.body.edad,
     raza: req.body.raza,
     tipo: req.body.tipo,
-    foto: url,
+    fotos,
   });
 
   await animal.save();
@@ -98,7 +103,7 @@ async function removeAnimal(req, res, next) {
   try {
     const reg = await Animal.findByIdAndDelete({ _id: req.body._id });
     // remove the photo
-    let id = reg.foto.split("%2F")[2].split("?")[0];
+    let id = reg.fotos[0].split("%2F")[2].split("?")[0];
     const desertRef = ref(storage, path + id);
     deleteObject(desertRef);
     res.status(200).json(reg);
