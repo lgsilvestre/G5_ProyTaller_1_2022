@@ -83,9 +83,12 @@ const routes = [
     name: 'EditorFormulario',
     component: () => import(/* webpackChunkName: "about" */ '../views/editorFormulario.vue'),
     meta:{logged:true}
+  },
+  {
+    path: '/adoptarMascota/mascota/:id',
+    name: 'adopcion',
+    component: () => import(/* webpackChunkName: "about" */ '../views/adoptar.vue'),
   }
-
-
 ]
 
 const router = new VueRouter({
