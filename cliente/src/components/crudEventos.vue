@@ -38,11 +38,11 @@
                         label="Titulo"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
+                    <v-col cols="12" sm="6" md="10">
+                      <v-textarea
                         v-model="editedItem.descripcion"
                         label="Descripción"
-                      ></v-text-field>
+                      ></v-textarea>
                     </v-col>
                     <v-col
                         class="my-2 px-1"
@@ -65,7 +65,7 @@
                         v-model="editedItem.hora"
                       ></v-time-picker>
                     </v-col>
-            
+                    
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.foto"
