@@ -28,6 +28,7 @@ import {
   postFormulario,
   updateFormulario,
   removeFormulario,
+  queryFormularioNombre,
 } from "../controllers/formulario/formularioController.js";
 import { getEventos, postEvento, queryEvento, removeEvento, updateEvento } from "../controllers/evento/eventoController.js";
 
@@ -62,6 +63,7 @@ export function routesConfig(app) {
   app.post("/postFormulario", postFormulario);
   app.put("/updateFormulario", updateFormulario);
   app.post("/removeFormulario", removeFormulario);
+  app.get("/queryFormularioNombre",queryFormularioNombre);
 
   //Socios
   app.post("/postSocio", postSocio);

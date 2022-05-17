@@ -26,27 +26,51 @@
                 class="mb-2"
                 v-bind="attrs"
                 v-on="on"
+                @click="dialogCrear=true"
                 >
                 Nuevo Formulario
                 </v-btn>
              </template>
             <v-card>
+                <v-card-title>
+                <span class="text-h5">Nuevo formulario</span>
+                </v-card-title>
+
+                <v-card-text>
+                <v-container>
+                    <v-row>
+                    <v-col
+                        cols="12"
+                        sm="8"
+                        md="10"
+                    >
+                        <v-text-field
+                        v-model="newFormulario"
+                        label="Nombre"
+                        ></v-text-field>
+                    </v-col>
+                    </v-row>
+                </v-container>
+                </v-card-text>
+
                 <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        color="red darken-1"
-                        text
-                    >
-                        Cancelar
-                    </v-btn>
-                    <v-btn
-                        color="red darken-1"
-                        text
-                    >
-                        Guardar
-                    </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn
+                    color="red darken-1"
+                    text
+                    @click="dialog=false, newFormulario = ''"
+                >
+                    Cancelar
+                </v-btn>
+                <v-btn
+                    color="red darken-1"
+                    text
+                    @click="save"
+                >
+                    Guardar
+                </v-btn>
                 </v-card-actions>
-          </v-card>
+            </v-card>
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="600px">
           <v-card>
@@ -92,6 +116,7 @@
         data: () => ({
             dialog: false,
             dialogDelete: false,
+            newFormulario: "",
             headers: [
                 { text: 'Tipo Formulario', value: 'nombre' },
                 { text: 'Actions', value: 'actions', sortable: false , align: 'center'},
@@ -145,9 +170,24 @@
                 })
                 this.listarFormularios()
             },
+            close () {
+                this.dialog = false
+                this.$nextTick(() => {
+                this.editedItem = Object.assign({}, this.defaultItem)
+                this.editedIndex = -1
+                })
+                this.listarFormularios()
+            },
 
             save () {
-                axios.post('/postUsuario',{'rol':'admin','nombreCompleto':this.editedItem.nombreCompleto,'email':this.editedItem.email,'clave': this.editedItem.clave})
+                axios.post('/postFormulario',{'nombre':this.newFormulario}).then( async result1 => {
+                    await axios.get('/queryFormularioNombre',{params:{nombre: this.newFormulario}}).then(result => {
+                        this.$router.push({name:'EditorFormulario', params:{id:result.data}})
+                    }).catch(function(error){
+                        console.log(error)
+                    }); 
+                    return result1
+                })
                 this.close()
             },
             async listarFormularios(){

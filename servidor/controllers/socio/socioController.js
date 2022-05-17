@@ -1,12 +1,20 @@
 import { Socio } from "../../mongodbConfig.js";
-
+import {enviarCorreo} from "../correos/correosController.js";
+import * as cron from "node-cron"
 async function postSocio(req, res) {
   try {
     let socio = new Socio(req.body);
+    console.log(cron)
+    cron.default.schedule('* * */30 * * *', ()=> { 
+      enviarCorreo("estimado socio "+socio.nombreCompleto+"le recordamos aportar a la fundacion","aportame adogtame"
+      ,socio.correo)
+    })
     await socio.save();
     res.send(socio);
   } catch (e) {
+    console.log(e);
     handleError(res, e);
+    
   }
 }
 
