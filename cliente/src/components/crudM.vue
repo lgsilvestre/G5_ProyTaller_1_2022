@@ -94,7 +94,7 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
-              >¿Estás seguro que deseas borrar esta mascota?</v-card-title
+                >ï¿½Estï¿½s seguro que deseas borrar esta mascota?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -114,8 +114,16 @@
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
-      <template v-slot:item.foto="{ item }">
-        <v-img :src="item.foto" max-width="200"></v-img>
+      <template v-slot:item.fotos="{ item }">
+        <v-carousel height="200px" class="carousel">
+          <v-carousel-item
+            v-for="(foto, i) in item.fotos"
+            :key="i"
+            :src="foto"
+            reverse-transition="fade-transition"
+            transition="fade-transition"
+          ></v-carousel-item>
+        </v-carousel>
       </template>
     </v-data-table>
   </v-layout>
@@ -137,7 +145,7 @@ export default {
       { text: "Edad", value: "edad" },
       { text: "Raza", value: "raza" },
       { text: "Tipo", value: "tipo" },
-      { text: "Foto", value: "foto" },
+      { text: "Fotos", value: "fotos" },
       { text: "Actions", value: "actions", sortable: false },
     ],
     mascotas: [],
@@ -147,14 +155,14 @@ export default {
       edad: 0,
       raza: "",
       tipo: "",
-      foto: "",
+      fotos: [],
     },
     defaultItem: {
       nombre: "",
       edad: 0,
       raza: "",
       tipo: "",
-      foto: "",
+      fotos: [],
     },
     indexMascotas: 0,
     selectedFile: null,
@@ -192,7 +200,6 @@ export default {
     },
 
     editItem(item) {
-      console.log(item._id);
       this.editedIndex = this.mascotas.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
@@ -246,7 +253,7 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          foto: this.image,
+          fotos: [this.image],
         });
       } else {
         //Crear mascota
@@ -256,7 +263,7 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          foto: this.image,
+          fotos: [this.image],
         });
       }
       this.loading = false;
@@ -309,5 +316,8 @@ export default {
 }
 .w-100 {
   width: 100%;
+}
+.carousel {
+  max-width: 400px;
 }
 </style>

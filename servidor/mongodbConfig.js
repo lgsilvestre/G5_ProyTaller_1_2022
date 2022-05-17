@@ -15,7 +15,7 @@ const AnimalSchema = new mongoose.Schema({
   edad: Number,
   raza: String,
   tipo: String,
-  foto: String | null,
+  fotos: Array,
 });
 
 const Animal = mongoose.model("Animal", AnimalSchema);
@@ -40,14 +40,22 @@ const SocioSchema = new mongoose.Schema({
 const Socio = mongoose.model("Socio", SocioSchema);
 
 const PyRschema = new mongoose.Schema({
-    pregunta: String,
-    respuesta: String
+  pregunta: String,
+  respuesta: String,
 });
 
 const FormularioSchema = new mongoose.Schema({
-    nombre: String,
-    preguntas: { type: [PyRschema]}
+  nombre: String,
+  preguntas: { type: [PyRschema] },
 });
-const Formulario = mongoose.model("Formulario",FormularioSchema);
+const Formulario = mongoose.model("Formulario", FormularioSchema);
 
-export { Test, Animal, Usuario, Socio,Formulario };
+const EventoSchema = new mongoose.Schema({
+  titulo: String,
+  descripcion: String,
+  fecha: Date,
+  foto: String | null,
+});
+const Evento = mongoose.model("Evento", EventoSchema);
+
+export { Test, Animal, Usuario, Socio, Formulario, Evento };
