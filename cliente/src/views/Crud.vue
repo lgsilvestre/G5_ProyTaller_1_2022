@@ -5,11 +5,13 @@
       <v-btn @click="rutaTest('administradores')">Administradores</v-btn>
       <v-btn @click="rutaTest('formularios')">Formularios</v-btn>
       <v-btn @click="rutaTest('socios')">Socios</v-btn>
+      <v-btn @click="rutaTest('eventos')">Eventos</v-btn>
     </v-bottom-navigation>
     <crudMascotas v-if="comprobarRuta('mascotas')"></crudMascotas>
     <crudAdmin v-if="comprobarRuta('administradores')"></crudAdmin>
     <crud-form v-if="comprobarRuta('formularios')"></crud-form>
     <crudSocios v-if="comprobarRuta('socios')"></crudSocios>
+    <crudEventos v-if="comprobarRuta('eventos')"></crudEventos>
   </div>
 </template>
 
@@ -18,6 +20,7 @@ import crudAdmin from "../components/crudA.vue";
 import crudMascotas from "../components/crudM.vue";
 import CrudForm from "../components/crudForm.vue";
 import crudSocios from "./Socios.vue";
+import crudEventos from "../components/crudEventos.vue";
 
 export default {
   data() {
@@ -31,6 +34,7 @@ export default {
     crudMascotas,
     CrudForm,
     crudSocios,
+    crudEventos,
   },
   created(){
     if(this.$route.query.opcion === 'mascotas'){
@@ -44,6 +48,9 @@ export default {
     }
     else if(this.$route.query.opcion === 'socios'){
       this.value=3
+    }
+    else if(this.$route.query.opcion === 'eventos'){
+      this.value=4
     }
   },
   methods: {
