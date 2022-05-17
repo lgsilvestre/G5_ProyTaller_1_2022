@@ -45,6 +45,7 @@ async function postEvento(req, res) {
     titulo: req.body.titulo,
     descripcion: req.body.descripcion,
     fecha: req.body.fecha,
+    hora: req.body.hora,
     foto: req.body.foto,
   });
 
@@ -55,33 +56,18 @@ async function postEvento(req, res) {
 
 async function updateEvento(req, res, next) {
   try {
-    const photoModified = req.body.foto !== undefined && req.body.foto !== null;
-    let url = "";
-    if (photoModified) {
-      let id = uuidv4();
-      let storageRef = ref(storage, path + id);
-      await uploadString(storageRef, req.body.foto, "data_url");
-      url = await getDownloadURL(storageRef);
-    }
-
     let evento = await Evento.findOne({ _id: req.body._id });
 
-    // if photo is modified, then delete the old photo
-    if (photoModified) {
-      let id = evento.foto.split("%2F")[2].split("?")[0];
-      const desertRef = ref(storage, path + id);
-      deleteObject(desertRef);
-    }
     // update the animal
     let reg = await Evento.findOneAndUpdate(
       { _id: req.body._id },
       {
         titulo: req.body.titulo,
-        descripcion: req.body.descripcion,
-        fecha: req.body.fecha,
-        foto: req.body.foto,
+    descripcion: req.body.descripcion,
+    fecha: req.body.fecha,
+    hora: req.body.hora,
+    foto: req.body.foto,
       },
-      { new: true }
     );
 
     res.status(200).json(reg);
