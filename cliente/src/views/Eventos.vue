@@ -12,76 +12,44 @@
         <v-col>
           <v-row>
             <v-col
-              v-for="post in 12"
-              :key="post"
+              v-for="item in eventos"
+              :key="item"
               cols="12"
               sm="6"
               md="6"
               lg="4"
               xl="3"
             >
-              <v-card max-width="450" class="mx-auto" elevation="1">
+              <v-card max-width="450" height="100%" class="mx-auto" elevation="1">
                 <v-img
                   class="white--text align-end"
                   height="200px"
-                  src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+                  :src="item.foto"
                 >
                 </v-img>
                 <v-card-subtitle class="pb-0">
-                  <v-btn href="#" text small color="primary" class="px-0"
-                    >Admin</v-btn
+                  <v-btn text small disabled class="px-0"
+                    >{{item.fecha}}</v-btn
                   >
                   <v-btn text small disabled class="px-0"
-                    >October 13, 2020</v-btn
+                    >{{item.hora}}</v-btn
                   >
                 </v-card-subtitle>
                 <v-card-text
                   class="title font-weight-bold mt-3 pb-0 text--primary"
                   style="line-height: 1.8rem"
                 >
-                  Check out the new mansion we got for our eSports team!
+                  {{item.titulo}}
                 </v-card-text>
+                
                 <v-card-text class="text--primary">
-                  An online streamer, also known as a live streamer, internet
-                  streamer, or streamer, is a person who broadcasts themself
-                  online through a live stream or pre-recorded video. The scope
-                  of online streamers has grown to includ...
-                  <v-btn href="#" small text color="primary">Read More</v-btn>
+                  {{item.descripcion}}
                 </v-card-text>
 
-                <v-card-actions>
-
-                  
-
-
-
-                  <v-btn icon color="primary">
-                    <v-icon>mdi-share-variant</v-icon> </v-btn
-                  >
-                  <span class="mr-4"></span>
-                </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
 
-          <div class="text-center">
-            <div class="text-center">
-              <v-container>
-                <v-row justify="center">
-                  <v-col cols="8">
-                    <v-container class="max-width">
-                      <v-pagination
-                        v-model="page"
-                        circle
-                        class="my-4"
-                        :length="15"
-                      ></v-pagination>
-                    </v-container>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </div>
-          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -90,10 +58,13 @@
 
 <script>
 import Title from '../components/title.vue'
+import axios from "axios";
 export default {
   components: { Title },
   data() {
     return {
+      eventos: [],
+      indexeventos: 0,
       datos: [
         {
           src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
@@ -120,9 +91,30 @@ export default {
           content: '',
         },
       ],
-
-      page: 2,   
     }
+  },
+  created() {
+    this.initialize();
+    this.listareventos();
+  },
+  methods: {
+    initialize() {
+      this.eventos = [];
+    },
+    async listareventos() {
+      let me = this;
+      //this.loading = true;
+      axios
+        .get("/getEventos")
+        .then(function (response) {
+          me.eventos = response.data;
+          me.indexeventos = me.eventos.length;
+          //me.loading = false;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
   head() {
     return {
