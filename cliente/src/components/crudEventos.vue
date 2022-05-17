@@ -34,49 +34,31 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.nombre"
-                        label="Nombre"
+                        v-model="editedItem.titulo"
+                        label="Titulo"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.edad"
-                        label="Edad"
+                        v-model="editedItem.descripcion"
+                        label="Descripción"
                       ></v-text-field>
                     </v-col>
+                    <v-col
+                        class="my-2 px-1"
+                        cols="12"
+                        sm="6"
+                        >
+                        <v-date-picker
+                            v-model="editedItem.fecha"
+                        ></v-date-picker>
+                    </v-col>
+            
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.raza"
-                        label="Raza"
+                        v-model="editedItem.foto"
+                        label="Foto"
                       ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.tipo"
-                        label="Tipo"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <cropper
-                        class="cropper"
-                        :image="image"
-                        :src="selectedFileSrc"
-                        @change="handleFileChange"
-                        :stencil-props="{
-                          aspectRatio: 16 / 9,
-                          movable: true,
-                          resizable: true,
-                        }"
-                      />
-                      <v-file-input
-                        :v-model="selectedFile"
-                        accept="image/*"
-                        label="Cargar imagen"
-                        :src="selectedFileSrc"
-                        required
-                        @change="setImage"
-                        ref="fileInput"
-                      ></v-file-input>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -94,7 +76,7 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
-                >�Est�s seguro que deseas borrar esta mascota?</v-card-title
+              >�Est�s seguro que deseas borrar esta mascota?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -114,16 +96,8 @@
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
-      <template v-slot:item.fotos="{ item }">
-        <v-carousel height="200px" class="carousel">
-          <v-carousel-item
-            v-for="(foto, i) in item.fotos"
-            :key="i"
-            :src="foto"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-          ></v-carousel-item>
-        </v-carousel>
+      <template v-slot:item.foto="{ item }">
+        <v-img :src="item.foto" max-width="200"></v-img>
       </template>
     </v-data-table>
   </v-layout>
@@ -131,38 +105,35 @@
 
 <script>
 import axios from "axios";
-import { Cropper } from "vue-advanced-cropper";
 import Loading from "./loading.vue";
 import "vue-advanced-cropper/dist/style.css";
 export default {
-  components: { Cropper, Loading },
+  components: { Loading },
   data: () => ({
     dialog: false,
     dialogDelete: false,
     loading: false,
     headers: [
-      { text: "Nombre", value: "nombre" },
-      { text: "Edad", value: "edad" },
-      { text: "Raza", value: "raza" },
-      { text: "Tipo", value: "tipo" },
-      { text: "Fotos", value: "fotos" },
+      { text: "Titulo", value: "titulo" },
+      { text: "Descripción", value: "descripcion" },
+      { text: "Fecha", value: "fecha" },
+      { text: "Hora", value: "hora" },
+      { text: "Foto", value: "foto" },
       { text: "Actions", value: "actions", sortable: false },
     ],
     mascotas: [],
     editedIndex: -1,
     editedItem: {
-      nombre: "",
-      edad: 0,
-      raza: "",
-      tipo: "",
-      fotos: [],
+      titulo: "",
+      descripcion: "",
+      fecha: "",
+      foto: "",
     },
     defaultItem: {
-      nombre: "",
-      edad: 0,
-      raza: "",
-      tipo: "",
-      fotos: [],
+      titulo: "",
+      descripcion: "",
+      fecha: "",
+      foto: "",
     },
     indexMascotas: 0,
     selectedFile: null,
@@ -172,7 +143,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Nueva mascota" : "Editar mascota";
+      return this.editedIndex === -1 ? "Nuevo evento" : "Editar evento";
     },
     listaMascotas() {
       //this.listarMascotas()
@@ -200,6 +171,7 @@ export default {
     },
 
     editItem(item) {
+      console.log(item.fecha)
       this.editedIndex = this.mascotas.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
@@ -213,60 +185,51 @@ export default {
 
     deleteItemConfirm() {
       //this.mascotas.splice(this.editedIndex, 1)
-      axios.post("/removeAnimal", { _id: this.mascotas[this.editedIndex]._id });
+      axios.post("/removeEvento", { _id: this.mascotas[this.editedIndex]._id });
       this.closeDelete();
-    },
-    handleFileChange({ canvas }) {
-      this.image = canvas.toDataURL();
     },
 
     close() {
-      this.listarMascotas();
-      this.dialog = false;
-      this.selectedFileSrc = null;
-      this.selectedFile = null;
-      this.$nextTick(() => {
-        if (this.$refs.fileInput) {
-          this.$refs.fileInput.reset();
-        }
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
+        this.dialog = false
+        this.$nextTick(() => {
+            this.editedItem = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
+        })
+        this.listarMascotas()
     },
 
     closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
+      this.dialogDelete = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
       this.listarMascotas();
     },
 
     async save() {
-      this.loading = true;
+      //this.loading = true;
       if (this.editedIndex > -1) {
         Object.assign(this.mascotas[this.editedIndex], this.editedItem);
-        await axios.put("/updateAnimal", {
+        await axios.put("/updateEvento", {
           _id: this.editedItem._id,
-          nombre: this.editedItem.nombre,
-          edad: this.editedItem.edad,
-          raza: this.editedItem.raza,
-          tipo: this.editedItem.tipo,
-          fotos: [this.image],
+          titulo: this.editedItem.titulo,
+          descripcion: this.editedItem.descripcion,
+          fecha: this.editedItem.fecha,
+          foto: this.editedItem.foto,
         });
       } else {
         //Crear mascota
+        console.log(this.editedItem.fecha);
         //this.mascotas.push(this.editedItem)
-        await axios.post("/postAnimal", {
-          nombre: this.editedItem.nombre,
-          edad: this.editedItem.edad,
-          raza: this.editedItem.raza,
-          tipo: this.editedItem.tipo,
-          fotos: [this.image],
+        await axios.post("/postEvento", {
+          titulo: this.editedItem.titulo,
+          descripcion: this.editedItem.descripcion,
+          fecha: this.editedItem.fecha,
+          foto: this.editedItem.foto,
         });
       }
-      this.loading = false;
+      //this.loading = false;
       this.close();
       this.listarMascotas();
     },
@@ -274,7 +237,7 @@ export default {
       let me = this;
       this.loading = true;
       axios
-        .get("/getAnimals")
+        .get("/getEventos")
         .then(function (response) {
           me.mascotas = response.data;
           me.indexMascotas = me.mascotas.length;
@@ -283,27 +246,6 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
-    },
-    setImage(e) {
-      const file = e;
-      if (!file) {
-        this.selectedFileSrc = null;
-        return;
-      }
-      if (file.type.indexOf("image/") === -1) {
-        alert("Please select an image file");
-        return;
-      }
-      if (typeof FileReader === "function") {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          this.image = event.target.result;
-          this.selectedFileSrc = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("Sorry, FileReader API not supported");
-      }
     },
   },
 };
@@ -316,8 +258,5 @@ export default {
 }
 .w-100 {
   width: 100%;
-}
-.carousel {
-  max-width: 400px;
 }
 </style>

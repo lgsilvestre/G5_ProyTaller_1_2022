@@ -1,28 +1,24 @@
 <template>
   <div class="pa-2 imagenFondo">
+    <Title :datos="datos" />
     <v-layout height="100%">
       <v-flex xs12 sm11 class="mx-auto pa-4 ma-10">
-        <v-card color="rgb(0, 0, 0, 0.2)" style="border: 1px solid #a68f7b">
-          <v-card-title primary-title class="justify-center"
-            ><h2 style="">
-             Tenencia responsable de mascotas
-            </h2>
-        </v-card-title>
+        <v-card color="rgb(0, 0, 0, 0)" >
         <v-card-actions>
             <v-expansion-panels focusable>
              
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué se entiende por mascotas o animales de compañía?</h2>
+                  <h3>¿Qué se entiende por mascotas o animales de compañía?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div >
-                        <h4 class="mt-4" style="text-align: center">
+                        <p class="mt-4" style="text-align: center">
                             Son aquellos animales domésticos, cualquiera sea su especie 
                             (no sólo perros y gatos), que sean mantenidos por las personas para fines de 
                             compañía o seguridad. Se excluyen los animales cuya tenencia se encuentre 
                             regulada por leyes especiales, como la ley de caza.
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -36,11 +32,11 @@
 
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué es la tenencia responsable?</h2>
+                  <h3>¿Qué es la tenencia responsable?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-4" style="text-align: justify">
+                        <p class="mt-4" style="text-align: justify">
                             Es el conjunto de obligaciones que contrae una persona cuando decide aceptar y mantener una mascota 
                             o animal de compañía. Debe registrarlo ante la autoridad competente cuando corresponda, proporcionarle
                             alimento, albergue y buen trato, brindarle los cuidados veterinarios indispensables para su bienestar
@@ -51,7 +47,7 @@
 
                             El propietario también es responsable de su alimentación, manejo sanitario, especialmente de la recolección y
                             eliminación de sus fecas, y del cumplimiento de toda otra obligación dispuesta en la ley y sus normas complementarias.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -65,17 +61,17 @@
 
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Cómo operará el registro de perros y gatos?</h2>
+                  <h3>¿Cómo operará el registro de perros y gatos?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-4" style="text-align: justify">
+                        <p class="mt-4" style="text-align: justify">
                             La identificación deberá hacerse a través de un sistema único, utilizando un dispositivo
                             permanente e indeleble, de modo que permita relacionarlos con el responsable de tales mascotas o animales de compañía. <br><br>
 
                             El Ministerio del Interior y Seguridad Pública deberá proporcionar una plataforma informática de registro e identificación
                             de mascotas y animales de compañía, a la que accederán las municipalidades.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -89,11 +85,11 @@
 
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué se entiende por animal abandonado?</h2>
+                  <h3>¿Qué se entiende por animal abandonado?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Es toda mascota o animal de compañía que se encuentre sin la vigilancia de la persona responsable de él
                             o que deambule suelto por la vía pública. También se considerará animal abandonado el que hubiese sido 
                             dejado en situación de desamparo en una propiedad privada.<br><br>
@@ -103,7 +99,7 @@
 
                             Se denomina perro comunitario al que no tiene un dueño en particular, pero que una comunidad alimenta
                              y le entrega cuidados básicos.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -117,15 +113,15 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Cómo se regulará la aplicación de la ley?</h2>
+                  <h3>¿Cómo se regulará la aplicación de la ley?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Debe haber un reglamento dictado a través del Ministerio del Interior y Seguridad Pública,
                             suscrito además por el Ministro de Salud. Esa norma deberá estar aprobada en un plazo de 
                             180 días desde que se publicó la ley.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -139,17 +135,17 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué materias regulará el reglamento?</h2>
+                  <h3>¿Qué materias regulará el reglamento?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             1. Requisitos de las campañas de educación en tenencia responsable de animales para toda la comunidad.<br><br>
                             2. Condiciones para el desarrollo de programas para prevenir el abandono de animales e incentivar la reubicación y cuidado responsable de estos.<br><br>
                             3. Condiciones para el desarrollo de programas de esterilización masiva y obligatoria de animales.<br><br>
                             4. Sistemas de registro e identificación de animales.<br><br>
                             5. Sistemas para desincentivar la crianza y reproducción indiscriminada de animales.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -163,18 +159,18 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué es un animal potencialmente peligroso?</h2>
+                  <h3>¿Qué es un animal potencialmente peligroso?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Es toda mascota o animal de compañía que ha sido calificado como tal por la autoridad sanitaria.
                             En el reglamento se señalará cuales son los perros potencialmente peligrosos en base a las siguientes características:<br><br>
 
                             a. Pertenencia a ciertas razas y sus cruces o híbridos.<br><br>
                             b. Características físicas.<br><br>
                             c. Existencia de conducta agresiva o de episodios anteriores de agresión.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -188,11 +184,11 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué debe hacer el responsable de un animal calificado como potencialmente peligroso?</h2>
+                  <h3>¿Qué debe hacer el responsable de un animal calificado como potencialmente peligroso?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Deberá adoptar las medidas especiales de seguridad y protección que determine el reglamento respecto del ejemplar.<br><br>
 
                             El reglamento fijará condiciones de tenencia especiales respecto de estos animales, tales como la prohibición de adiestramiento 
@@ -204,7 +200,7 @@
 
                             Los dueños de criaderos y los vendedores de perros potencialmente peligrosos deberán inscribirse en el Registro Nacional de Criadores y
                              Vendedores de Animales Potencialmente Peligrosos de la Especie Canina.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -218,15 +214,15 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué rol tienen las municipalidades?</h2>
+                  <h3>¿Qué rol tienen las municipalidades?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Las municipalidades deberán dictar una ordenanza sobre la tenencia responsable de mascotas
                             o animales de compañía en el territorio comunal, la que deberá ajustarse a la normativa
                             legal y al reglamento.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -240,14 +236,14 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Puede autorizarse la muerte de animales como mecanismo de control?</h2>
+                  <h3>¿Puede autorizarse la muerte de animales como mecanismo de control?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Las ordenanzas municipales y normas de los otros servicios públicos no podrán permitir la utilización
                             de métodos que admitan el sacrificio como sistema de control de la población animal.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -261,15 +257,15 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué norma se impone a los fabricantes de alimentos para mascotas?</h2>
+                  <h3>¿Qué norma se impone a los fabricantes de alimentos para mascotas?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Todo producto alimenticio para mascotas o animales de compañía que se comercialice 
                             en el país deberá contener en su envase un espacio en el que se informará al público lo 
                             que se entiende por tenencia responsable de los mismos. Esta norma regirá un año después de publicada la ley.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -283,18 +279,18 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué debe hacer el Estado para controlar la población de perros y gatos?</h2>
+                  <h3>¿Qué debe hacer el Estado para controlar la población de perros y gatos?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             El Ministerio del Interior y Seguridad Pública podrá priorizar la educación para 
                             la tenencia responsable de animales, a fin de controlar especialmente la población de perros y gatos.<br><br>
 
                             Las municipalidades podrán establecer, en el marco de su disponibilidad presupuestaria,
                             fondos concursables a los cuales podrán postular entidades con personalidad jurídica y 
                             sin fines de lucro para la promoción de la tenencia responsable.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -308,16 +304,16 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué labor debe hacer el Ministerio de Educación?</h2>
+                  <h3>¿Qué labor debe hacer el Ministerio de Educación?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             El Ministerio de Educación podrá entregar orientaciones a los establecimientos educacionales
                             de todos los niveles sobre temas relacionados con el cuidado de los animales de compañía, el 
                             compromiso de las personas con ellos, con el medio ambiente, con la higiene y con la salud tanto
                             de las personas como de los animales.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -331,17 +327,17 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Puede haber entrenamiento de perros para hacerlos más agresivos?</h2>
+                  <h3>¿Puede haber entrenamiento de perros para hacerlos más agresivos?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             No. Se prohíbe a los responsables de mascotas o animales de compañía el adiestramiento dirigido a acrecentar
                             y reforzar su agresividad. Sólo se puede hacer en el caso de perros pertenecientes a las Fuerzas Armadas,
                             a las de Orden y Seguridad Pública y a Gendarmería de Chile.<br><br>
 
                             El incumplimiento de esta norma será sancionado con multa e inhabilidad absoluta perpetua para la tenencia de animales.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -355,15 +351,15 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Puede haber peleas de mascotas como espectáculos?</h2>
+                  <h3>¿Puede haber peleas de mascotas como espectáculos?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             No, está prohibido. Quienes organicen peleas de animales serán castigados con multa 
                             de dos a treinta unidades tributarias mensuales y se le podría aplicar una pena de presidio
                             de de presidio menor en sus grados mínimo a medio (61 días a tres años)<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -377,16 +373,16 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué sanción tiene el abandono de animales?</h2>
+                  <h3>¿Qué sanción tiene el abandono de animales?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             El abandono de animales será considerado maltrato y crueldad animal y será sancionado 
                             de acuerdo con el delito de maltrato o crueldad con los animales, es decir, con la pena 
                             de presidio menor en sus grados mínimo a medio ( 61 días a tres años) y multa de dos a treinta 
                             unidades tributarias mensuales, o sólo con esta última.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -400,11 +396,11 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué pena se aplica ante otras vulneraciones a la ley sobre tenencia responsable?</h2>
+                  <h3>¿Qué pena se aplica ante otras vulneraciones a la ley sobre tenencia responsable?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Se sancionará con multa de una a treinta unidades tributarias mensuales, sin perjuicio de la aplicación
                             de lo dispuesto en el Código Penal sobre maltrato animal y en otras normas relacionadas.<br><br>
 
@@ -416,7 +412,7 @@
                             crianza y exposición de mascotas o animales de compañía, se podrán aplicar multas de hasta cincuenta unidades 
                             tributarias mensuales. En caso de reincidencia la multa se elevará al doble. Además de ello, se podrá imponer 
                             la clausura temporal, hasta por tres meses, o la clausura definitiva del establecimiento.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -430,13 +426,13 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué pena especial se establece para los que maltraten a una mascota o animal de compañía?</h2>
+                  <h3>¿Qué pena especial se establece para los que maltraten a una mascota o animal de compañía?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             La inhabilidad absoluta perpetua para la tenencia de animales.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -450,11 +446,11 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Cuál es la pena por una acción u omisión cause daño al animal?</h2>
+                  <h3>¿Cuál es la pena por una acción u omisión cause daño al animal?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             La pena será presidio menor en sus grados mínimo a medio (61 días a tres años) y multa de diez a 
                             treinta unidades tributarias mensuales, además de la accesoria de inhabilidad absoluta perpetua 
                             para la tenencia de cualquier tipo de animales.<br><br>
@@ -462,7 +458,7 @@
                             Si se causaran lesiones que menoscaben gravemente la integridad física o provocaran la muerte del animal
                             se impondrá la pena de presidio menor en su grado medio (541 días a tres años) y multa de veinte a treinta
                             unidades tributarias mensuales, además de la accesoria de inhabilidad absoluta perpetua para la tenencia de animales.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -476,13 +472,13 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Quién fiscaliza el cumplimiento de la ley?</h2>
+                  <h3>¿Quién fiscaliza el cumplimiento de la ley?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Las municipalidades, en materias de su competencia, y la autoridad sanitaria.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -496,14 +492,14 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Las organizaciones promotoras de la tenencia responsable de mascotas pueden querellarse en casos de maltrato?</h2>
+                  <h3>¿Las organizaciones promotoras de la tenencia responsable de mascotas pueden querellarse en casos de maltrato?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             En el caso del delito de maltrato o crueldad animal podrán querellarse las organizaciones promotoras
                             de la tenencia responsable de mascotas o animales de compañía, cualquiera sea su domicilio dentro del país.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -517,14 +513,14 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Hay otras sanciones que contemple la ley?</h2>
+                  <h3>¿Hay otras sanciones que contemple la ley?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Toda otra contravención a las disposiciones de esta ley sobre tenencia responsable de mascotas y animales de compañía
                             se sancionará con multa de una a treinta unidades tributarias mensuales, salvo que la conducta tenga una sanción más grave.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -538,11 +534,11 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué registros deberá mantener y administrar el Ministerio del Interior y Seguridad Pública?</h2>
+                  <h3>¿Qué registros deberá mantener y administrar el Ministerio del Interior y Seguridad Pública?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Dentro de un plazo de 90 días desde que se publica la ley deberán estar operativos los siguientes registros:<br><br>
 
                             1. Un Registro Nacional de Mascotas o Animales de Compañía.<br><br>
@@ -551,7 +547,7 @@
                             4. Un Registro Nacional de Criadores y Vendedores de Mascotas o Animales de Compañía.<br><br>
                             5. Un Registro Nacional de Criadores y Vendedores de Animales Potencialmente Peligrosos de la Especie Canina.<br><br>
                             6. Un Registro Nacional de Centros de Mantención Temporal de Mascotas o Animales de Compañía.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -565,17 +561,17 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué va a pasar con los perros callejeros?</h2>
+                  <h3>¿Qué va a pasar con los perros callejeros?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Las municipalidades tendrán facultades para rescatar a todo animal que no tenga identificación y sea encontrado
                             en calles, parques, plazas y sitios eriazos. El personal municipal lo podrá entregar a entidades sin fines de lucro 
                             que estén inscritas en el Registro Nacional de Personas Jurídicas sin Fines de Lucro Promotoras de la Tenencia 
                             Responsable de Mascotas y Animales de Compañía para sanitizarlo, esterilizarlo y reubicarlo al cuidado de alguna 
                             persona u organización que asuma su tenencia responsable.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -589,18 +585,18 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿El dueño de un perro responderá por los daños que provoca?</h2>
+                  <h3>¿El dueño de un perro responderá por los daños que provoca?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Todo responsable de un animal regulado por la ley responderá civilmente de los daños que se
                             causen por acción del animal, sin perjuicio de la responsabilidad penal que le corresponda.<br><br>
 
                             El dueño del animal no será responsable judicialmente si la persona afectada ingresó a una propiedad 
                             sin autorización ni justificación o lo hizo para cometer un delito. Esto se aplica incluso si el perro 
                             causa lesiones graves o la muerte.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -614,15 +610,15 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Cómo deben operar los centros de mantención temporal de mascotas o animales de compañía?</h2>
+                  <h3>¿Cómo deben operar los centros de mantención temporal de mascotas o animales de compañía?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Todo centro de mantención temporal de mascotas o animales de compañía deberá llevar un registro
                             con los datos de cada uno de los animales que ingresen en el recinto y egresen de él. Estará obligado
                             a mantener condiciones de bienestar animal, higiénicas y sanitarias adecuadas.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -636,11 +632,11 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Cómo deben operar los establecimientos que venden mascotas?</h2>
+                  <h3>¿Cómo deben operar los establecimientos que venden mascotas?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Los locales de venta y crianza de mascotas o animales de compañía estarán a cargo de un médico veterinario.
                             Tendrán la obligación de llevar un registro en que consten los datos que determine un reglamento del Ministerio
                             de Salud, así como los controles periódicos a que deban someterse los animales.<br><br>
@@ -653,7 +649,7 @@
 
                             El incumplimiento de las condiciones de bienestar de los animales y seguridad de las personas serán sancionadas 
                             con multa de una a cincuenta unidades tributarias mensuales. En caso de reincidencia, la multa podrá elevarse al doble.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -667,11 +663,11 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué son los centros de mantención temporal de mascotas o animales de compañía?</h2>
+                  <h3>¿Qué son los centros de mantención temporal de mascotas o animales de compañía?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Existirán centros de mantención temporal de mascotas o animales de compañía. Los dueños
                             o administradores de esos lugares deberán inscribirlos en un registro oficial y deberán
                             tener los datos de cada uno de los animales que ingresen en el recinto y egresen de él.<br><br>
@@ -680,7 +676,7 @@
                             y proveerles alimento y agua en cantidades necesarias.<br><br>
 
                             Asimismo, deberán contar con un número suficiente de caniles, jaulas y corrales, según sea el caso.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -694,13 +690,13 @@
               
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Qué magistrados son competentes para conocer de la ley de mascotas y animales de compañía?</h2>
+                  <h3>¿Qué magistrados son competentes para conocer de la ley de mascotas y animales de compañía?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             Los jueces de policía local.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -714,15 +710,15 @@
 
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <h2>¿Hay disposiciones para animales en catástrofes?</h2>
+                  <h3>¿Hay disposiciones para animales en catástrofes?</h3>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <div class="mt-2 mb-5">
-                        <h4 class="mt-16" style="text-align: justify">
+                        <p class="mt-16" style="text-align: justify">
                             La Oficina Nacional de Emergencia (Onemi) incorporará en sus protocolos de rescate instrucciones
                              dirigidas a rescatar mascotas o animales de compañía, y realizará campañas preventivas para educar 
                              a la población en el manejo de esas especies en situaciones de catástrofe.<br>
-                        </h4>
+                        </p>
                         <br>
                         <v-img
                           aspect-ratio="6"
@@ -733,9 +729,6 @@
                   </div>
                 </v-expansion-panel-content>
               </v-expansion-panel>
-              
-              
-           
             </v-expansion-panels>
           </v-card-actions>
         </v-card>
@@ -744,9 +737,26 @@
   </div>
 </template>
 
+<script>
+import Title from '../components/title.vue'
+export default {
+  components: { Title },
+  data() {
+    return {
+      datos: [
+        {
+          src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
+          titulo: ' Tenencia responsable de mascotas ',
+        },
+      ],
+    }
+  }  
+}
+</script>
+
 <style>
 .imagenFondo {
-  background-image: url('https://img.freepik.com/vector-gratis/fondo-colorido-modelo-huellas-pata-perro-o-gato_1017-30662.jpg?w=2000');
+  background-image: url('');
   height: 100%;
   background-repeat: repeat;
   background-size: 100% auto;
