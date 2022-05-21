@@ -1,13 +1,29 @@
+const qrcode = require('qrcode-terminal');
+const {Client} =require('whatsapp-web.js');
 
-const TWILIO_ID = 'AC03ebb0eaa68c0df713e0dcb33f9ebed5'
-const TWILIO_SK = 'ac0e078484739e78ae96fd5c8c6ed1f7'
+const client = new Client();
 
-const client = require('twilio')(TWILIO_ID,TWILIO_SK);
+client.initialize();
 
-client.messages
-  .create({
-     from: 'whatsapp:+14155238886',
-     body: `Hola le recordamos sobre la donacion hacia la fundacion Adogtame con lo cual estaria ayudando a muchos animalitos`,
-     to: 'whatsapp:+56956130137'
-   })
-  .then(message => console.log(message.sid));
+client.on('qr', qr => {
+  qrcode.generate(qr, {small:true});
+});
+
+client.on('ready', ( ) => {
+  console.log('el cliente esta ready');
+
+  const number = "+56956130137";
+
+  // Your message.
+  const text = "hola junto con saludarle le recordamos que puede donar a la fundacion y con esto cooperar a salvar a los animalitos que estan en peligro";
+
+  // Getting chatId from the number.
+  // we have to delete "+" from the beginning and add "@c.us" at the end of the number.
+  const chatId = number.substring(1) + "@c.us";
+
+ // Sending message.
+  client.sendMessage(chatId, text);
+
+  console.log('mensaje enviado');
+})
+
