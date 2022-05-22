@@ -16,6 +16,7 @@ const AnimalSchema = new mongoose.Schema({
   raza: String,
   tipo: String,
   fotos: Array,
+  idForm: String
 });
 
 const Animal = mongoose.model("Animal", AnimalSchema);
@@ -53,7 +54,8 @@ const Formulario = mongoose.model("Formulario", FormularioSchema);
 const EventoSchema = new mongoose.Schema({
   titulo: String,
   descripcion: String,
-  fecha: Date,
+  fecha: String,
+  hora: String,
   foto: String | null,
 });
 const Evento = mongoose.model("Evento", EventoSchema);
