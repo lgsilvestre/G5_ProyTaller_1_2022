@@ -23,7 +23,7 @@
     </v-card-subtitle>
 
     <v-card-actions>
-      <v-btn color="red lighten-2" text> Adoptame </v-btn>
+      <v-btn :to="{name:'adopcion', params:{id:item._id}}" color="red lighten-2" text> Adoptame </v-btn>
 
       <v-spacer></v-spacer>
 
