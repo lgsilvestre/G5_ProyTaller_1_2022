@@ -1,84 +1,96 @@
 <template>
-  <v-layout align-center justify-center>
-    <loading v-if="loading"></loading>
-    <v-container v-if="!loading" class="mb-6">
-      <v-row>
-        <v-col sm="12" md="3">
-          <v-card class="elevation-1" style="position: sticky; top: 76px">
-            <v-card-title primary-title>
-              <h3 class="mb-0">Busca tu mascota</h3>
-            </v-card-title>
-            <v-card-text>
-              <h5>Animalitos de la busqueda: {{ this.filter().length }}</h5>
+  <div>
+    <Title :datos="datos" />
+    <v-layout align-center justify-center>
+      <loading v-if="loading"></loading>
+      <v-container v-if="!loading" class="mb-6">
+        
+        <v-row>
+          <v-col sm="12" md="3">
+            <v-card class="elevation-1" style="position: sticky; top: 76px">
+              <v-card-title primary-title>
+                <h3 class="mb-0">Busca tu mascota</h3>
+              </v-card-title>
+              <v-card-text>
+                <h5>Animalitos de la busqueda: {{ this.filter().length }}</h5>
 
-              <div class="search-content">
-                <h3>Nombre</h3>
-                <v-text-field
-                  v-model="filterOptions.nombre"
-                  label="Nombre de la mascota"
-                  solo
-                ></v-text-field>
-              </div>
+                <div class="search-content">
+                  <h3>Nombre</h3>
+                  <v-text-field
+                    v-model="filterOptions.nombre"
+                    label="Nombre de la mascota"
+                    solo
+                  ></v-text-field>
+                </div>
 
-              <div class="search-content">
-                <h3>Especie</h3>
-                <v-text-field
-                  v-model="filterOptions.especie"
-                  label="Nombre de la especie"
-                  solo
-                ></v-text-field>
-              </div>
+                <div class="search-content">
+                  <h3>Especie</h3>
+                  <v-text-field
+                    v-model="filterOptions.especie"
+                    label="Nombre de la especie"
+                    solo
+                  ></v-text-field>
+                </div>
 
-              <div class="search-content">
-                <h3>Raza</h3>
-                <v-text-field
-                  v-model="filterOptions.raza"
-                  label="Nombre de la raza"
-                  solo
-                ></v-text-field>
-              </div>
+                <div class="search-content">
+                  <h3>Raza</h3>
+                  <v-text-field
+                    v-model="filterOptions.raza"
+                    label="Nombre de la raza"
+                    solo
+                  ></v-text-field>
+                </div>
 
-              <div class="search-content">
-                <h3>Edad</h3>
-                <h4>Edad seleccionada: {{ filterOptions.edad }}</h4>
-                <v-range-slider
-                  v-model="filterOptions.edad"
-                  :max="getMaxAge()"
-                  min="1"
-                ></v-range-slider>
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col sm="12" md="9">
-          <v-row justify="start">
-            <v-col
-              v-for="(item, index) in filter()"
-              :key="index"
-              md="4"
-              sm="12"
-            >
-              <catalogItem :item="item" class="bg"></catalogItem>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-layout>
+                <div class="search-content">
+                  <h3>Edad</h3>
+                  <h4>Edad seleccionada: {{ filterOptions.edad }}</h4>
+                  <v-range-slider
+                    v-model="filterOptions.edad"
+                    :max="getMaxAge()"
+                    min="1"
+                  ></v-range-slider>
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+          <v-col sm="12" md="9">
+            <v-row justify="start">
+              <v-col
+                v-for="(item, index) in filter()"
+                :key="index"
+                md="4"
+                sm="12"
+              >
+                <catalogItem :item="item" class="bg"></catalogItem>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-layout>
+  </div>  
 </template>
 
 <script>
 import CatalogItem from "../components/catalogItem.vue";
 import axios from "axios";
 import Loading from "../components/loading.vue";
+import Title from '../components/title.vue'
 export default {
   name: "Catalog",
   components: {
     CatalogItem,
     Loading,
+    Title,
   },
   data: function () {
     return {
+      datos: [
+        {
+          src: 'https://images.unsplash.com/photo-1534361960057-19889db9621e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+          titulo: ' Adoptame ',
+        },
+      ],
       items: [],
       loading: true,
       filterOptions: {
