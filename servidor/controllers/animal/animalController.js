@@ -58,25 +58,44 @@ async function postAnimal(req, res) {
   res.send(animal);
 }
 
+async function postFoto(req, res, next) {
+  try {
+    let id = uuidv4();
+    let storageRef = ref(storage, path + id);
+    await uploadString(storageRef, req.body.foto, "data_url");
+    let url = await getDownloadURL(storageRef);
+    let animal = await Animal.findOne({ _id: req.body._id });
+    animal.fotos.push(url);
+    await animal.save();
+    res.send(url);
+  } catch (e) {
+    res.status(500).send({
+      message: "Ocurrió un error",
+    });
+    next(e);
+  }
+}
+
+async function removeFoto(req, res, next) {
+  try {
+    let animal = await Animal.findOne({ _id: req.body._id });
+    let index = animal.fotos.indexOf(req.body.foto);
+    let id = animal.fotos[index].split("%2F")[2].split("?")[0];
+    const desertRef = ref(storage, path + id);
+    deleteObject(desertRef);
+    animal.fotos.splice(index, 1);
+    await animal.save();
+    res.status(200).json(animal);
+  } catch (e) {
+    res.status(500).send({
+      message: "Ocurrió un error",
+    });
+    next(e);
+  }
+}
+
 async function updateAnimal(req, res, next) {
   try {
-    const photoModified = req.body.foto !== undefined && req.body.foto !== null;
-    let url = "";
-    if (photoModified) {
-      let id = uuidv4();
-      let storageRef = ref(storage, path + id);
-      await uploadString(storageRef, req.body.foto, "data_url");
-      url = await getDownloadURL(storageRef);
-    }
-
-    let animal = await Animal.findOne({ _id: req.body._id });
-
-    // if photo is modified, then delete the old photo
-    if (photoModified) {
-      let id = animal.foto.split("%2F")[2].split("?")[0];
-      const desertRef = ref(storage, path + id);
-      deleteObject(desertRef);
-    }
     // update the animal
     let reg = await Animal.findOneAndUpdate(
       { _id: req.body._id },
@@ -85,7 +104,6 @@ async function updateAnimal(req, res, next) {
         edad: req.body.edad,
         raza: req.body.raza,
         tipo: req.body.tipo,
-        foto: photoModified ? url : animal.foto,
       },
       { new: true }
     );
@@ -102,10 +120,12 @@ async function updateAnimal(req, res, next) {
 async function removeAnimal(req, res, next) {
   try {
     const reg = await Animal.findByIdAndDelete({ _id: req.body._id });
-    // remove the photo
-    let id = reg.fotos[0].split("%2F")[2].split("?")[0];
-    const desertRef = ref(storage, path + id);
-    deleteObject(desertRef);
+    // remove photos
+    for (let e of reg.fotos) {
+      let id = e.split("%2F")[2].split("?")[0];
+      const desertRef = ref(storage, path + id);
+      deleteObject(desertRef);
+    }
     res.status(200).json(reg);
   } catch (e) {
     res.status(500).send({
@@ -115,4 +135,12 @@ async function removeAnimal(req, res, next) {
   }
 }
 
-export { getAnimals, queryAnimal, postAnimal, updateAnimal, removeAnimal };
+export {
+  getAnimals,
+  queryAnimal,
+  postAnimal,
+  updateAnimal,
+  removeAnimal,
+  postFoto,
+  removeFoto,
+};

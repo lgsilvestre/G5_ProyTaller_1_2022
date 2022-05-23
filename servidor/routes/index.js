@@ -5,6 +5,8 @@ import {
   queryAnimal,
   removeAnimal,
   updateAnimal,
+  removeFoto,
+  postFoto,
 } from "../controllers/animal/animalController.js";
 import {
   getUsuarios,
@@ -30,7 +32,13 @@ import {
   removeFormulario,
   queryFormularioNombre,
 } from "../controllers/formulario/formularioController.js";
-import { getEventos, postEvento, queryEvento, removeEvento, updateEvento } from "../controllers/evento/eventoController.js";
+import {
+  getEventos,
+  postEvento,
+  queryEvento,
+  removeEvento,
+  updateEvento,
+} from "../controllers/evento/eventoController.js";
 
 //import auth from "../middlewares/auth.js";
 //import { AppCheck } from 'firebase-admin/lib/app-check/app-check';
@@ -46,6 +54,8 @@ export function routesConfig(app) {
   //app.post('/postAnimal',auth.verifyAdministrador,postAnimal);
   app.put("/updateAnimal", updateAnimal);
   app.post("/removeAnimal", removeAnimal);
+  app.post("/postFoto", postFoto);
+  app.post("/removeFoto", removeFoto);
 
   //Usuarios
   app.get("/getUsuarios", getUsuarios);
@@ -63,7 +73,7 @@ export function routesConfig(app) {
   app.post("/postFormulario", postFormulario);
   app.put("/updateFormulario", updateFormulario);
   app.post("/removeFormulario", removeFormulario);
-  app.get("/queryFormularioNombre",queryFormularioNombre);
+  app.get("/queryFormularioNombre", queryFormularioNombre);
 
   //Socios
   app.post("/postSocio", postSocio);
@@ -73,10 +83,8 @@ export function routesConfig(app) {
 
   //Eventos
   app.get("/getEventos", getEventos);
-  app.post("/postEvento",postEvento);
+  app.post("/postEvento", postEvento);
   app.get("/queryEvento", queryEvento);
   app.put("/updateEvento", updateEvento);
   app.post("/removeEvento", removeEvento);
-
-
 }
