@@ -91,7 +91,7 @@ export default {
 }
 
 a:link {
-  color: green;
+  color: rgb(255, 124, 124);
   background-color: transparent;
   text-decoration: none;
 }
