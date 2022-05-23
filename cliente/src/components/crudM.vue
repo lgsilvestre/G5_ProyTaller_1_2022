@@ -51,7 +51,11 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                      <v-select :items="tiposFormularios" label="Tipo" v-model="editedItem.tipo">
+                      <v-select
+                        :items="tiposFormularios"
+                        label="Tipo"
+                        v-model="editedItem.tipo"
+                      >
                       </v-select>
                     </v-col>
                     <v-col cols="12">
@@ -78,7 +82,6 @@
                         </v-col>
                       </v-row>
                     </v-col>
-                    
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -184,7 +187,7 @@ export default {
       idFormularios: [],
       dialog: false,
       dialogDelete: false,
-    dialogCropper: false,
+      dialogCropper: false,
       loading: false,
       headers: [
         { text: "Nombre", value: "nombre" },
@@ -202,7 +205,7 @@ export default {
         raza: "",
         tipo: "",
         fotos: [],
-        idForm: ""
+        idForm: "",
       },
       defaultItem: {
         nombre: "",
@@ -210,13 +213,13 @@ export default {
         raza: "",
         tipo: "",
         fotos: [],
-        idForm: ""
+        idForm: "",
       },
       indexMascotas: 0,
       selectedFile: null,
       selectedFileSrc: null,
       image: null,
-    }
+    };
   },
 
   computed: {
@@ -269,7 +272,6 @@ export default {
       this.image = null;
 
       if (this.$refs.fileInput) {
-        console.log("resseted");
         this.$refs.fileInput.reset();
       }
     },
@@ -277,7 +279,6 @@ export default {
     closeCropper() {
       this.dialogCropper = false;
       if (this.$refs.fileInput) {
-        console.log("resseted");
         this.$refs.fileInput.reset();
       }
     },
@@ -344,9 +345,9 @@ export default {
       this.loading = true;
       if (this.editedIndex > -1) {
         Object.assign(this.mascotas[this.editedIndex], this.editedItem);
-        this.idFormularios.forEach(element => {
-          if(this.editedItem.tipo==element.nombre){
-            this.editedItem.idForm=element.id
+        this.idFormularios.forEach((element) => {
+          if (this.editedItem.tipo == element.nombre) {
+            this.editedItem.idForm = element.id;
           }
         });
         await axios.put("/updateAnimal", {
@@ -355,7 +356,7 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          idForm: this.editedItem.idForm
+          idForm: this.editedItem.idForm,
         });
       } else {
         //Crear mascota
@@ -366,7 +367,7 @@ export default {
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
           fotos: this.editedItem.fotos,
-          idForm: this.editedItem.idForm
+          idForm: this.editedItem.idForm,
         });
       }
       this.loading = false;
@@ -387,14 +388,14 @@ export default {
           console.log(error);
         });
     },
-    async listarFormularios(){
-      var me=this
+    async listarFormularios() {
+      var me = this;
       axios
         .get("/getFormularios")
         .then(function (response) {
-          response.data.forEach(element => {
-            me.tiposFormularios.push(element.nombre)
-            me.idFormularios.push({"id":element._id,"nombre":element.nombre})
+          response.data.forEach((element) => {
+            me.tiposFormularios.push(element.nombre);
+            me.idFormularios.push({ id: element._id, nombre: element.nombre });
           });
         })
         .catch(function (error) {
