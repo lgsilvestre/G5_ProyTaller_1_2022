@@ -15,6 +15,7 @@ import {
   login,
   updateUsuario,
   removeUsuario,
+  queryTokenID
 } from "../controllers/usuario/usuarioController.js";
 
 import {
@@ -70,6 +71,7 @@ export function routesConfig(app) {
   app.get("/getUsuarios", getUsuarios);
   //app.get('/getUsuarios',auth.verifyAdministrador,getUsuarios);
   app.get("/queryUsuario", queryUsuario);
+  app.get("/queryTokenID", queryTokenID);
   //app.get('/getUsuarioByQuery/:query',auth.verifyAdministrador,getUsuarioByQuery);
   app.post("/postUsuario", postUsuario);
   app.post("/login", login);

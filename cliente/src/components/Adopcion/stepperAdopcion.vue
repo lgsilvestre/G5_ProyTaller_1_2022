@@ -104,13 +104,23 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     })
                 })
             },
-            mostrarRespuestas(){
-                console.log(this.formulario.preguntas)
+            async mostrarRespuestas(){
                 var preguntaRespuesta = []
                 this.formulario.preguntas.forEach(elemento => {
                     preguntaRespuesta.push({"pregunta":elemento.pregunta,"respuesta":elemento.respuesta})
                 });
-                console.log(preguntaRespuesta)
+                const user = await this.obtenerUsuario()
+                
+                await axios.post("/postSolicitud", {
+                    preguntas: preguntaRespuesta,
+                    mascota: this.animal._id,
+                    usuario: user.id  
+                });
+            },
+            async obtenerUsuario(){
+                var loggedIn = localStorage.getItem('token')
+                const consulta = await axios.get('/queryTokenID?_id='+loggedIn)
+                return consulta.data
             }
         },
     }
