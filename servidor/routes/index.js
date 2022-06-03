@@ -40,6 +40,15 @@ import {
   updateEvento,
 } from "../controllers/evento/eventoController.js";
 
+import {
+  getSolicitudes,
+  querySolicitud,
+  postSolicitud,
+  updateSolicitud,
+  removeSolicitud,
+} from "../controllers/solicitudes/solicitudesController.js";
+  
+
 //import auth from "../middlewares/auth.js";
 //import { AppCheck } from 'firebase-admin/lib/app-check/app-check';
 
@@ -74,6 +83,13 @@ export function routesConfig(app) {
   app.put("/updateFormulario", updateFormulario);
   app.post("/removeFormulario", removeFormulario);
   app.get("/queryFormularioNombre", queryFormularioNombre);
+
+  //Solicitudes
+  app.get("/getSolicitudes", getSolicitudes);
+  app.get("/querySolicitud", querySolicitud);
+  app.post("/postSolicitud", postSolicitud);
+  app.put("/updateSolicitud", updateSolicitud);
+  app.post("/removeSolicitud", removeSolicitud);
 
   //Socios
   app.post("/postSocio", postSocio);
