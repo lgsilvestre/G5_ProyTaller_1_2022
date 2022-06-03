@@ -177,7 +177,7 @@
 <script>
 import axios from "axios";
 import { Cropper } from "vue-advanced-cropper";
-import Loading from "./loading.vue";
+import Loading from "../Utilidades/Generales/loading.vue";
 import "vue-advanced-cropper/dist/style.css";
 export default {
   components: { Cropper, Loading },

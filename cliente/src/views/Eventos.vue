@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import Title from "../components/title.vue";
+import Title from "../components/Utilidades/Generales/title.vue";
 import axios from "axios";
 export default {
   components: { Title },

@@ -738,7 +738,7 @@
 </template>
 
 <script>
-import Title from '../components/title.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
 export default {
   components: { Title },
   data() {

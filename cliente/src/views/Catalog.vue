@@ -71,10 +71,10 @@
 </template>
 
 <script>
-import CatalogItem from "../components/catalogItem.vue";
+import CatalogItem from "../components/Utilidades/catalogItem.vue";
 import axios from "axios";
-import Loading from "../components/loading.vue";
-import Title from "../components/title.vue";
+import Loading from "../components/Utilidades/Generales/loading.vue";
+import Title from "../components/Utilidades/Generales/title.vue";
 export default {
   name: "Catalog",
   components: {

@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import formulario from '../components/crudForm.vue'
-import Title from '../components/title.vue'
+import formulario from '../components/Crud/crudForm.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
 export default {
   components: { formulario,Title },
   data() {
