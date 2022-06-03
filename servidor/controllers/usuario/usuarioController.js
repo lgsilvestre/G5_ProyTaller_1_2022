@@ -11,10 +11,26 @@ async function getUsuarios(req, res) {
 
     res.send(usuarios);
 }
-
+async function queryTokenID(req,res){
+    try {
+        let tokenReturn = await token.decode(req.query._id);
+        if (!tokenReturn){
+            res.status(404).send({
+                message: 'El registro no existe'
+            });
+        } else{
+            res.status(200).json({id:tokenReturn._id,email:tokenReturn.email});
+        }
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
+}
 async function queryUsuario(req,res) {
     try {
-        const reg=await Usuario.findOne({_id:req.body._id});
+        const reg=await Usuario.findOne({_id:req.query._id});
         if (!reg){
             res.status(404).send({
                 message: 'El registro no existe'
@@ -103,5 +119,5 @@ async function removeUsuario(req,res,next) {
     }
 }
 
-export { getUsuarios, queryUsuario, postUsuario, login, updateUsuario, removeUsuario}
+export { getUsuarios, queryUsuario, postUsuario, login, updateUsuario, removeUsuario, queryTokenID}
 
