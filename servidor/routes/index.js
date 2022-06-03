@@ -46,6 +46,7 @@ import {
   postSolicitud,
   updateSolicitud,
   removeSolicitud,
+  querySolicitudUsuario
 } from "../controllers/solicitudes/solicitudesController.js";
   
 
@@ -87,6 +88,7 @@ export function routesConfig(app) {
   //Solicitudes
   app.get("/getSolicitudes", getSolicitudes);
   app.get("/querySolicitud", querySolicitud);
+  app.get("/querySolicitudUsuario", querySolicitudUsuario);
   app.post("/postSolicitud", postSolicitud);
   app.put("/updateSolicitud", updateSolicitud);
   app.post("/removeSolicitud", removeSolicitud);
