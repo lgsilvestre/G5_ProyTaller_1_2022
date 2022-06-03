@@ -47,9 +47,16 @@ const PyRschema = new mongoose.Schema({
 
 const FormularioSchema = new mongoose.Schema({
   nombre: String,
-  preguntas: { type: [PyRschema] },
+  preguntas: { type: [PyRschema] }
 });
 const Formulario = mongoose.model("Formulario", FormularioSchema);
+
+const SolicitudesSchema = new mongoose.Schema({
+  preguntas: { type: [PyRschema] },
+  mascota: String,
+  usuario: String
+});
+const Solicitud = mongoose.model("Solicitud", SolicitudesSchema);
 
 const EventoSchema = new mongoose.Schema({
   titulo: String,
@@ -60,4 +67,4 @@ const EventoSchema = new mongoose.Schema({
 });
 const Evento = mongoose.model("Evento", EventoSchema);
 
-export { Test, Animal, Usuario, Socio, Formulario, Evento };
+export { Test, Animal, Usuario, Socio, Formulario, Evento, Solicitud};
