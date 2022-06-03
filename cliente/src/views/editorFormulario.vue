@@ -74,12 +74,16 @@ export default {
     },
     
     created() {
-        axios.get('/queryFormulario?_id='+this.$route.params.id)
-        .then(result => {
-            this.formulario = result.data
-        })
+        this.obtenerFormulario()
+        
     },
     methods: {
+        async obtenerFormulario(){
+            axios.get('/queryFormulario?_id='+this.$route.params.id)
+            .then(result => {
+                this.formulario = result.data
+            })
+        },
         cambios(){
             var noExisteVacio = true
             this.formulario.preguntas.forEach(element => {

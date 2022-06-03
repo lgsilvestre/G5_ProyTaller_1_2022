@@ -738,14 +738,14 @@
 </template>
 
 <script>
-import Title from '../components/title.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
 export default {
   components: { Title },
   data() {
     return {
       datos: [
         {
-          src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
+          src: 'https://images.unsplash.com/photo-1525253013412-55c1a69a5738?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
           titulo: ' Tenencia responsable de mascotas ',
         },
       ],
@@ -756,7 +756,6 @@ export default {
 
 <style>
 .imagenFondo {
-  background-image: url('');
   height: 100%;
   background-repeat: repeat;
   background-size: 100% auto;

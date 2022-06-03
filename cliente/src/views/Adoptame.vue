@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>holaa</p>
+        <Title :datos="datos" />
         <formulario></formulario>
         
     </div>
@@ -8,9 +8,10 @@
 </template>
 
 <script>
-import formulario from '../components/crudForm.vue'
+import formulario from '../components/Crud/crudForm.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
 export default {
-  components: { formulario },
+  components: { formulario,Title },
   data() {
     return {
       datos: [
