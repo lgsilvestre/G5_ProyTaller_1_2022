@@ -27,6 +27,23 @@ async function querySolicitud(req,res) {
         next(e);
     }
 }
+async function querySolicitudUsuario(req,res) {
+    try {
+        const reg=await Solicitud.findOne({usuario:req.query.usuario});
+        if (!reg){
+            res.status(404).send({
+                message: 'El registro no existe'
+            });
+        } else{
+            res.status(200).json(reg._id);
+        }
+    } catch(e){
+        res.status(500).send({
+            message:'Ocurrió un error'
+        });
+        next(e);
+    }
+}
 
 async function postSolicitud(req, res) {
 
@@ -68,5 +85,5 @@ async function removeSolicitud(req,res,next) {
     }
 }
 
-export {getSolicitudes, querySolicitud, postSolicitud, updateSolicitud, removeSolicitud}
+export {getSolicitudes, querySolicitud, postSolicitud, updateSolicitud, removeSolicitud, querySolicitudUsuario}
 

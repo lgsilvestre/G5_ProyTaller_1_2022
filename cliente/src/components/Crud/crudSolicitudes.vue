@@ -57,6 +57,7 @@
         fab 
         small 
         plain
+        :to="{name:'VerSolicitud', params:{id:item._id}}"
         >
             <v-icon>
                 mdi-eye
