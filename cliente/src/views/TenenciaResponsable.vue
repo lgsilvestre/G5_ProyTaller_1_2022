@@ -756,7 +756,6 @@ export default {
 
 <style>
 .imagenFondo {
-  background-image: url('');
   height: 100%;
   background-repeat: repeat;
   background-size: 100% auto;
