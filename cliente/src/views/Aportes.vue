@@ -1,182 +1,133 @@
-<template id="aportes">
-<div>
-<Title :datos="datos" />
-
-  <v-container grid-list-md>
-    
-     
-    <v-flex >
-      <div >
-       
-        <p>
-
-        </p>
-        
-      </div>
-      <div class= "parrafo"  >
-        <span>
-          <strong>¿Quieres contribuir a Fundación Adogtame y no sabes como hacerlo?
-          ¿No tienes tiempo para ser voluntario? ¿Tu casa o departamento no permiten recibir un animal? 
-          ¡DONA!</strong> Son donaciones como las tuyas las que nos permiten hacer nuestro trabajo voluntario, 
-          salvando vidas y educando a nuestra ciudadanía.
-        </span>
-        <p>
-          
-        </p>
-      </div>
-      <div>
-        <span>
-          <strong>¿Dónde donar?</strong> Comprométete a ser nuestro socio, apadrina una esterilización, 
-          compra vacunas y desparasitaciones,
-          o apadrina un caso de rescate, aquí, o en nuestra cuenta corriente.
-        </span>
-        <p>
-          
-        </p>
-      </div>
-        
-      <div>
-         <h1 >
-          ¿Que beneficios trae para los animaliltos ser socio?
-        </h1>
-        <p>
-        </p>
-        <span>
-          <strong>¿Quieres convertirte en un socio con donaciones mensuales? </strong>
-          ¡Sé parte de Fundación Adogtame con una colaboración mensual! 
-          Elige la opción de donación según el tipo de apoyo que quieres hacer y 
-          conviértete en parte de la Comunidad de Fundación Adogtame. <strong>¡Completa tu carrito de compras!</strong>
-        </span>
-        <p>
-          
-        </p>
-      </div>
-        
-      <div>
-        <span>
-          <strong>¡El mundo cambiará si todos ponemos nuestro granito de arena!</strong>
-        </span>
-        <p>
-          
-        </p>
-      </div>
-        
-        
-  
-    </v-flex>
-
-
-    <v-layout>
-      <div class="">
-        <v-container grid-list-md>
-         <v-layout row wrap>
-             <v-flex xs12 sm6 offset-sm3>
-                 
-              <v-img src="../assets/afiche-aportes.png"></v-img>
-
-             </v-flex>
-               
-          </v-layout>
-
-        </v-container>
-
-      </div>
-      
-    </v-layout>
-    <span>
-    </span>
-    <v-layout row >
-
-        <v-card 
-              max-width="300px"
-              style="margin: 0 auto">
-          <v-img 
-          height="200px"
-          src="https://www.zooplus.es/magazine/wp-content/uploads/2019/02/vacunas-para-perros-768x512.jpg">
-          </v-img>
-          <v-card-title>
-            Dona un set de vacunas
-          </v-card-title>
-          <v-card-title >
-            $10000
-          </v-card-title>
-          <v-card-actions>
-            <v-btn color="red" >Donar </v-btn>
-          </v-card-actions>
-         
-        </v-card>
-     
-        
-        <v-card 
-              max-width="300px"
-              style="margin: 0 auto">
-          <v-img 
-          height="200px"
-          src="https://www.eltiempo.com/files/image_640_428/uploads/2017/07/01/5957f2f0aa0e3.jpeg"
+<template>
+  <section>
+    <Title :datos="datos" />
+    <v-row no-gutters>
+      <v-col cols="12">
+        <v-container class="py-16">
+          <v-card class="mx-auto" max-width="544">
+            <v-card-text>
+              <p class="text-h4 text--primary">Datos bancarios</p>
+              <div class="text--primary">
+                <br />
+                Cuenta Rut - Banco Estado <br />
+                19.503.538-5 <br />
+                Maria Jose Castro <br />
+                adogtame.curico2015@gmail.com <br />
+                Asunto: Nombre + Apellido <br /><br />
+              </div>
+            </v-card-text>
+          </v-card>
+          <h2
+            class="text-h4 text-md-h3 text-center font-weight-black text-capitalize"
           >
-          </v-img>
-          <v-card-title>
-            Dona una consulta 
-          </v-card-title>
-          <v-card-title >
-            $15000
-          </v-card-title>
-          <v-card-actions>
-            <v-btn color="red" >Donar </v-btn>
-          </v-card-actions>
-        </v-card>
-    
-      
-        
-        <v-card 
-              max-width="300px"
-              style="margin: 0 auto">
-          <v-img 
-          height="200px"
-          src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-adopcion-de-gatos-aspectos-a-tomar-en-cuenta.jpg?itok=ruMRSgJV">
-          </v-img>
-          <v-card-title>
-            Dona una esterilizacion
-          </v-card-title>
-          <v-card-title >
-            $20000
-          </v-card-title>
-          <v-card-actions>
-            <v-btn color="red" >Donar </v-btn>
-          </v-card-actions>
-          
-        </v-card>
-      
-    </v-layout>
-  </v-container>
-</div>
+            <br />
+            ¿en que se invierte tu dinero?
+          </h2>
+          <p class="text-h6 text-uppercase font-weight-light text-center my-16">
+            Podrás encontrar en las distintas cosas que se invierte tu dinero
+            donado
+          </p>
+          <v-row>
+            <v-col
+              v-for="(card, index) in cards"
+              :key="index"
+              cols="12"
+              sm="6"
+              md="4"
+              xl="2"
+              class="text-center"
+            >
+              <v-avatar size="80" class="mb-5" color="#BD1C2B">
+                <v-img
+                  class="imagen"
+                  max-height="55"
+                  max-width="55"
+                  align-items="center"
+                  :src="card.icon"
+                ></v-img>
+              </v-avatar>
+              <div
+                class="title text-uppercase mt-1 mb-4"
+                v-text="card.title"
+              ></div>
+              <p v-text="card.text"></p>
+              <v-row no-gutters>
+                <v-col cols="12"> </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-container>
+        <aporte-mensual></aporte-mensual>
+      </v-col>
+    </v-row>
+  </section>
 </template>
 
-<style>
-#aportes{
-background:url("https://www.pngall.com/wp-content/uploads/10/Cute-Pet-PNG-Images.png");
-width:100%;			    /* El tamaño se establece en 100% */                     
-height:100%;			/* El tamaño se establece en 100% */
-position:sticky;
-background-size:100% 100%;}
-
-</style>
-
 <script>
-  import Title from '../components/title.vue'
-  
-
-  export default {
-    components: {Title},
-    data: () => ({
-      reveal: false,
+import aporteMensual from "../components/aporteMensual.vue";
+import Title from "../components/title.vue";
+export default {
+  components: { aporteMensual, Title },
+  data() {
+    return {
       datos: [
         {
-          src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
-          titulo: ' Aportes ',
+          src: "https://images.unsplash.com/photo-1444212477490-ca407925329e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228",
+          titulo: " Aportes ",
         },
       ],
-      
-    }),
-  }
+      heroAlt: [
+        {
+          src: "pexels-ekaterina-bolovtsova-4048767.jpg",
+          heading: " Services ",
+        },
+      ],
+      cards: [
+        {
+          title: "Vacunas",
+          text: "Con el dinero donado nos encargamos de que cada mascota que será adoptada reciba sus vacunas.",
+          icon: "https://i.imgur.com/IQ6Qj8k.png",
+        },
+        {
+          title: "Alimento",
+          text: "Nos preocupamos de que cada mascota se alimente de manera correcta para su desarrollo.",
+          icon: "https://i.imgur.com/kptWcHE.png",
+        },
+        {
+          title: "Veterinario",
+          text: "Nos preocupamos de todos los gastos médicos que tenga la mascota.",
+          icon: "https://i.imgur.com/B1CK1os.png",
+        },
+        {
+          title: "Diversion",
+          text: "La diversión de los pequeños es importante para nosotros como juguetes o golosinas.",
+          icon: "https://i.imgur.com/n3WJzh8.png",
+        },
+        {
+          title: "Cuidados",
+          text: "Cuidados como pelaje y según raza de cada uno requiere cuidados distintos.",
+          icon: "https://i.imgur.com/827ygzI.png",
+        },
+        {
+          title: "infraestructura",
+          text: "Nos preocupamos de que cada mascota tenga un infraestructura para habitar de manera adecuada donde no pasen frio o demasiado calor.",
+          icon: "https://i.imgur.com/XxUYhLE.png",
+        },
+      ],
+    };
+  },
+  head() {
+    return {
+      title: "Services",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "Infographic hypotheses influencer user experience Long madel ture gen-z paradigm shift client partner network product seilans solve management influencer analytics leverage virality. incubator seed round massmarket. buyer agile development growth hacking business-to-consumer ecosystem",
+        },
+      ],
+    };
+  },
+};
 </script>

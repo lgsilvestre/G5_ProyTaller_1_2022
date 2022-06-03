@@ -74,7 +74,7 @@
 import CatalogItem from "../components/catalogItem.vue";
 import axios from "axios";
 import Loading from "../components/loading.vue";
-import Title from '../components/title.vue';
+import Title from "../components/title.vue";
 export default {
   name: "Catalog",
   components: {
@@ -92,12 +92,12 @@ export default {
         raza: "",
         edad: [1, 1],
       },
-      datos:[
-              {
-              src: 'https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg',
-              titulo: 'Animalitos en Adopción'
-              },
-            ],
+      datos: [
+        {
+          src: "https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg",
+          titulo: "Animalitos en Adopción",
+        },
+      ],
     };
   },
   created: function () {

@@ -51,32 +51,37 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                      <v-select :items="tiposFormularios" label="Tipo" v-model="editedItem.tipo">
+                      <v-select
+                        :items="tiposFormularios"
+                        label="Tipo"
+                        v-model="editedItem.tipo"
+                      >
                       </v-select>
                     </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <cropper
-                        class="cropper"
-                        :image="image"
-                        :src="selectedFileSrc"
-                        @change="handleFileChange"
-                        :stencil-props="{
-                          aspectRatio: 16 / 9,
-                          movable: true,
-                          resizable: true,
-                        }"
-                      />
-                      <v-file-input
-                        :v-model="selectedFile"
-                        accept="image/*"
-                        label="Cargar imagen"
-                        :src="selectedFileSrc"
-                        required
-                        @change="setImage"
-                        ref="fileInput"
-                      ></v-file-input>
+                    <v-col cols="12">
+                      <v-row justify="center" align="center">
+                        <v-col
+                          cols="4"
+                          v-for="(item, index) in editedItem.fotos"
+                          :key="index"
+                        >
+                          <v-btn color="warning" @click="removeFoto(item)"
+                            >Eliminar</v-btn
+                          >
+                          <v-img
+                            contain
+                            :src="item"
+                            max-height="100"
+                            max-width="200"
+                          ></v-img>
+                        </v-col>
+                        <v-col cols="4">
+                          <v-btn color="primary" dark block @click="addFoto">
+                            Agregar foto
+                          </v-btn>
+                        </v-col>
+                      </v-row>
                     </v-col>
-                    
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -125,6 +130,47 @@
         </v-carousel>
       </template>
     </v-data-table>
+    <v-dialog
+      v-model="dialogCropper"
+      transition="dialog-bottom-transition"
+      max-width="500px"
+    >
+      <v-card>
+        <v-card-title> Agregar imagen </v-card-title>
+        <v-card-text>
+          <cropper
+            class="cropper"
+            :image="image"
+            :src="selectedFileSrc"
+            @change="handleFileChange"
+            :stencil-props="{
+              aspectRatio: 16 / 9,
+              movable: true,
+              resizable: true,
+            }"
+          />
+          <v-file-input
+            :v-model="selectedFile"
+            accept="image/*"
+            label="Cargar imagen"
+            :src="selectedFileSrc"
+            required
+            @change="setImage"
+            ref="fileInput"
+          ></v-file-input>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="closeCropper()">
+            Cancelar
+          </v-btn>
+          <v-btn color="blue darken-1" text @click="postFoto()">
+            Guardar
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-layout>
 </template>
 
@@ -141,6 +187,7 @@ export default {
       idFormularios: [],
       dialog: false,
       dialogDelete: false,
+      dialogCropper: false,
       loading: false,
       headers: [
         { text: "Nombre", value: "nombre" },
@@ -158,7 +205,7 @@ export default {
         raza: "",
         tipo: "",
         fotos: [],
-        idForm: ""
+        idForm: "",
       },
       defaultItem: {
         nombre: "",
@@ -166,13 +213,13 @@ export default {
         raza: "",
         tipo: "",
         fotos: [],
-        idForm: ""
+        idForm: "",
       },
       indexMascotas: 0,
       selectedFile: null,
       selectedFileSrc: null,
       image: null,
-    }
+    };
   },
 
   computed: {
@@ -203,6 +250,55 @@ export default {
   methods: {
     initialize() {
       this.mascotas = [];
+    },
+
+    addFoto() {
+      this.dialogCropper = true;
+    },
+
+    async postFoto() {
+      this.loading = true;
+      this.dialogCropper = false;
+      if (this.editedItem._id != undefined) {
+        let res = await axios.post("postFoto", {
+          foto: this.image,
+          _id: this.editedItem._id,
+        });
+        this.editedItem.fotos.push(res.data);
+      } else {
+        this.editedItem.fotos.push(this.image);
+      }
+      this.selectedFile = null;
+      this.selectedFileSrc = null;
+      this.image = null;
+
+      if (this.$refs.fileInput) {
+        this.$refs.fileInput.reset();
+      }
+      this.loading = false;
+    },
+
+    closeCropper() {
+      this.dialogCropper = false;
+      if (this.$refs.fileInput) {
+        this.$refs.fileInput.reset();
+      }
+    },
+
+    async removeFoto(foto) {
+      this.loading = true;
+      if (this.editedItem._id != undefined) {
+        let fotoIndex = this.editedItem.fotos.indexOf(foto);
+        await axios.post("removeFoto", {
+          foto: foto,
+          _id: this.editedItem._id,
+        });
+        this.editedItem.fotos.splice(fotoIndex, 1);
+      } else {
+        let fotoIndex = this.editedItem.fotos.indexOf(foto);
+        this.editedItem.fotos.splice(fotoIndex, 1);
+      }
+      this.loading = false;
     },
 
     editItem(item) {
@@ -253,9 +349,9 @@ export default {
       this.loading = true;
       if (this.editedIndex > -1) {
         Object.assign(this.mascotas[this.editedIndex], this.editedItem);
-        this.idFormularios.forEach(element => {
-          if(this.editedItem.tipo==element.nombre){
-            this.editedItem.idForm=element.id
+        this.idFormularios.forEach((element) => {
+          if (this.editedItem.tipo == element.nombre) {
+            this.editedItem.idForm = element.id;
           }
         });
         await axios.put("/updateAnimal", {
@@ -264,8 +360,7 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          fotos: [this.image],
-          idForm: this.editedItem.idForm
+          idForm: this.editedItem.idForm,
         });
       } else {
         //Crear mascota
@@ -275,8 +370,8 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          fotos: [this.image],
-          idForm: this.editedItem.idForm
+          fotos: this.editedItem.fotos,
+          idForm: this.editedItem.idForm,
         });
       }
       this.loading = false;
@@ -297,14 +392,14 @@ export default {
           console.log(error);
         });
     },
-    async listarFormularios(){
-      var me=this
+    async listarFormularios() {
+      var me = this;
       axios
         .get("/getFormularios")
         .then(function (response) {
-          response.data.forEach(element => {
-            me.tiposFormularios.push(element.nombre)
-            me.idFormularios.push({"id":element._id,"nombre":element.nombre})
+          response.data.forEach((element) => {
+            me.tiposFormularios.push(element.nombre);
+            me.idFormularios.push({ id: element._id, nombre: element.nombre });
           });
         })
         .catch(function (error) {
