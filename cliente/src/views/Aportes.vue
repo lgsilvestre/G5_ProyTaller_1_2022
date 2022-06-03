@@ -64,8 +64,8 @@
 </template>
 
 <script>
-import aporteMensual from "../components/aporteMensual.vue";
-import Title from "../components/title.vue";
+import aporteMensual from "../components/Aportes/aporteMensual.vue";
+import Title from "../components/Utilidades/Generales/title.vue";
 export default {
   components: { aporteMensual, Title },
   data() {

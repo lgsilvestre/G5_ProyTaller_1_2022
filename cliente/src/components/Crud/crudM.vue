@@ -177,7 +177,7 @@
 <script>
 import axios from "axios";
 import { Cropper } from "vue-advanced-cropper";
-import Loading from "./loading.vue";
+import Loading from "../Utilidades/Generales/loading.vue";
 import "vue-advanced-cropper/dist/style.css";
 export default {
   components: { Cropper, Loading },
@@ -257,6 +257,7 @@ export default {
     },
 
     async postFoto() {
+      this.loading = true;
       this.dialogCropper = false;
       if (this.editedItem._id != undefined) {
         let res = await axios.post("postFoto", {
@@ -274,6 +275,7 @@ export default {
       if (this.$refs.fileInput) {
         this.$refs.fileInput.reset();
       }
+      this.loading = false;
     },
 
     closeCropper() {
@@ -284,6 +286,7 @@ export default {
     },
 
     async removeFoto(foto) {
+      this.loading = true;
       if (this.editedItem._id != undefined) {
         let fotoIndex = this.editedItem.fotos.indexOf(foto);
         await axios.post("removeFoto", {
@@ -295,6 +298,7 @@ export default {
         let fotoIndex = this.editedItem.fotos.indexOf(foto);
         this.editedItem.fotos.splice(fotoIndex, 1);
       }
+      this.loading = false;
     },
 
     editItem(item) {

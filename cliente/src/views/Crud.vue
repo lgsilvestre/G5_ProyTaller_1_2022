@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import crudAdmin from "../components/crudA.vue";
-import crudMascotas from "../components/crudM.vue";
-import CrudForm from "../components/crudForm.vue";
+import crudAdmin from "../components/Crud/crudA.vue";
+import crudMascotas from "../components/Crud/crudM.vue";
+import CrudForm from "../components/Crud/crudForm.vue";
 import crudSocios from "./Socios.vue";
-import crudEventos from "../components/crudEventos.vue";
+import crudEventos from "../components/Crud/crudEventos.vue";
 
 export default {
   data() {

@@ -37,7 +37,7 @@
 </template>
 <script>
 import axios from 'axios';
-import loading from '../components/loading.vue';
+import loading from '../components/Utilidades/Generales/loading.vue';
 export default {
   components: { loading },
     data (){

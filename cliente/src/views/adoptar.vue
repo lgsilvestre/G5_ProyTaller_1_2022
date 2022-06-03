@@ -37,7 +37,7 @@
 
 <script>
 import axios from 'axios'
-import Title from '../components/title.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
     export default {
         components: { Title },
         data (){
