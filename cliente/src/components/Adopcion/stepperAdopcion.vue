@@ -110,7 +110,7 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     preguntaRespuesta.push({"pregunta":elemento.pregunta,"respuesta":elemento.respuesta})
                 });
                 const user = await this.obtenerUsuario()
-                const animalPost = {nombre:this.animal.nombre,edad:this.animal.edad,tipo:this.animal.tipo}
+                const animalPost = {nombre:this.animal.nombre,edad:this.animal.edad,tipo:this.animal.tipo, id: this.animal._id}
                 
                 await axios.post("/postSolicitud", {
                     preguntas: preguntaRespuesta,

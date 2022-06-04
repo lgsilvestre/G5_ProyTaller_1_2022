@@ -22,7 +22,7 @@
                 </div >
                 <div class="d-flex justify-center separacion">
                     <v-btn>Aceptar solicitud</v-btn>
-                    <v-btn>Rechazar solicitud</v-btn>
+                    <v-btn @click="borrarSolicitud">Rechazar solicitud</v-btn>
                 </div>
                     
                 
@@ -68,15 +68,18 @@ export default {
             axios.get('/querySolicitud?_id='+this.$route.params.id)
             .then(result => {
                 this.solicitud = result.data
-                axios.get('/queryUsuario?_id='+this.solicitud.usuario).then(result2 => {
+                axios.get('/queryUsuario?_id='+this.solicitud.usuario.id).then(result2 => {
                     this.usuarioAdoptante = result2.data
-                    axios.get('/queryAnimal?_id='+this.solicitud.mascota).then(result3 => {
+                    axios.get('/queryAnimal?_id='+this.solicitud.mascota.id).then(result3 => {
                         this.mascota = result3.data
                     })
                 })
             })
             
         },
+        async borrarSolicitud(){
+            axios.post('/removeSolicitud',{'_id': this.solicitud._id})
+        }
     }
     
 }
@@ -101,5 +104,11 @@ export default {
     column-gap: 10px;
     grid-template-columns: auto auto auto;
     margin-block-end: 30px;
+}
+.alineacion{
+    text-align: left;
+    text-justify: inter-word;
+    font-weight: bold;
+    font-size: 18px;
 }
 </style>
