@@ -116,6 +116,7 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     mascota: this.animal._id,
                     usuario: user.id  
                 });
+                
             },
             async obtenerUsuario(){
                 var loggedIn = localStorage.getItem('token')
