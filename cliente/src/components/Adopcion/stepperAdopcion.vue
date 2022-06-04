@@ -49,7 +49,7 @@
                         </v-btn>
                         <v-btn
                             color="primary"
-                            @click="mostrarRespuestas()"    
+                            @click="enviarRespuestas()"    
                         >
                             Enviar Solicitud
                         </v-btn>
@@ -104,7 +104,7 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     })
                 })
             },
-            async mostrarRespuestas(){
+            async enviarRespuestas(){
                 var preguntaRespuesta = []
                 this.formulario.preguntas.forEach(elemento => {
                     preguntaRespuesta.push({"pregunta":elemento.pregunta,"respuesta":elemento.respuesta})
