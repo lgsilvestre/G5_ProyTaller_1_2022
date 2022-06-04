@@ -53,8 +53,8 @@ const Formulario = mongoose.model("Formulario", FormularioSchema);
 
 const SolicitudesSchema = new mongoose.Schema({
   preguntas: { type: [PyRschema] },
-  mascota: String,
-  usuario: String
+  mascota: Object,
+  usuario: Object
 });
 const Solicitud = mongoose.model("Solicitud", SolicitudesSchema);
 

@@ -110,11 +110,12 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     preguntaRespuesta.push({"pregunta":elemento.pregunta,"respuesta":elemento.respuesta})
                 });
                 const user = await this.obtenerUsuario()
+                const animalPost = {nombre:this.animal.nombre,edad:this.animal.edad,tipo:this.animal.tipo}
                 
                 await axios.post("/postSolicitud", {
                     preguntas: preguntaRespuesta,
-                    mascota: this.animal._id,
-                    usuario: user.id  
+                    mascota: animalPost,
+                    usuario: user  
                 });
             },
             async obtenerUsuario(){
