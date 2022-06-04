@@ -3,25 +3,29 @@
         <Title :datos="datos" />
         <v-layout align-center justify-center>
             <v-flex xs12 sm8 md6 lg5 xl7 >
-                <h1>Usuario: {{solicitud.usuario}}</h1>
-                <h1>Mascota: {{solicitud.mascota}}</h1>
-                <div v-for="(preguntas,index) in solicitud.preguntas" :key="index">
+                <h1>Usuario: {{usuarioAdoptante.nombreCompleto}}</h1>
+                <h1>Email: {{usuarioAdoptante.email}}</h1>
+                <h1>Mascota: {{mascota.nombre}}</h1>
+                <div v-for="(pregunta,index) in solicitud.preguntas" :key="index">
+                    <p class="alineacion">{{pregunta.pregunta}}</p>
                     <v-row class="d-flex justify-center">
-                        <v-col class="d-flex justify-center">
-                            <h3>Pregunta: {{ preguntas.pregunta }} </h3>
-                        </v-col>
-                        <v-col class="d-flex justify-center">
-                            <h3>Respuesta: {{ preguntas.respuesta }}</h3>
-                        </v-col>
+                        <v-container fluid>
+                            <v-textarea
+                                class="form-control no-gray"
+                                v-model="pregunta.respuesta"
+                                outlined
+                                color= "grey"
+                                :readonly="true"
+                            ></v-textarea>
+                        </v-container>
                     </v-row>
+                </div >
+                <div class="d-flex justify-center separacion">
+                    <v-btn>Aceptar solicitud</v-btn>
+                    <v-btn>Rechazar solicitud</v-btn>
                 </div>
-                <div>
-                    <v-row class="d-flex justify-center">
-                        <v-btn>Aceptar solicitud</v-btn>
-                        <v-btn>Rechazar solicitud</v-btn>
-                    </v-row>
                     
-                </div>
+                
             </v-flex>
             
         </v-layout>
@@ -38,6 +42,8 @@ export default {
     data (){
         return{
             solicitud: {},
+            usuarioAdoptante: {},
+            mascota: {},
             snackbar: false,
             snackbarText: '',
             dialogDelete: false,
@@ -54,15 +60,22 @@ export default {
     },
     
     created() {
-        this.obtenerFormulario()
+        this.obtenerSolicitud()
         
     },
     methods: {
-        async obtenerFormulario(){
+        async obtenerSolicitud(){
             axios.get('/querySolicitud?_id='+this.$route.params.id)
             .then(result => {
                 this.solicitud = result.data
+                axios.get('/queryUsuario?_id='+this.solicitud.usuario).then(result2 => {
+                    this.usuarioAdoptante = result2.data
+                    axios.get('/queryAnimal?_id='+this.solicitud.mascota).then(result3 => {
+                        this.mascota = result3.data
+                    })
+                })
             })
+            
         },
     }
     
@@ -80,5 +93,13 @@ export default {
 .p{
     margin: 0 !important;
     padding: 0 !important;
+}
+.separacion{
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: flex-end;
+    column-gap: 10px;
+    grid-template-columns: auto auto auto;
+    margin-block-end: 30px;
 }
 </style>

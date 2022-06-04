@@ -8,7 +8,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Mis Solicituds</v-toolbar-title>
+        <v-toolbar-title>Solicitudes de adopción</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
