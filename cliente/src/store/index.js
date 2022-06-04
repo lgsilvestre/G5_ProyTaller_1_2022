@@ -12,8 +12,9 @@ export default new Vuex.Store({
   },
   getters:{
     isAuthenticated: (state) => !!state.usuario,
+    getUsuario: (state) => state.usuario
+    
   },
-
   mutations: {
     setToken(state,token){
       state.token=token;
@@ -27,6 +28,7 @@ export default new Vuex.Store({
       commit("setToken", token)
       commit("setUsuario", decode(token))
       localStorage.setItem("token", token)
+      localStorage.setItem("usuario", decode(token))
     },
     autoLogin({commit}){
       let token = localStorage.getItem("token");
@@ -40,6 +42,7 @@ export default new Vuex.Store({
       commit("setToken", null);
       commit("setUsuario", null);
       localStorage.removeItem("token");
+      localStorage.removeItem("usuario");
       router.push('/').catch(() => {});
     }
   }
