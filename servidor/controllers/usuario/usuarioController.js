@@ -19,7 +19,7 @@ async function queryTokenID(req,res){
                 message: 'El registro no existe'
             });
         } else{
-            res.status(200).json({id:tokenReturn._id,email:tokenReturn.email});
+            res.status(200).json({id:tokenReturn._id,email:tokenReturn.email,nombreCompleto:tokenReturn.nombreCompleto});
         }
     } catch(e){
         res.status(500).send({

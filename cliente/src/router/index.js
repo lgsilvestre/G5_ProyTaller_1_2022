@@ -88,7 +88,13 @@ const routes = [
     path: '/adoptarMascota/mascota/:id',
     name: 'adopcion',
     component: () => import(/* webpackChunkName: "about" */ '../views/adoptar.vue'),
-  }
+  },
+  {
+    path: '/VerSolicitud/:id',
+    name: 'VerSolicitud',
+    component: () => import(/* webpackChunkName: "about" */ '../views/VerSolicitud.vue'),
+    meta:{logged:true}
+  },
 ]
 
 const router = new VueRouter({
