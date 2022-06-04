@@ -1,5 +1,5 @@
 <template>
-  <v-layout align-center justify-center>
+  <v-container fluid>
         <v-stepper v-model="e1">
             <v-stepper-header>
                 <div v-for="(n,i) in 2" :key="i">
@@ -27,7 +27,7 @@
                 <div v-if="n==1">
                     <mostrador-formulario :formulario="formulario"></mostrador-formulario>
                     <div class="alineacionBotones">
-                        <v-btn text>
+                        <v-btn :to="{name:'Home'}" text>
                             Cancelar
                         </v-btn>
                         <v-btn
@@ -92,7 +92,7 @@
                 </v-btn>
             </template>
         </v-snackbar>
-  </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -166,6 +166,7 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                 else {
                     this.dialogoEnviar = false
                     this.snackbar = true
+                    
                     if(this.contadorVacias > 0 && this.contadorIncompletas == 0){
                         this.snackbarText = "Todas las respuestas están vacías"
                     }
