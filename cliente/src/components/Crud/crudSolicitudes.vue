@@ -59,18 +59,9 @@
         plain
         :to="{name:'VerSolicitud', params:{id:item._id}}"
         >
+        Ver solicitud
             <v-icon>
                 mdi-eye
-            </v-icon>
-        </v-btn>
-        <v-btn
-        fab 
-        small 
-        plain
-        @click="deleteItem(item)"
-        >
-            <v-icon>
-                mdi-delete
             </v-icon>
         </v-btn>
         
@@ -86,8 +77,11 @@
             dialogDelete: false,
             newSolicitud: "",
             headers: [
-                { text: 'Usuario', value: 'usuario'},
-                { text: 'Mascota', value: 'mascota'},
+                { text: 'Usuario', value: 'usuario.nombreCompleto'},
+                { text: 'Email usuario', value: 'usuario.email'},
+                { text: 'Mascota', value: 'mascota.nombre'},
+                { text: 'Tipo mascota', value: 'mascota.tipo'},
+                { text: 'Edad mascota', value: 'mascota.edad'},
                 { text: 'Actions', value: 'actions', sortable: false , align: 'center'},
                 ],
             Solicituds: [],
@@ -111,42 +105,10 @@
             }
         },
         created () {
-            this.initialize()
             this.listarSolicitudes()
         },
 
         methods: {
-            initialize () {
-            },
-
-            deleteItem (item) {
-                this.editedIndex = this.Solicituds.indexOf(item)
-                this.editedItem = Object.assign({}, item)
-                this.dialogDelete = true
-            },
-
-            deleteItemConfirm () {
-                axios.post('/removeSolicitud',{'_id': this.Solicituds[this.editedIndex]._id})
-                this.closeDelete()
-            },
-
-            closeDelete () {
-                this.dialogDelete = false
-                this.$nextTick(() => {
-                    this.editedItem = Object.assign({}, this.defaultItem)
-                    this.editedIndex = -1
-                })
-                this.listarSolicitudes()
-            },
-            close () {
-                this.dialog = false
-                this.$nextTick(() => {
-                this.editedItem = Object.assign({}, this.defaultItem)
-                this.editedIndex = -1
-                })
-                this.listarSolicitudes()
-            },
-
             async listarSolicitudes(){
                 axios.get('/getSolicitudes').then(result => {
                     this.Solicituds = result.data
