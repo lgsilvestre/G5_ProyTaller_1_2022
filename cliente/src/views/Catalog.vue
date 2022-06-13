@@ -23,12 +23,13 @@
                 </div>
 
                 <div class="search-content">
-                  <h3>Especie</h3>
-                  <v-text-field
+                  <h3>Tipo</h3>
+                  <v-select
                     v-model="filterOptions.especie"
-                    label="Nombre de la especie"
+                    :items="especies"
+                    label="Nombre de la especie/tipo"
                     solo
-                  ></v-text-field>
+                  ></v-select>
                 </div>
 
                 <div class="search-content">
@@ -86,6 +87,10 @@ export default {
     return {
       items: [],
       loading: true,
+      especies: [{
+        text: "Cualquiera",
+        value: "",
+      }],
       filterOptions: {
         nombre: "",
         especie: "",
@@ -101,9 +106,21 @@ export default {
     };
   },
   created: function () {
-    axios.get("/getAnimals").then((result) => {
+
+    axios.get("/getAnimals").then(async (result) => {
       this.items = result.data;
       this.filterOptions.edad = [1, this.getMaxAge()];
+
+      let formularios = await axios.get("/getFormularios")
+
+      let resEspecies = formularios.data.map(f => {
+        return {
+          text: f.nombre,
+          value: f.nombre
+        }
+      })
+      this.especies = this.especies.concat(resEspecies)
+
       this.loading = false;
     });
   },
