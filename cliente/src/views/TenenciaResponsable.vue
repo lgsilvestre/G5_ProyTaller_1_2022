@@ -738,7 +738,7 @@
 </template>
 
 <script>
-import Title from '../components/title.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
 export default {
   components: { Title },
   data() {
@@ -756,7 +756,6 @@ export default {
 
 <style>
 .imagenFondo {
-  background-image: url('');
   height: 100%;
   background-repeat: repeat;
   background-size: 100% auto;

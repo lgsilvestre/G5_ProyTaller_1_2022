@@ -43,8 +43,8 @@
   </v-layout>
 </template>
 <script>
-import loading from "../components/loading.vue";
-import editSocio from "../components/editSocio.vue";
+import loading from "../components/Utilidades/Generales/loading.vue";
+import editSocio from "../components/Crud/editSocio.vue";
 import axios from "axios";
 
 export default {

@@ -24,10 +24,10 @@
 <script>
 // @ is an alias to /src
 // import axios from "axios";
-import Carrousel from '../components/carrousel.vue';
-import Carrouselcards from '../components/carrouselcards.vue';
-import IntroAdopciones from '../components/introAdopciones.vue';
-import IntroDonar from '../components/introDonar.vue';
+import Carrousel from '../components/PaginaPrincipal/carrousel.vue';
+import Carrouselcards from '../components/PaginaPrincipal/carrouselcards.vue';
+import IntroAdopciones from '../components/PaginaPrincipal/introAdopciones.vue';
+import IntroDonar from '../components/PaginaPrincipal/introDonar.vue';
 
 export default {
   name: 'Home',

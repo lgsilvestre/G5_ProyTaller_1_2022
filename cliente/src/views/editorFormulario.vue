@@ -1,6 +1,7 @@
 <template>
     <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 xl7 >
+            <!-- <p>{{hola}}</p> -->
             <h1 >Editor {{formulario.nombre}}</h1>
             <div v-for="(pregunta,index) in formulario.preguntas" :key="index">
                 <v-row>
@@ -74,12 +75,37 @@ export default {
     },
     
     created() {
-        axios.get('/queryFormulario?_id='+this.$route.params.id)
-        .then(result => {
-            this.formulario = result.data
-        })
+        this.obtenerFormulario()
+    },
+    computed:{
+        hola(){
+            if(this.formulario.preguntas!==undefined)
+                this.formulario.preguntas.forEach(element => {
+                    console.log(element.pregunta)
+                });
+            return 'se ha escrito algo'
+        }
+    },
+    watch: {
+        formulario: {
+            handler: function (val, oldVal) {
+                // console.log('a thing changed')
+                // console.log('soy nuevo: '+val.preguntas)
+                // console.log('soy viejo: '+oldVal.preguntas)
+                if(oldVal.preguntas!==undefined){
+                    this.botonActivado = true
+                }
+            },
+            deep: true
+        }
     },
     methods: {
+        async obtenerFormulario(){
+            await axios.get('/queryFormulario?_id='+this.$route.params.id)
+            .then(result => {
+                this.formulario = result.data
+            })
+        },
         cambios(){
             var noExisteVacio = true
             this.formulario.preguntas.forEach(element => {

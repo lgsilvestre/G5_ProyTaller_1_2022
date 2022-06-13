@@ -4,7 +4,7 @@
         v-if="loading"
         ></loading>
         <v-flex  v-if="!loading" xs12 sm8 md6 lg4 xl3 >
-            <v-card class="mx-auto pa-10 ma-10 backgroundImage">
+            <v-card height="100%" class="mx-auto pa-10 ma-10 backgroundImage">
                 <v-toolbar class="mb-8" dark color="red lighten-2">
                     <v-toolbar-title color="black" class="flex text-center">
                         Inicio de sesión
@@ -37,7 +37,7 @@
 </template>
 <script>
 import axios from 'axios';
-import loading from '../components/loading.vue';
+import loading from '../components/Utilidades/Generales/loading.vue';
 export default {
   components: { loading },
     data (){
@@ -91,7 +91,7 @@ export default {
 }
 
 a:link {
-  color: green;
+  color: rgb(255, 124, 124);
   background-color: transparent;
   text-decoration: none;
 }

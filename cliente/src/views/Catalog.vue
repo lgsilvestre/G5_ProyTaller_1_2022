@@ -1,10 +1,9 @@
 <template>
   <div>
-    <Title :datos="datos" />
+    <Title class="separacion" :datos="datos" />
     <v-layout align-center justify-center>
       <loading v-if="loading"></loading>
       <v-container v-if="!loading" class="mb-6">
-        
         <v-row>
           <v-col sm="12" md="3">
             <v-card class="elevation-1" style="position: sticky; top: 76px">
@@ -24,12 +23,13 @@
                 </div>
 
                 <div class="search-content">
-                  <h3>Especie</h3>
-                  <v-text-field
+                  <h3>Tipo</h3>
+                  <v-select
                     v-model="filterOptions.especie"
-                    label="Nombre de la especie"
+                    :items="especies"
+                    label="Nombre de la especie/tipo"
                     solo
-                  ></v-text-field>
+                  ></v-select>
                 </div>
 
                 <div class="search-content">
@@ -68,14 +68,14 @@
         </v-row>
       </v-container>
     </v-layout>
-  </div>  
+  </div>
 </template>
 
 <script>
-import CatalogItem from "../components/catalogItem.vue";
+import CatalogItem from "../components/Utilidades/catalogItem.vue";
 import axios from "axios";
-import Loading from "../components/loading.vue";
-import Title from '../components/title.vue'
+import Loading from "../components/Utilidades/Generales/loading.vue";
+import Title from "../components/Utilidades/Generales/title.vue";
 export default {
   name: "Catalog",
   components: {
@@ -85,26 +85,42 @@ export default {
   },
   data: function () {
     return {
-      datos: [
-        {
-          src: 'https://images.unsplash.com/photo-1534361960057-19889db9621e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
-          titulo: ' Adoptame ',
-        },
-      ],
       items: [],
       loading: true,
+      especies: [{
+        text: "Cualquiera",
+        value: "",
+      }],
       filterOptions: {
         nombre: "",
         especie: "",
         raza: "",
         edad: [1, 1],
       },
+      datos: [
+        {
+          src: "https://s1.eestatic.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg",
+          titulo: "Animalitos en Adopción",
+        },
+      ],
     };
   },
   created: function () {
-    axios.get("/getAnimals").then((result) => {
+
+    axios.get("/getAnimals").then(async (result) => {
       this.items = result.data;
       this.filterOptions.edad = [1, this.getMaxAge()];
+
+      let formularios = await axios.get("/getFormularios")
+
+      let resEspecies = formularios.data.map(f => {
+        return {
+          text: f.nombre,
+          value: f.nombre
+        }
+      })
+      this.especies = this.especies.concat(resEspecies)
+
       this.loading = false;
     });
   },
