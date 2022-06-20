@@ -60,7 +60,8 @@ async function postFormulario(req, res) {
 async function updateFormulario(req,res) {
     try {
         const reg = await Formulario.findByIdAndUpdate({_id:req.body._id},
-            {nombre: req.body.nombre, preguntas: req.body.preguntas});
+            {nombre: req.body.nombre,
+                preguntas: req.body.preguntas});
         res.status(200).json(reg);
     } catch(e){
         res.status(500).send({

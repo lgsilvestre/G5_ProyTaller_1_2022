@@ -31,7 +31,33 @@
 
               <v-card-text>
                 <v-container>
-                  <v-row>
+
+              <v-stepper v-model="e1"
+                non-linear
+              >
+                <v-stepper-header>
+                  <v-stepper-step
+                    :complete="e1 > 1"
+                    step="1"
+                    editable
+                  >
+                    Informacion general
+
+                  </v-stepper-step>
+                  <v-divider></v-divider>
+                  <v-stepper-step
+                    :complete="e1 > 2"
+                    step="2"
+                    editable
+                  >
+                    Imagenes
+
+                  </v-stepper-step>
+                </v-stepper-header>
+                <v-stepper-items>
+                  <v-stepper-content step="1">
+
+                    <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.nombre"
@@ -58,31 +84,44 @@
                       >
                       </v-select>
                     </v-col>
-                    <v-col cols="12">
-                      <v-row justify="center" align="center">
-                        <v-col
-                          cols="4"
-                          v-for="(item, index) in editedItem.fotos"
-                          :key="index"
-                        >
-                          <v-btn color="warning" @click="removeFoto(item)"
-                            >Eliminar</v-btn
-                          >
-                          <v-img
-                            contain
-                            :src="item"
-                            max-height="100"
-                            max-width="200"
-                          ></v-img>
-                        </v-col>
-                        <v-col cols="4">
-                          <v-btn color="primary" dark block @click="addFoto">
-                            Agregar foto
-                          </v-btn>
-                        </v-col>
-                      </v-row>
-                    </v-col>
+                    
                   </v-row>
+
+                  </v-stepper-content>
+                  <v-stepper-content step="2">
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12">
+                        <v-row justify="center" align="center">
+                          <v-col
+                            cols="6"
+                            v-for="(item, index) in editedItem.fotos"
+                            :key="index"
+                          >
+                            <v-btn color="warning" @click="removeFoto(item)"
+                              >Eliminar</v-btn
+                            >
+                            <v-img
+                              contain
+                              :src="item"
+                              max-height="100"
+                              max-width="200"
+                            ></v-img>
+                          </v-col>
+                          <v-col cols="6">
+                            <v-btn color="primary" dark block @click="addFoto">
+                              Agregar foto
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+                    </v-container>
+                  </v-stepper-content>
+                </v-stepper-items>
+              </v-stepper>
+
+                  
                 </v-container>
               </v-card-text>
 
@@ -177,12 +216,13 @@
 <script>
 import axios from "axios";
 import { Cropper } from "vue-advanced-cropper";
-import Loading from "./loading.vue";
+import Loading from "../Utilidades/Generales/loading.vue";
 import "vue-advanced-cropper/dist/style.css";
 export default {
   components: { Cropper, Loading },
   data() {
     return {
+      e1: null,
       tiposFormularios: [],
       idFormularios: [],
       dialog: false,
@@ -257,6 +297,7 @@ export default {
     },
 
     async postFoto() {
+      this.loading = true;
       this.dialogCropper = false;
       if (this.editedItem._id != undefined) {
         let res = await axios.post("postFoto", {
@@ -274,6 +315,7 @@ export default {
       if (this.$refs.fileInput) {
         this.$refs.fileInput.reset();
       }
+      this.loading = false;
     },
 
     closeCropper() {
@@ -284,6 +326,7 @@ export default {
     },
 
     async removeFoto(foto) {
+      this.loading = true;
       if (this.editedItem._id != undefined) {
         let fotoIndex = this.editedItem.fotos.indexOf(foto);
         await axios.post("removeFoto", {
@@ -295,6 +338,7 @@ export default {
         let fotoIndex = this.editedItem.fotos.indexOf(foto);
         this.editedItem.fotos.splice(fotoIndex, 1);
       }
+      this.loading = false;
     },
 
     editItem(item) {

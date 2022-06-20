@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import CatalogItem from "../components/catalogItem.vue";
+import CatalogItem from "../Utilidades/catalogItem.vue";
 import axios from "axios";
 export default {
   name: "Catalog",

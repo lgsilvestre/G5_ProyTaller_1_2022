@@ -23,7 +23,7 @@
     </v-card-subtitle>
 
     <v-card-actions>
-      <v-btn :to="{name:'adopcion', params:{id:item._id}}" color="red lighten-2" text> Adoptame </v-btn>
+      <v-btn @click="verificarUsuario(item._id)" color="red lighten-2" text> Adoptame </v-btn>
 
       <v-spacer></v-spacer>
 
@@ -48,11 +48,26 @@
 </template>
 
 <script>
+import router from '../../router';
+
 export default {
   props: ["item"],
   data: () => ({
     show: false,
   }),
+  methods: {
+    verificarUsuario(id){
+      if(this.$store.getters.isAuthenticated){
+        router.push({
+          name:'adopcion',
+          params: {id:id},
+        })
+      }
+      else{
+        router.push({name:'Login'})
+      }
+    }    
+  }
 };
 </script>
 

@@ -73,9 +73,9 @@
 
 <script>
 
-import timeline from '../components/timeline.vue'
-import Title from '../components/title.vue'
-import Team from '../components/team.vue'
+import timeline from '../components/Nosotros/timeline.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
+import Team from '../components/Nosotros/team.vue'
 
 export default {
   components: { timeline, Team, Title},

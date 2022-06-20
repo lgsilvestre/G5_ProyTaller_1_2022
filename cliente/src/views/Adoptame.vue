@@ -1,17 +1,19 @@
 <template>
     <div>
         <Title :datos="datos" />
-        <formulario></formulario>
+        <stepper-adopcion></stepper-adopcion>
+        <!-- <formulario></formulario> -->
         
     </div>
     
 </template>
 
 <script>
-import formulario from '../components/crudForm.vue'
-import Title from '../components/title.vue'
+import StepperAdopcion from '../components/Adopcion/stepperAdopcion.vue'
+import formulario from '../components/Crud/crudForm.vue'
+import Title from '../components/Utilidades/Generales/title.vue'
 export default {
-  components: { formulario,Title },
+  components: { formulario,Title, StepperAdopcion },
   data() {
     return {
       datos: [
