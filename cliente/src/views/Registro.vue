@@ -160,6 +160,7 @@ export default {
                 this.clave,
                 )
                 axios.post('postUsuario',{
+                    rol: "usuario",
                     nombreCompleto: this.user.nombreCompleto,
                     email: this.user.email,
                     clave: this.user.clave,
