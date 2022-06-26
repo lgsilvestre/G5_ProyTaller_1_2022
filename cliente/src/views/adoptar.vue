@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Title class="separacion" :datos="datos" />
+        <Title :datos="datos" />
         <stepper-adopcion></stepper-adopcion>
     </div>
 </template>
