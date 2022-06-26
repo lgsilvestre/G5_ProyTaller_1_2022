@@ -88,7 +88,7 @@
     <template v-slot:item.actions="{ item }">
         <v-btn
         fab 
-        small 
+        medium 
         plain
         :to="{name:'EditorFormulario', params:{id:item._id}}"
         >

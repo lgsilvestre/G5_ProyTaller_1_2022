@@ -19,7 +19,7 @@ async function queryTokenID(req,res){
                 message: 'El registro no existe'
             });
         } else{
-            res.status(200).json({id:tokenReturn._id,email:tokenReturn.email,nombreCompleto:tokenReturn.nombreCompleto});
+            res.status(200).json({id:tokenReturn._id,email:tokenReturn.email,nombreCompleto:tokenReturn.nombreCompleto,rol:tokenReturn.rol});
         }
     } catch(e){
         res.status(500).send({
@@ -86,7 +86,7 @@ async function login(req,res) {
         if(user){
             let match = await bcrypt.compare(req.body.password,user.clave);
             if (match){
-                let tokenReturn = await token.encode(user._id);
+                let tokenReturn = await token.encode(user._id,user.rol);
                 res.status(200).json({user,tokenReturn});
             }
             else{

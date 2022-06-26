@@ -146,7 +146,6 @@ import mostradorFormulario from "./mostradorFormulario.vue"
             },
             async enviarRespuestas(){
                 if(this.comprobarRespuestas()){
-                    console.log('se puede enviar las respuestas')
                     var preguntaRespuesta = []
                     this.formulario.preguntas.forEach(elemento => {
                         preguntaRespuesta.push({"pregunta":elemento.pregunta,"respuesta":elemento.respuesta})
@@ -160,15 +159,22 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                         usuario: user  
                     });
                     this.dialogoEnviar = false
-                    this.snackbar = true
                     this.snackbarText = "Formulario enviado con éxito"
+                    this.snackbar = true
+                    this.$router.push('/home');
                 }
                 else {
                     this.dialogoEnviar = false
                     this.snackbar = true
                     
                     if(this.contadorVacias > 0 && this.contadorIncompletas == 0){
-                        this.snackbarText = "Todas las respuestas están vacías"
+                        
+                        if(this.contadorVacias === 1){
+                            this.snackbarText = "Una respuesta está vacía"
+                        }
+                        else{
+                            this.snackbarText = "Hay "+ this.contadorVacias + " respuestas que están vacías"
+                        }
                     }
                     else if(this.contadorVacias > 0 && this.contadorIncompletas > 0){
                         this.snackbarText = 'Hay '+this.contadorVacias+' respuestas vacias y ' + this.contadorIncompletas + ' respuestas incompletas'
