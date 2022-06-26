@@ -49,6 +49,10 @@ import {
   removeSolicitud,
   querySolicitudUsuario
 } from "../controllers/solicitudes/solicitudesController.js";
+
+import {
+  getSolicitudAceptadas, querySolicitudAceptada, postSolicitudAceptada, removeSolicitudAceptada
+} from "../controllers/solicitudes/solicitudAceptadaController.js";
   
 
 //import auth from "../middlewares/auth.js";
@@ -95,6 +99,12 @@ export function routesConfig(app) {
   app.put("/updateSolicitud", updateSolicitud);
   app.post("/removeSolicitud", removeSolicitud);
 
+  //Solicitudes aceptadas
+  app.get("/getSolicitudAceptadas", getSolicitudAceptadas);
+  app.get("/querySolicitudAceptada", querySolicitudAceptada);
+  app.post("/postSolicitudAceptada", postSolicitudAceptada);
+  app.post("/removeSolicitudAceptada", removeSolicitudAceptada);
+
   //Socios
   app.post("/postSocio", postSocio);
   app.put("/updateSocio", updateSocio);
@@ -107,4 +117,6 @@ export function routesConfig(app) {
   app.get("/queryEvento", queryEvento);
   app.put("/updateEvento", updateEvento);
   app.post("/removeEvento", removeEvento);
+
+
 }

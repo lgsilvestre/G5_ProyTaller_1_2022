@@ -67,4 +67,6 @@ const EventoSchema = new mongoose.Schema({
 });
 const Evento = mongoose.model("Evento", EventoSchema);
 
-export { Test, Animal, Usuario, Socio, Formulario, Evento, Solicitud};
+const SolicitudAceptada = mongoose.model("SolicitudAceptada",SolicitudesSchema);
+
+export { Test, Animal, Usuario, Socio, Formulario, Evento, Solicitud, SolicitudAceptada};
