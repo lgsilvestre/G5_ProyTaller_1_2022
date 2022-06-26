@@ -21,10 +21,20 @@
                     </v-row>
                 </div >
                 <div class="d-flex justify-center separacion">
-                    <v-btn>Aceptar solicitud</v-btn>
-                    <v-btn @click="borrarSolicitud">Rechazar solicitud</v-btn>
+                    <v-btn @click="aceptarSolicitud">Aceptar solicitud</v-btn>
+                    <v-btn @click="preguntaBorrar">Rechazar solicitud</v-btn>
                 </div>
-                    
+                <v-dialog v-model="dialogDelete" max-width="600px">
+                    <v-card>
+                        <v-card-title class="text-h5">¿Estás seguro que deseas borrar esta solicitud?</v-card-title>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn class="ma-1" color="grey" text @click="closeDelete">Cancelar</v-btn>
+                            <v-btn class="ma-1" color="error" text @click="borrarSolicitud">Rechazar</v-btn>
+                            <v-spacer></v-spacer>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
                 
             </v-flex>
             
@@ -79,6 +89,24 @@ export default {
         },
         async borrarSolicitud(){
             axios.post('/removeSolicitud',{'_id': this.solicitud._id})
+            this.$router.push('/crud?opcion=solicitudes')
+            this.$router.go()
+        },
+        async borrarSolicitudAceptada(){
+            axios.post('/removeSolicitud',{'_id': this.solicitud._id})
+            this.$router.push('/crud?opcion=solicitudesAceptadas')
+            //this.$router.go()
+        },
+        preguntaBorrar(){
+            this.dialogDelete=true
+        },
+        closeDelete(){
+            this.dialogDelete=false
+        },
+        async aceptarSolicitud(){
+            axios.post('/postSolicitudAceptada',{preguntas: this.solicitud.preguntas, mascota:this.mascota, usuario:this.usuarioAdoptante}).then(
+                this.borrarSolicitudAceptada()
+            );
         }
     }
     
