@@ -119,6 +119,11 @@ export default {
         routes = routes.filter(function (item) {
           return !privatedRoutes.includes(item);
         });
+        if(this.$store.getters.getUsuario.rol!="admin"){
+          routes = routes.filter(
+            (items) => items.title!="Administracion"
+          );
+        }
       } else {
         privatedRoutes = this.items.filter(
           (items) => items.requieredAuth == true
@@ -138,6 +143,7 @@ export default {
         this.$vuetify.theme.dark = true;
       }
     },
+    
     filtroMethod(menuitem) {
       if (menuitem.title === "Salir") {
         this.$store.dispatch("salir");
