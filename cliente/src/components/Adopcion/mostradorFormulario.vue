@@ -1,22 +1,18 @@
 <template>
     <div>
-        <v-layout align-center justify-center>
-            <v-flex xs12 sm8 md6 lg5 xl7 >
-                <div v-for="(pregunta,index) in formulario.preguntas" :key="index">
-                    <p class="alineacion">{{pregunta.pregunta}}</p>
-                    <v-row class="d-flex justify-center">
-                        <v-container fluid>
-                            <v-textarea
-                                v-model="pregunta.respuesta"
-                                outlined
-                                color="#BD1C2B"
-                                :label="'Respuesta '+(index+1)"
-                            ></v-textarea>
-                        </v-container>
-                    </v-row>
-                </div>
-            </v-flex>
-        </v-layout>
+        <div v-for="(pregunta,index) in formulario.preguntas" :key="index">
+            <p class="alineacion">{{pregunta.pregunta}}</p>
+            <v-row>
+                <v-container fluid>
+                    <v-textarea
+                        v-model="pregunta.respuesta"
+                        outlined
+                        color="#BD1C2B"
+                        :label="'Respuesta '+(index+1)"
+                    ></v-textarea>
+                </v-container>
+            </v-row>
+        </div>
     </div>
 </template>
 
