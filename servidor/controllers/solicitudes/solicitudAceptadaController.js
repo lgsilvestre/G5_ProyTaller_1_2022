@@ -29,7 +29,7 @@ async function querySolicitudAceptada(req,res) {
 }
 
 async function postSolicitudAceptada(req, res) {
-
+    const reg3=await SolicitudAceptada.findOne({usuario:req.body.usuario})
     let SolicitudAceptadaAux = new SolicitudAceptada({   
         preguntas: req.body.preguntas,
         mascota: req.body.mascota,

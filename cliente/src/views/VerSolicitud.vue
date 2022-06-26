@@ -104,7 +104,9 @@ export default {
             this.dialogDelete=false
         },
         async aceptarSolicitud(){
-            axios.post('/postSolicitudAceptada',{preguntas: this.solicitud.preguntas, mascota:this.mascota, usuario:this.usuarioAdoptante}).then(
+            const usuarioNuevo = {id:this.usuarioAdoptante._id, email:this.usuarioAdoptante.email, nombreCompleto:this.usuarioAdoptante.nombreCompleto, rol:this.usuarioAdoptante.rol}
+            const mascotaNueva = {nombre:this.mascota.nombre,edad:this.mascota.edad,tipo:this.mascota.tipo,id:this.mascota._id}
+            axios.post('/postSolicitudAceptada',{preguntas: this.solicitud.preguntas, mascota:mascotaNueva, usuario:usuarioNuevo}).then(
                 this.borrarSolicitudAceptada()
             );
         }
