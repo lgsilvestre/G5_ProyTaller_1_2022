@@ -24,7 +24,7 @@ const Animal = mongoose.model("Animal", AnimalSchema);
 const UsuarioSchema = new mongoose.Schema({
   rol: { type: String, maxlength: 30 },
   nombreCompleto: String,
-  email: String,
+  email: { type: String, unique: true },
   clave: String,
   estado: { type: Number, default: 1 },
 });
