@@ -90,7 +90,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
-              <contactForm />
+              <contact-form></contact-form>
             </v-col>
           </v-row>
         </v-container>
@@ -110,11 +110,10 @@
 </template>
 
 <script>
-import contactForm from '~/components/Contacto/contactForm.vue'
+import contactForm from '../components/Contacto/contactForm.vue'
 export default {
-  components: {
-    contactForm,
-  },
+  components: { contactForm },
+  
   data() {
     return {
       heroAlt: [
