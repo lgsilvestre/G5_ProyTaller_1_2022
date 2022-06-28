@@ -88,6 +88,11 @@ export default {
           to: "/eventos",
         },
         {
+          icon: "mdi-blogger",
+          title: "Contacto",
+          to: "/contacto",
+        },
+        {
           icon: "",
           title: "Administracion",
           to: "/crud?opcion=mascotas",
