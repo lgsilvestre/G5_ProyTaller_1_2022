@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title class="separacion" :datos="datos" />
+    <Title :datos="datos" />
     <v-layout align-center justify-center>
       <loading v-if="loading"></loading>
       <v-container v-if="!loading" class="mb-6">

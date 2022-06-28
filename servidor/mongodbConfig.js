@@ -24,7 +24,7 @@ const Animal = mongoose.model("Animal", AnimalSchema);
 const UsuarioSchema = new mongoose.Schema({
   rol: { type: String, maxlength: 30 },
   nombreCompleto: String,
-  email: String,
+  email: { type: String, unique: true },
   clave: String,
   estado: { type: Number, default: 1 },
 });
@@ -67,4 +67,6 @@ const EventoSchema = new mongoose.Schema({
 });
 const Evento = mongoose.model("Evento", EventoSchema);
 
-export { Test, Animal, Usuario, Socio, Formulario, Evento, Solicitud};
+const SolicitudAceptada = mongoose.model("SolicitudAceptada",SolicitudesSchema);
+
+export { Test, Animal, Usuario, Socio, Formulario, Evento, Solicitud, SolicitudAceptada};

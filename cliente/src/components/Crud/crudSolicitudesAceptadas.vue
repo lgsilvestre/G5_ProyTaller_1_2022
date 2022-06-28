@@ -8,7 +8,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Solicitudes de adopción</v-toolbar-title>
+        <v-toolbar-title>Solicitudes de adopción aceptadas</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -16,20 +16,6 @@
         ></v-divider>
         <v-spacer></v-spacer>
       </v-toolbar>
-    </template>
-    <template v-slot:item.actions="{ item }">
-        <v-btn
-        fab 
-        small 
-        plain
-        :to="{name:'VerSolicitud', params:{id:item._id}}"
-        >
-        Ver solicitud
-            <v-icon>
-                mdi-eye
-            </v-icon>
-        </v-btn>
-        
     </template>
   </v-data-table>
 </template>
@@ -61,7 +47,7 @@
 
         methods: {
             async listarSolicitudes(){
-                axios.get('/getSolicitudes').then(result => {
+                axios.get('/getSolicitudAceptadas').then(result => {
                     this.Solicituds = result.data
                 }).catch(function(error){
                     console.log(error)
