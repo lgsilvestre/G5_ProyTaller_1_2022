@@ -16,7 +16,8 @@ const AnimalSchema = new mongoose.Schema({
   raza: String,
   tipo: String,
   fotos: Array,
-  idForm: String
+  idForm: String,
+  caso: String
 });
 
 const Animal = mongoose.model("Animal", AnimalSchema);
