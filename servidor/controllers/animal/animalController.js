@@ -52,6 +52,7 @@ async function postAnimal(req, res) {
     tipo: req.body.tipo,
     fotos,
     idForm: req.body.idForm,
+    caso: req.body.caso
   });
 
   await animal.save();
@@ -106,6 +107,7 @@ async function updateAnimal(req, res, next) {
         raza: req.body.raza,
         tipo: req.body.tipo,
         idForm: req.body.idForm,
+        caso: req.body.caso
       },
       { new: true }
     );
