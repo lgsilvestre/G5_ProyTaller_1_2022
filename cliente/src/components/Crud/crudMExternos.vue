@@ -420,7 +420,7 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          idForm: this.editedItem.idForm,
+          idForm: "",
           caso: "externo",
           descripcion: this.editedItem.descripcion,
         });
@@ -433,7 +433,7 @@ export default {
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
           fotos: this.editedItem.fotos,
-          idForm: this.editedItem.idForm,
+          idForm: "",
           caso: "externo",
           descripcion: this.editedItem.descripcion,
         });
