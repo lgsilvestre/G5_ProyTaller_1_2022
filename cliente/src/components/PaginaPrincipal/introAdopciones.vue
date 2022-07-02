@@ -11,7 +11,7 @@
             ></v-img>
         </v-avatar>
         <h2 class="text-h4 text-md-h3 text-center font-weight-black mb-7">
-          Como adpotar a tu mascota 
+          Como adoptar a tu mascota 
         </h2>
         <p class="title font-weight-light">
           A nosotros nos llena el corazón cuando una mascota es adoptada, 
