@@ -12,7 +12,6 @@
         v-for="(carousel, carindex) in carouselsData"
         :key="carindex"
         :src="carousel.src"
-        class="gradient-fill"
       >
         <v-container fill-height>
           <div style="max-width: 600px">

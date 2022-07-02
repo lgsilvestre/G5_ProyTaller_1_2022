@@ -95,7 +95,7 @@ export default {
         {
           name: 'Evelin Vásquez',
           position: 'presidenta',
-          photo: 'https://statics-cuidateplus.marca.com/cms/styles/ratio_1_1/azblob/perros-ninos.jpg.webp?itok=T6UgG91q',
+          photo: 'https://i.imgur.com/t3UHTks.png',
         },
         {
           name: 'Luis Silvestre',

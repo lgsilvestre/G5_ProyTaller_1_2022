@@ -39,7 +39,7 @@
   export default {
     data: () => ({
       icons: [
-        {nombre:'mdi-facebook',link: "https://www.facebook.com/profile.php?id=100009366360341"  },
+        {nombre:'mdi-facebook',link: "https://www.facebook.com/Adogtame-Curico-382415369001881/"  },
         {nombre:'mdi-instagram',link: "https://www.instagram.com/adogtame.cco/?hl=es"},
       ],
     }),
