@@ -4,6 +4,7 @@
     
     <v-bottom-navigation v-model="value" shift class="hideOnPhone">
           <v-btn @click="rutaTest('mascotas')">Mascotas</v-btn>
+          <v-btn @click="rutaTest('casos externos')">Casos externos</v-btn>
           <v-btn @click="rutaTest('administradores')">Administradores</v-btn>
           <v-btn @click="rutaTest('formularios')">Formularios</v-btn>
           <v-btn @click="rutaTest('solicitudes')">Solicitudes</v-btn>
@@ -27,6 +28,9 @@
       <v-list>
         <v-list-item>
           <v-list-item-title><v-btn @click="rutaTest('mascotas')">Mascotas</v-btn></v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title><v-btn @click="rutaTest('casos externos')">Casos externos</v-btn></v-list-item-title>
         </v-list-item>
         <v-list-item>
           <v-list-item-title><v-btn @click="rutaTest('administradores')">Administradores</v-btn></v-list-item-title>  
@@ -53,6 +57,7 @@
    
 
     <crudMascotas v-if="comprobarRuta('mascotas')"></crudMascotas>
+    <crudExternos v-if="comprobarRuta('casos externos')"></crudExternos>
     <crudAdmin v-if="comprobarRuta('administradores')"></crudAdmin>
     <crud-form v-if="comprobarRuta('formularios')"></crud-form>
     <crud-solicitudes v-if="comprobarRuta('solicitudes')"></crud-solicitudes>
@@ -65,6 +70,7 @@
 <script>
 import crudAdmin from "../components/Crud/crudA.vue";
 import crudMascotas from "../components/Crud/crudM.vue";
+import crudExternos from "../components/Crud/crudMExternos.vue";
 import CrudForm from "../components/Crud/crudForm.vue";
 import crudSocios from "./Socios.vue";
 import crudEventos from "../components/Crud/crudEventos.vue";
@@ -83,6 +89,7 @@ export default {
   components: {
     crudAdmin,
     crudMascotas,
+    crudExternos,
     CrudForm,
     crudSocios,
     crudEventos,
@@ -111,6 +118,10 @@ export default {
     else if(this.$route.query.opcion === 'eventos'){
       this.value=6
     }
+    else if(this.$route.query.opcion === 'casos externos'){
+      this.value=7
+    }
+
   },
    watch: {
       group () {

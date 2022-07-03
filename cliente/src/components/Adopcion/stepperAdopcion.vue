@@ -80,7 +80,7 @@
           </v-card>
         </v-dialog>
         <!-- Snackbar de error o de envío exitoso -->
-        <v-snackbar :vertical="vertical" v-model="snackbar" timeout="5000" top>
+        <v-snackbar :vertical="vertical" v-model="snackbar" timeout="5000" top >
             <span>¡{{ snackbarText }}!</span>
             <template v-slot:action="{ attrs }">
                 <v-btn
@@ -113,6 +113,7 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                 contadorVacias: 0,
                 contadorIncompletas:0,
                 vertical: true,
+                envieForm: false
             }
         },
         watch: {
@@ -141,8 +142,14 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     axios.get('/queryFormulario?_id='+this.animal.idForm)
                     .then(result2 => {
                         this.formulario = result2.data
-                    })
-                })
+                    }).catch((error)=>{
+                        console.log(error)
+                        this.$router.push('/')
+                    });
+                }).catch((error)=>{
+                    console.log(error)
+                    this.$router.push('/')
+                });
             },
             async enviarRespuestas(){
                 if(this.comprobarRespuestas()){
@@ -157,11 +164,24 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                         preguntas: preguntaRespuesta,
                         mascota: animalPost,
                         usuario: user  
+                    }).then(result => {
+                        this.dialogoEnviar = false
+                        this.snackbarText = "Formulario enviado con éxito"
+                        this.snackbar = true
+                        this.envieForm = true
+                        setTimeout( () => this.$router.push('/home'), 3000);
+                        return result
+                    }).catch(function(error){
+                        console.log(error)
                     });
-                    this.dialogoEnviar = false
-                    this.snackbarText = "Formulario enviado con éxito"
-                    this.snackbar = true
-                    this.$router.push('/home');
+                    if(!this.envieForm){
+                        this.dialogoEnviar = false
+                        this.snackbarText = "Ya has enviado una solicitud a esta mascota"
+                        this.snackbar = true
+                    }
+                    
+
+                    
                 }
                 else {
                     this.dialogoEnviar = false
