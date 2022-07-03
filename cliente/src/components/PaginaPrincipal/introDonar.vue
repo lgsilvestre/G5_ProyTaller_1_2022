@@ -9,11 +9,12 @@
           <div
             class="text-h5 text-md-h4 text-center font-weight-black py-3 mb-10"
           >
-            Aquí encontraras otras 3 formas de ayudar
+            Aquí encontraras otras 2 formas de ayudar
           </div>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row align="center"
+      justify="center">
         <v-col
           v-for="(card, index) in cards"
           :key="index"
@@ -25,8 +26,7 @@
             size="80"
             class="display-1 white font-weight-bold black--text mb-5"
             style="opacity: 1.15"
-            >{{ card.callout }}</v-avatar
-          >
+            >{{ card.callout }}</v-avatar>
           <div class="title text-uppercase mt-1 mb-4" v-text="card.title"></div>
 
           <p v-text="card.text"></p>
@@ -56,16 +56,10 @@ export default {
           callout: '1',
         },
         {
-          title: 'Para todos los bolsillos',
-          subtitle: 'Special Offers',
-          text: 'Cuando pases por Supermercados Lider recuerda a nuestros peludos y da nuestro RUT. Lo reunido se transformará en alimento y mantas para nuestros rescatados. ⭐FUNDACION ADOGTAME CURICO⭐ 🐱53.334.096-2 🐶',
-          callout: '2',
-        },
-        {
           title: 'Unete a nosotros',
           subtitle: 'Special Offers',
           text: 'Háblanos por nuestras redes sociales que se encuentran en la parte inferior de la página y cuéntanos tus intenciones para unirte a nuestra comunidad Adogtame.',
-          callout: '3',
+          callout: '2',
         },
       ],
     }
