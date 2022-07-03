@@ -6,14 +6,14 @@
       <v-container v-if="!loading" class="mb-6">
         <v-row>
           <v-col sm="12" md="3">
-            <v-card class="elevation-1" style="position: sticky; top: 76px">
+            <v-card class="elevation-1" style="position: sticky; top: 45px">
               <v-card-title primary-title>
                 <h3 class="mb-0">Busca tu mascota</h3>
               </v-card-title>
               <v-card-text>
                 <h5>Animalitos de la busqueda: {{ this.filter().length }}</h5>
 
-                <div class="search-content">
+                <div >
                   <h3>Nombre</h3>
                   <v-text-field
                     v-model="filterOptions.nombre"
@@ -22,7 +22,7 @@
                   ></v-text-field>
                 </div>
 
-                <div class="search-content">
+                <div >
                   <h3>Tipo</h3>
                   <v-select
                     v-model="filterOptions.especie"
@@ -32,7 +32,7 @@
                   ></v-select>
                 </div>
 
-                <div class="search-content">
+                <div >
                   <h3>Raza</h3>
                   <v-text-field
                     v-model="filterOptions.raza"
@@ -41,7 +41,17 @@
                   ></v-text-field>
                 </div>
 
-                <div class="search-content">
+                <div >
+                  <h3>Caso</h3>
+                  <v-select
+                    v-model="filterOptions.caso"
+                    :items="casos"
+                    label="Nombre de la especie/tipo"
+                    solo
+                  ></v-select>
+                </div>
+
+                <div >
                   <h3>Edad</h3>
                   <h4>Edad seleccionada: {{ filterOptions.edad }}</h4>
                   <v-range-slider
@@ -91,10 +101,15 @@ export default {
         text: "Cualquiera",
         value: "",
       }],
+      casos: [{
+        text: "Cualquiera",
+        value: "",
+      }],
       filterOptions: {
         nombre: "",
         especie: "",
         raza: "",
+        caso: "",
         edad: [1, 1],
       },
       datos: [
@@ -110,9 +125,15 @@ export default {
     axios.get("/getAnimals").then(async (result) => {
       this.items = result.data;
       this.filterOptions.edad = [1, this.getMaxAge()];
-
+      
       let formularios = await axios.get("/getFormularios")
-
+      let casos = this.items.map(f => {
+        return {
+          text: f.caso,
+          value: f.caso
+        }
+      })
+      this.casos = this.casos.concat(casos)
       let resEspecies = formularios.data.map(f => {
         return {
           text: f.nombre,
@@ -120,7 +141,6 @@ export default {
         }
       })
       this.especies = this.especies.concat(resEspecies)
-
       this.loading = false;
     });
   },
@@ -137,6 +157,9 @@ export default {
           item.tipo
             .toLowerCase()
             .includes(this.filterOptions.especie.toLowerCase()) &&
+          item.caso
+            .toLowerCase()
+            .includes(this.filterOptions.caso.toLowerCase()) &&
           item.edad >= this.filterOptions.edad[0] &&
           item.edad <= this.filterOptions.edad[1]
         );
@@ -150,12 +173,6 @@ export default {
 </script>
 
 <style>
-.search-content {
-  padding: 10px;
-}
-.search-content h3 {
-  margin-bottom: 10px;
-}
 .bg {
   background-color: #352d2d;
 }
