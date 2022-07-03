@@ -78,13 +78,25 @@
                         label="Raza"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="6">
+                    <v-col cols="8" sm="4" md="4">
                       <v-select
                         :items="tiposFormularios"
                         label="Tipo"
                         v-model="editedItem.tipo"
                       >
                       </v-select>
+                    </v-col>
+                    <v-col cols="16" sm="10" md="8">
+                      <v-textarea
+                        v-model="editedItem.descripcion"
+                        color="teal"
+                      >
+                        <template v-slot:label>
+                          <div>
+                            Descripción <small>(opcional)</small>
+                          </div>
+                        </template>
+                      </v-textarea>
                     </v-col>
                     
                   </v-row>
@@ -248,7 +260,8 @@ export default {
         tipo: "",
         fotos: [],
         idForm: "",
-        caso: "externo"
+        caso: "externo",
+        descripcion: ""
       },
       defaultItem: {
         nombre: "",
@@ -257,7 +270,8 @@ export default {
         tipo: "",
         fotos: [],
         idForm: "",
-        caso: "externo"
+        caso: "externo",
+        descripcion: ""
       },
       indexMascotas: 0,
       selectedFile: null,
@@ -406,8 +420,9 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          idForm: this.editedItem.idForm,
-          caso: "externo"
+          idForm: "",
+          caso: "externo",
+          descripcion: this.editedItem.descripcion,
         });
       } else {
         //Crear mascota
@@ -418,8 +433,9 @@ export default {
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
           fotos: this.editedItem.fotos,
-          idForm: this.editedItem.idForm,
-          caso: "externo"
+          idForm: "",
+          caso: "externo",
+          descripcion: this.editedItem.descripcion,
         });
       }
       this.loading = false;
