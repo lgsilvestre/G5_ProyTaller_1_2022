@@ -142,8 +142,14 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                     axios.get('/queryFormulario?_id='+this.animal.idForm)
                     .then(result2 => {
                         this.formulario = result2.data
-                    })
-                })
+                    }).catch((error)=>{
+                        console.log(error)
+                        this.$router.push('/')
+                    });
+                }).catch((error)=>{
+                    console.log(error)
+                    this.$router.push('/')
+                });
             },
             async enviarRespuestas(){
                 if(this.comprobarRespuestas()){
