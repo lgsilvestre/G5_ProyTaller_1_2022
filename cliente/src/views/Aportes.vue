@@ -114,9 +114,9 @@ export default {
           icon: "https://i.imgur.com/827ygzI.png",
         },
         {
-          title: "infraestructura",
-          text: "Nos preocupamos de que cada mascota tenga un infraestructura para habitar de manera adecuada donde no pasen frio o demasiado calor.",
-          icon: "https://i.imgur.com/XxUYhLE.png",
+          title: "Transporte",
+          text: "Nos preocupamos de que cada mascota sea transportada a un lugar seguro.",
+          icon: "https://i.imgur.com/4iQ2Myp.png",
         },
       ],
     };

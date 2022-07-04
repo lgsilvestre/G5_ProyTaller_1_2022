@@ -1,5 +1,6 @@
 <template>
   <section>
+    <Title :datos="datos" />
     <v-row no-gutters>
       <v-col cols="12">
         <SectionsHeroAlt :hero-alt="heroAlt" />
@@ -74,12 +75,19 @@
 </template>
 
 <script>
+import Title from "../components/Utilidades/Generales/title.vue";
 import contactForm from '../components/Contacto/contactForm.vue'
 export default {
-  components: { contactForm },
+  components: { contactForm, Title },
   
   data() {
     return {
+      datos: [
+        {
+          src: "https://images.unsplash.com/photo-1581888227599-779811939961?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+          titulo: " Contacto ",
+        },
+      ],
       heroAlt: [
         {
           src: 'pexels-andrea-piacquadio-3830745.jpg',
