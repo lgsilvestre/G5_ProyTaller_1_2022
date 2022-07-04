@@ -103,6 +103,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/VerSolicitud.vue'),
     meta:{logged:true}
   },
+  {
+    path: '/recuperar',
+    name: 'recuperar',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Recuperar.vue'),
+    meta:{guest:true}
+  },
 ]
 
 const router = new VueRouter({
