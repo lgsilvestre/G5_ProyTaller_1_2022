@@ -1,7 +1,7 @@
 <template>
   <section id="hero">
     <v-carousel
-      height="calc(100vh - 64px)"
+      height="calc(100vh - 300px)"
       dark
       cycle
       show-arrows-on-hover
@@ -12,6 +12,7 @@
         v-for="(carousel, carindex) in carouselsData"
         :key="carindex"
         :src="carousel.src"
+        class="gradient-fill"
       >
         <v-container fill-height>
           <div style="max-width: 600px">
@@ -74,7 +75,7 @@ export default {
   background: linear-gradient(
     to right,
     rgba(41, 11, 3, 0.75),
-    rgba(5, 11, 31, 0.65)
+    rgba(5, 11, 31, 0.4)
   );
 }
 </style>
