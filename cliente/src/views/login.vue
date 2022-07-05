@@ -30,6 +30,7 @@
                 <v-card-actions class="px-3 pb-3 justify-center">
                     <v-btn class="button" @click="ingresar()" dark color="red lighten-2">Ingresar</v-btn>
                 </v-card-actions>
+                <p class="mt-1"> <a href="/recuperar" >¿Olvidaste tu contraseña?</a></p>
                 <p>¿No tienes cuenta?<br/><a href="/registro" >Regístrate aquí</a></p>
             </v-card>
         </v-flex>

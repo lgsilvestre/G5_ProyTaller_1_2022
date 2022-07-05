@@ -1,13 +1,22 @@
 import { Socio } from "../../mongodbConfig.js";
+//import { enviarWhatsApp } from "../whatsApp/whatsAppController.js";
 import {enviarCorreo} from "../correos/correosController.js";
+import { enviarWhatsApp } from "../whatsApp/controladorWsp.js";
 import * as cron from "node-cron"
 async function postSocio(req, res) {
   try {
     let socio = new Socio(req.body);
     console.log(cron)
-    cron.default.schedule('* * */30 * * *', ()=> { 
-      enviarCorreo("estimado socio "+socio.nombreCompleto+"le recordamos aportar a la fundacion","aportame adogtame"
-      ,socio.correo)
+    
+    //envia correo
+    
+
+    cron.default.schedule('* */1 * * *', ()=> { 
+      enviarCorreo("estimado socio "+socio.nombreCompleto+" le recordamos aportar a la fundacion","aportame adogtame"
+      ,socio.correo),
+      console.log(socio.telefono),
+      enviarWhatsApp(socio.telefono),
+      console.log("pasa por aca?")
     })
     await socio.save();
     res.send(socio);

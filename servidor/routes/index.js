@@ -15,7 +15,10 @@ import {
   login,
   updateUsuario,
   removeUsuario,
-  queryTokenID
+  queryTokenID,
+  recuperarContrasena,
+  compararCodigo,
+  cambiarContrasena,
 } from "../controllers/usuario/usuarioController.js";
 
 import {
@@ -118,5 +121,9 @@ export function routesConfig(app) {
   app.put("/updateEvento", updateEvento);
   app.post("/removeEvento", removeEvento);
 
+  //Auth
+  app.post("/recuperarContrasena", recuperarContrasena);
+  app.post("/compararCodigo", compararCodigo);
+  app.post("/cambiarContrasena", cambiarContrasena);
 
 }
