@@ -6,8 +6,12 @@ import dotenv from 'dotenv'
 import * as functions from 'firebase-functions';
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
+import { inicializar } from './controllers/whatsApp/controladorWsp.js'
 
 
+
+inicializar();
+console.log("alo");
 const firebaseConfig = {
   apiKey: "AIzaSyAUrDNYdpt34y3WwMvOFupbNx4k9uCMOV4",
   authDomain: "adogtame-1fa85.firebaseapp.com",
@@ -39,3 +43,7 @@ const appFirebase = initializeApp(firebaseConfig);
 export const storage = getStorage(appFirebase);
 
 export const appNode = functions.https.onRequest(app)
+
+//inicializar whatsapp
+
+
