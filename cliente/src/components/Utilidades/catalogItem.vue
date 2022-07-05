@@ -8,6 +8,7 @@
         reverse-transition="fade-transition"
         transition="fade-transition"
       ></v-carousel-item>
+
     </v-carousel>
 
     <v-card-title>
@@ -16,20 +17,21 @@
 
     <v-card-subtitle>
       <ul>
-        <li>{{ item.raza }}</li>
-        <li>{{ item.tipo }}</li>
-        <li>{{ item.edad }} años</li>
+        <li>tipo: {{ item.tipo }}</li>
+        <li>edad: {{ item.edad }} años</li>
+        <li>caso: {{item.caso}}</li>
       </ul>
     </v-card-subtitle>
 
     <v-card-actions>
-      <v-btn @click="verificarUsuario(item._id)" color="red lighten-2" text> Adoptame </v-btn>
+      <v-btn v-if="item.caso=='interno'" @click="verificarUsuario(item._id)" color="red lighten-2" text> Adoptame </v-btn>
 
       <v-spacer></v-spacer>
 
       <v-btn icon @click="show = !show">
         <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
       </v-btn>
+      
     </v-card-actions>
 
     <v-expand-transition>
@@ -37,10 +39,7 @@
         <v-divider></v-divider>
 
         <v-card-text>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
-          officia quibusdam quod doloremque necessitatibus neque totam
-          voluptatem architecto quas cum eius, dicta optio. Ut voluptates
-          corporis maiores nisi unde aliquid?
+          {{item.descripcion}}
         </v-card-text>
       </div>
     </v-expand-transition>
@@ -54,6 +53,7 @@ export default {
   props: ["item"],
   data: () => ({
     show: false,
+    mostrarBoton: false,
   }),
   methods: {
     verificarUsuario(id){
@@ -66,7 +66,7 @@ export default {
       else{
         router.push({name:'Login'})
       }
-    }    
+    },
   }
 };
 </script>
