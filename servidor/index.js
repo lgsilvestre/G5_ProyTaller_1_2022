@@ -8,6 +8,8 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { inicializar } from './controllers/whatsApp/controladorWsp.js'
 
+
+
 inicializar();
 console.log("alo");
 const firebaseConfig = {

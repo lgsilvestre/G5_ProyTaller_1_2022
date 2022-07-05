@@ -24,9 +24,13 @@ const  inicializar =() => {
         console.log('el cliente esta ready');
     });
     console.log('aca3');
+    
 
     
 }
+
+
+
 
 /*
     client.on('authenticated', (session) => {
