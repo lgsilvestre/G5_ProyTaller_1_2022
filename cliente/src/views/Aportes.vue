@@ -7,7 +7,7 @@
           <v-card class="mx-auto" max-width="544">
             <v-card-text>
               <p class="text-h4 text--primary">Datos bancarios</p>
-              <div class="text--primary">
+              <div class="text-h6 text--primary">
                 <br />
                 Cuenta Rut - Banco Estado <br />
                 19.503.538-5 <br />
@@ -15,6 +15,11 @@
                 adogtame.curico2015@gmail.com <br />
                 Asunto: Nombre + Apellido <br /><br />
               </div>
+               <v-img
+             
+                height="100"
+                src="https://i.imgur.com/DZaobyH.png"
+              ></v-img>
             </v-card-text>
           </v-card>
           <h2

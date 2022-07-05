@@ -80,7 +80,7 @@
           </v-card>
         </v-dialog>
         <!-- Snackbar de error o de envío exitoso -->
-        <v-snackbar :vertical="vertical" v-model="snackbar" timeout="5000" top>
+        <v-snackbar :vertical="vertical" v-model="snackbar" timeout="5000" top >
             <span>¡{{ snackbarText }}!</span>
             <template v-slot:action="{ attrs }">
                 <v-btn
@@ -113,6 +113,7 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                 contadorVacias: 0,
                 contadorIncompletas:0,
                 vertical: true,
+                envieForm: false
             }
         },
         watch: {
@@ -146,7 +147,6 @@ import mostradorFormulario from "./mostradorFormulario.vue"
             },
             async enviarRespuestas(){
                 if(this.comprobarRespuestas()){
-                    console.log('se puede enviar las respuestas')
                     var preguntaRespuesta = []
                     this.formulario.preguntas.forEach(elemento => {
                         preguntaRespuesta.push({"pregunta":elemento.pregunta,"respuesta":elemento.respuesta})
@@ -158,17 +158,37 @@ import mostradorFormulario from "./mostradorFormulario.vue"
                         preguntas: preguntaRespuesta,
                         mascota: animalPost,
                         usuario: user  
+                    }).then(result => {
+                        this.dialogoEnviar = false
+                        this.snackbarText = "Formulario enviado con éxito"
+                        this.snackbar = true
+                        this.envieForm = true
+                        setTimeout( () => this.$router.push('/home'), 3000);
+                        return result
+                    }).catch(function(error){
+                        console.log(error)
                     });
-                    this.dialogoEnviar = false
-                    this.snackbar = true
-                    this.snackbarText = "Formulario enviado con éxito"
+                    if(!this.envieForm){
+                        this.dialogoEnviar = false
+                        this.snackbarText = "Ya has enviado una solicitud a esta mascota"
+                        this.snackbar = true
+                    }
+                    
+
+                    
                 }
                 else {
                     this.dialogoEnviar = false
                     this.snackbar = true
                     
                     if(this.contadorVacias > 0 && this.contadorIncompletas == 0){
-                        this.snackbarText = "Todas las respuestas están vacías"
+                        
+                        if(this.contadorVacias === 1){
+                            this.snackbarText = "Una respuesta está vacía"
+                        }
+                        else{
+                            this.snackbarText = "Hay "+ this.contadorVacias + " respuestas que están vacías"
+                        }
                     }
                     else if(this.contadorVacias > 0 && this.contadorIncompletas > 0){
                         this.snackbarText = 'Hay '+this.contadorVacias+' respuestas vacias y ' + this.contadorIncompletas + ' respuestas incompletas'

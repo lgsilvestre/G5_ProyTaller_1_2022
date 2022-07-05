@@ -9,7 +9,7 @@
     >
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Mis mascotas</v-toolbar-title>
+          <v-toolbar-title>Casos externos</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
@@ -22,7 +22,7 @@
                 v-bind="attrs"
                 v-on="on"
               >
-                Nueva mascota
+                Nuevo caso externo
               </v-btn>
               
             </template>
@@ -260,7 +260,7 @@ export default {
         tipo: "",
         fotos: [],
         idForm: "",
-        caso: "interno",
+        caso: "externo",
         descripcion: ""
       },
       defaultItem: {
@@ -270,7 +270,7 @@ export default {
         tipo: "",
         fotos: [],
         idForm: "",
-        caso: "interno",
+        caso: "externo",
         descripcion: ""
       },
       indexMascotas: 0,
@@ -282,7 +282,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Nueva mascota" : "Editar mascota";
+      return this.editedIndex === -1 ? "Nuevo caso externo" : "Editar caso externo";
     },
     listaMascotas() {
       //this.listarMascotas()
@@ -420,9 +420,9 @@ export default {
           edad: this.editedItem.edad,
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
-          idForm: this.editedItem.idForm,
-          caso: "interno",
-          descripcion: this.editedItem.descripcion
+          idForm: "",
+          caso: "externo",
+          descripcion: this.editedItem.descripcion,
         });
       } else {
         //Crear mascota
@@ -433,9 +433,9 @@ export default {
           raza: this.editedItem.raza,
           tipo: this.editedItem.tipo,
           fotos: this.editedItem.fotos,
-          idForm: this.editedItem.idForm,
-          caso: "interno",
-          descripcion: this.editedItem.descripcion
+          idForm: "",
+          caso: "externo",
+          descripcion: this.editedItem.descripcion,
         });
       }
       this.loading = false;
@@ -452,7 +452,7 @@ export default {
           me.indexMascotas = me.mascotas.length;
           let mascotasAux =[]
           me.mascotas.forEach(element => {
-            if(element.caso=="interno"){
+            if(element.caso=="externo"){
               mascotasAux.push(element);
             }
           });

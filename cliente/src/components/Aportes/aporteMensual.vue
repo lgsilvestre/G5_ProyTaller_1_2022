@@ -1,5 +1,13 @@
 <template>
+  
   <section :class="$vuetify.theme.dark ? 'black' : 'white'" class="py-16">
+    <edit-socio
+        v-if="dialog"
+        :item="editedItem"
+        :formTitle="formTitle"
+        @save="onSave"
+        @close="dialog = false"
+    ></edit-socio>
     <v-container>
       <v-row>
         <v-col>
@@ -75,6 +83,7 @@
                     block
                     rounded
                     class="mx-auto my-3"
+                    @click="donacion(plan.monthly)"
                   >
                     Donar
                   </v-btn>
@@ -85,14 +94,20 @@
         </v-col>
       </v-row>
     </v-container>
+    
   </section>
 </template>
 
 <script>
+import axios from 'axios';
+import editSocio from '../Crud/editSocio.vue';
 export default {
+  components: { editSocio },
   data() {
     return {
       planDuration: 'monthly',
+      dialog: false,
+      editedItem: {},
       plans: [
         {
           plan: 'Básico',
@@ -161,6 +176,28 @@ export default {
       ],
     }
   },
+  computed: {
+    formTitle() {
+      return this.editedItem._id ? "Editar socio" : "Nuevo socio";
+    },
+  },
+  methods: {
+    donacion(monto){
+      if(monto!='$Tu eliges'){
+        this.editedItem = {monto:monto.slice(1)}
+      }
+      this.dialog=true
+    },
+    async onSave(item) {
+      if (!item._id) {
+        await axios.post("/postSocio", item);
+      } else {
+        await axios.put("/updateSocio", item);
+      }
+      return;
+    },
+
+  }
 }
 </script>
 

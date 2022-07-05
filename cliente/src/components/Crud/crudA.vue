@@ -106,7 +106,7 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <v-icon
-        small
+        medium
         @click="deleteItem(item)"
       >
         mdi-delete

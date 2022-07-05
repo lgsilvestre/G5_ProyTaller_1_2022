@@ -4,9 +4,11 @@
     
     <v-bottom-navigation v-model="value" shift class="hideOnPhone">
           <v-btn @click="rutaTest('mascotas')">Mascotas</v-btn>
+          <v-btn @click="rutaTest('casos externos')">Casos externos</v-btn>
           <v-btn @click="rutaTest('administradores')">Administradores</v-btn>
           <v-btn @click="rutaTest('formularios')">Formularios</v-btn>
           <v-btn @click="rutaTest('solicitudes')">Solicitudes</v-btn>
+          <v-btn @click="rutaTest('solicitudesAceptadas')">Solicitudes aceptadas</v-btn>
           <v-btn @click="rutaTest('socios')">Socios</v-btn>
           <v-btn @click="rutaTest('eventos')">Eventos</v-btn>
     </v-bottom-navigation>
@@ -28,6 +30,9 @@
           <v-list-item-title><v-btn @click="rutaTest('mascotas')">Mascotas</v-btn></v-list-item-title>
         </v-list-item>
         <v-list-item>
+          <v-list-item-title><v-btn @click="rutaTest('casos externos')">Casos externos</v-btn></v-list-item-title>
+        </v-list-item>
+        <v-list-item>
           <v-list-item-title><v-btn @click="rutaTest('administradores')">Administradores</v-btn></v-list-item-title>  
         </v-list-item>
         <v-list-item>
@@ -35,6 +40,9 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-title><v-btn @click="rutaTest('solicitudes')">Solicitudes</v-btn></v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title><v-btn @click="rutaTest('solicitudesAceptadas')">Solicitudes aceptadas</v-btn></v-list-item-title>
         </v-list-item>
         <v-list-item>
           <v-list-item-title><v-btn @click="rutaTest('socios')">Socios</v-btn></v-list-item-title>
@@ -49,9 +57,11 @@
    
 
     <crudMascotas v-if="comprobarRuta('mascotas')"></crudMascotas>
+    <crudExternos v-if="comprobarRuta('casos externos')"></crudExternos>
     <crudAdmin v-if="comprobarRuta('administradores')"></crudAdmin>
     <crud-form v-if="comprobarRuta('formularios')"></crud-form>
     <crud-solicitudes v-if="comprobarRuta('solicitudes')"></crud-solicitudes>
+    <crudSolicitudesAceptadas v-if="comprobarRuta('solicitudesAceptadas')"></crudSolicitudesAceptadas>
     <crudSocios v-if="comprobarRuta('socios')"></crudSocios>
     <crudEventos v-if="comprobarRuta('eventos')"></crudEventos>
   </div>
@@ -60,10 +70,12 @@
 <script>
 import crudAdmin from "../components/Crud/crudA.vue";
 import crudMascotas from "../components/Crud/crudM.vue";
+import crudExternos from "../components/Crud/crudMExternos.vue";
 import CrudForm from "../components/Crud/crudForm.vue";
 import crudSocios from "./Socios.vue";
 import crudEventos from "../components/Crud/crudEventos.vue";
 import crudSolicitudes from "../components/Crud/crudSolicitudes.vue";
+import crudSolicitudesAceptadas from "../components/Crud/crudSolicitudesAceptadas.vue";
 
 export default {
   data() {
@@ -77,10 +89,12 @@ export default {
   components: {
     crudAdmin,
     crudMascotas,
+    crudExternos,
     CrudForm,
     crudSocios,
     crudEventos,
-    crudSolicitudes
+    crudSolicitudes,
+    crudSolicitudesAceptadas
   },
   created(){
     if(this.$route.query.opcion === 'mascotas'){
@@ -95,12 +109,19 @@ export default {
     else if(this.$route.query.opcion === 'solicitudes'){
       this.value=3
     }
-    else if(this.$route.query.opcion === 'socios'){
+    else if(this.$route.query.opcion === 'solicitudesAceptadas'){
       this.value=4
     }
-    else if(this.$route.query.opcion === 'eventos'){
+    else if(this.$route.query.opcion === 'socios'){
       this.value=5
     }
+    else if(this.$route.query.opcion === 'eventos'){
+      this.value=6
+    }
+    else if(this.$route.query.opcion === 'casos externos'){
+      this.value=7
+    }
+
   },
    watch: {
       group () {
