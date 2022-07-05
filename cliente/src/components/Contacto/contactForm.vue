@@ -27,7 +27,6 @@
     <v-row>
       <v-col>
         <v-btn type="submit" value= "" class="my-3 red darken-3" >Enviar</v-btn>
-        <v-btn class="my-2 ml-3">Limpiar</v-btn>
         <input type="hidden" name="_next" value="https://adogtamecurico.com/home">
       </v-col>
     </v-row>

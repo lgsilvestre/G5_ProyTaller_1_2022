@@ -17,14 +17,12 @@
         <v-container fill-height>
           <div style="max-width: 600px">
             <div
-              class="text-md-h2 mb-3 text-sm-h3 text-h5 font-weight-black white--text"
+              class="text-md-h3 mb-3 text-sm-h3 text-h5 font-weight-black white--text"
             >
               {{ carousel.heading.toUpperCase() }}
             </div>
             <p class="mb-5 white--text">{{ carousel.subHeading }}</p>
-            <v-btn :x-large="$vuetify.breakpoint.smAndUp" class="my-3 red darken-3"
-              to=/About>Conócenos</v-btn
-            >
+
             <span class="mx-2 my-4"></span>
 
           </div>
@@ -40,25 +38,25 @@ export default {
     return {
       carouselsData: [
         {
-          src: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
+          src: 'https://i.imgur.com/DPQaB5D.jpg',
           heading: 'Cuando un hombre se apiade de todas las criaturas vivientes, sólo entonces será noble.',
           subHeading:
             '(Buda)',
         },
         {
-          src: 'https://images.unsplash.com/photo-1604848698030-c434ba08ece1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+          src: 'https://i.imgur.com/2lny3qw.jpg',
           heading: 'Hasta que uno no ha amado a un animal, parte de su alma permanece dormida.',
           subHeading:
             '(France, Anatole)',
         },
         {
-          src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
+          src: 'https://i.imgur.com/PwgW0uQ.jpg0',
           heading: 'Todos los animales excepto el hombre saben que el máximo de la vida es disfrutarla.',
           subHeading:
             '(Butler, Samuel)',
         },
         {
-          src: 'https://images.unsplash.com/photo-1525253013412-55c1a69a5738?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+          src: 'https://i.imgur.com/qREXXde.jpg',
           heading: 'Los perros no son toda tu vida, pero hacen tu vida completa.',
           subHeading:
             '(Roger Caras)',
