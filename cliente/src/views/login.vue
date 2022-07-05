@@ -53,7 +53,7 @@ export default {
     methods:{
         async ingresar(){
             this.loading = true
-            await axios.post('login',{email: this.email, password: this.password})
+            await axios.post('login',{email: this.email.toLowerCase(), password: this.password})
             .then(respuesta =>{
                 return respuesta.data;
             })

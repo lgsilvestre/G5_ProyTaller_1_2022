@@ -162,7 +162,7 @@ export default {
                 axios.post('postUsuario',{
                     rol: "usuario",
                     nombreCompleto: this.user.nombreCompleto,
-                    email: this.user.email,
+                    email: this.user.email.toLowerCase(),
                     clave: this.user.clave,
                 })
                 .then((respuesta) => {

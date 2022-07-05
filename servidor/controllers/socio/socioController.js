@@ -9,9 +9,12 @@ async function postSocio(req, res) {
     console.log(cron)
     
     //envia correo
+    enviarCorreo("estimado socio "+socio.nombreCompleto+" le recordamos aportar a la fundacion","aportame adogtame"
+    ,socio.correo),
     
+    enviarWhatsApp(socio.telefono),
 
-    cron.default.schedule('* */1 * * *', ()=> { 
+    cron.default.schedule('* * * */30 *', ()=> { 
       enviarCorreo("estimado socio "+socio.nombreCompleto+" le recordamos aportar a la fundacion","aportame adogtame"
       ,socio.correo),
       console.log(socio.telefono),

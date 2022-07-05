@@ -84,24 +84,25 @@ const routes = [
     path: '/crud',
     name: 'Crud',
     component: () => import(/* webpackChunkName: "about" */ '../views/Crud.vue'),
-    meta: { logged: true },
+    meta: { logged: true,isAdmin:true },
   },
   {
     path: '/editarFormulario/:id',
     name: 'EditorFormulario',
     component: () => import(/* webpackChunkName: "about" */ '../views/editorFormulario.vue'),
-    meta:{logged:true}
+    meta:{logged:true,isAdmin:true}
   },
   {
     path: '/adoptarMascota/mascota/:id',
     name: 'adopcion',
     component: () => import(/* webpackChunkName: "about" */ '../views/adoptar.vue'),
+    meta:{logged:true}
   },
   {
     path: '/VerSolicitud/:id',
     name: 'VerSolicitud',
     component: () => import(/* webpackChunkName: "about" */ '../views/VerSolicitud.vue'),
-    meta:{logged:true}
+    meta:{logged:true,isAdmin:true}
   },
   {
     path: '/recuperar',
@@ -121,6 +122,30 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.guest)) {
     var loggedIn = localStorage.getItem('token')
     if (loggedIn) {
+      next("/");
+      return;
+    }
+    else{
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+import decode from 'jwt-decode'
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.isAdmin)) {
+    var user = localStorage.getItem('token')
+    if(user!=null){
+      var user2 = decode(user)
+    }
+    else{
+      next("/");
+      return;
+    }
+    
+    if (user2.rol != 'admin') {
       next("/");
       return;
     }
